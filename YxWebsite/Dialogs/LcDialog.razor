@@ -1,5 +1,6 @@
-﻿
+﻿@inject Radzen.DialogService DialogService
 
+<RadzenDialog />
 
 <RadzenStack Gap="1.5rem">
 
@@ -15,6 +16,6 @@
 
     private void closeDialog()
     {
-        closeDialog();
+        DialogService.Close(true);
     }
 }
