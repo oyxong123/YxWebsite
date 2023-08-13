@@ -3,7 +3,7 @@
 @using Services;
 @using Dtos;
 @using Dialogs;
-@inject IDialogService DialogService
+@inject Radzen.DialogService DialogService
 
 <h3>LanguageCottage</h3>
 
@@ -22,6 +22,6 @@
 
     private void lcUploadDialog()
     {
-        DialogService.Show<LcDialog>("New LC Upload");
+        DialogService.OpenAsync<LcDialog>("New LC Upload");
     }
 }

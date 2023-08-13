@@ -1,7 +1,20 @@
-﻿<MudDialog>
+﻿
 
-</MudDialog>
+
+<RadzenStack Gap="1.5rem">
+
+
+    <RadzenStack Orientation="Radzen.Orientation.Horizontal" Gap="0.5rem" JustifyContent="JustifyContent.End">
+        <RadzenButton Text="Shine" Click="submit" Style="width: 80px;" />
+        <RadzenButton Text="Cancel" Click="closeDialog" ButtonStyle="ButtonStyle.Light" />
+    </RadzenStack>
+</RadzenStack>);
+
 
 @code {
 
+    private void closeDialog()
+    {
+        closeDialog();
+    }
 }
