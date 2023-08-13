@@ -1,16 +1,22 @@
 ﻿@inherits LayoutComponentBase
 
-<!--Overrides default blazor theme with mudblazor theme.-->
+<!--Overrides default blazor theme with mudblazor theme-->
 <MudThemeProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
-<PageTitle>Yu Xuan Personal Website</PageTitle>
+<!--Add Radzen configurations for special popups-->
+<RadzenDialog />
+<RadzenNotification />
+<RadzenContextMenu />
+<RadzenTooltip />
+
+<PageTitle>Yx Personal Website</PageTitle>
 
 <MudLayout class="page">
     <MudAppBar>
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-        Yu Xuan Personal Website
+        Yx Personal Website
     </MudAppBar>
     <MudDrawer @bind-Open="@_drawerOpen">
         <NavMenu />

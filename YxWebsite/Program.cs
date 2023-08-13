@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.EntityFrameworkCore;
 using MyPersonalWebsite.Context;
 using MudBlazor.Services;
+using Radzen;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,8 +15,14 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddDbContext<ApplicationDbContext>(option =>
                 option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Add mudblazor component services to website.
+// Add MudBlazor component services to website.
 builder.Services.AddMudServices();
+
+// Add Radzen component services to website.
+builder.Services.AddScoped<DialogService>();
+builder.Services.AddScoped<NotificationService>();
+builder.Services.AddScoped<TooltipService>();
+builder.Services.AddScoped<ContextMenuService>();
 
 var app = builder.Build();
 
