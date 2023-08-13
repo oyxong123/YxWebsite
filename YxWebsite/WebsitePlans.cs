@@ -13,6 +13,7 @@ Special Notes:
  
 Thoughts:
 - I used to write a lots of comments, but now I don't.
-- 
+- Oooo, so that's where the base layout chosen is defined.
+- Whaat, I thought that was a joke. Typing thisisunsafe when chrome gives the localhost dangerous blablabla and wait for a few seconds actually makes the page works successively.
 
  */
