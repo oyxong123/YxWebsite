@@ -1,14 +1,20 @@
-﻿<h3>LanguageCottage</h3>
+﻿@page "/lc"
+@layout DefaultLayout
+@using Services;
+@using Dtos;
 
-<!--Make everything center.-->
+<h3>LanguageCottage</h3>
+
 <MudContainer MaxWidth="MaxWidth.Medium">
 
 </MudContainer>
 
-
-<MudScrollToTop>
-    <MudFab Color="Color.Tertiary" Icon="@Icons.Material.Filled.ArrowCircleUp" />
-</MudScrollToTop>
+<div>
+    <MudFab StartIcon="@Icons.Material.Filled.Add" Color="Color.Success" aria-label="New" ></MudFab>
+    <MudScrollToTop>
+        <MudFab Color="Color.Tertiary" StartIcon="@Icons.Material.Filled.ArrowCircleUp" />
+    </MudScrollToTop>
+</div>
 
 @code {
 

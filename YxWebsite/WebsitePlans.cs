@@ -10,4 +10,8 @@ Website Plans:
 Special Notes:
 - 
  
+Thoughts:
+- I used to write a lots of comments, but now I don't.
+- 
+
  */
