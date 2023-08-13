@@ -1,11 +1,15 @@
 ﻿<!--
-    Home page of website.
+    Website entry point.
 -->
 
 @page "/"
 @layout EmptyLayout
-
+@inject NavigationManager NavManager
 
 @code{
-
+    protected override void OnAfterRender(bool firstRender)
+    {
+        // Navigate to login page.
+        NavManager.NavigateTo("login");
+    }
 }

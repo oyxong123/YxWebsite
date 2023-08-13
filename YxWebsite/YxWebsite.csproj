@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Models\DTO\" />
-    <Folder Include="Dialogs\" />
   </ItemGroup>
 
   <ItemGroup>
