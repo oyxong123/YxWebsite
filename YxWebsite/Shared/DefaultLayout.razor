@@ -15,17 +15,12 @@
 <MudLayout class="page">
     <MudAppBar>
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-        Yx Personal Website
     </MudAppBar>
     <MudDrawer @bind-Open="@_drawerOpen">
         <NavMenu />
     </MudDrawer>
 
     <MudMainContent>
-        <div class="top-row px-4">
-            <a href="">Home</a>
-        </div>
-
         <article class="content px-4">
             @Body
         </article>
