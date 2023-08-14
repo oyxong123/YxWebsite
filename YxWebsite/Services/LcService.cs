@@ -1,6 +1,15 @@
-﻿namespace YxWebsite.Services
+﻿using YxWebsite.Dtos;
+using YxWebsite.Interfaces;
+
+namespace YxWebsite.Services
 {
-    public class LcService
+    public class LcService : ILcService
     {
+        public async Task<bool> UploadLcRecord(LcDto lcDto)
+        {
+            
+
+            return true;
+        }
     }
 }

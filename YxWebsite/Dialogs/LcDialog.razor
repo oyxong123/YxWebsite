@@ -1,9 +1,21 @@
-﻿@inject Radzen.DialogService DialogService
+﻿@using Dtos;
+@using Services;
+@inject Radzen.DialogService DialogService
+@inject LcService LcService
 
 <RadzenDialog />
 
 <RadzenStack Gap="1.5rem">
-
+    <RadzenStack width="100%">
+        <MudFileUpload T="IBrowserFile" @bind-Files="imageFile" OnFilesChanged="OnInputFileChanged" Hidden="false" Class="flex-1" InputClass="absolute mud-width-full mud-height-full overflow-hidden z-20" InputStyle="opacity:0"
+        @ondragenter="@SetDragClass" @ondragleave="@ClearDragClass" @ondragend="@ClearDragClass">
+            <ButtonTemplate>
+                <MudPaper Height="150px" Outlined="true" Class="@DragClass">
+                    <MudImage Src="@imageFileUrl" Alt="Image for Upload" Elevation="25" Class="rounded-lg" />
+                </MudPaper>
+            </ButtonTemplate>
+        </MudFileUpload>
+    </RadzenStack>
 
     <RadzenStack Orientation="Radzen.Orientation.Horizontal" Gap="0.5rem" JustifyContent="JustifyContent.End">
         @* <RadzenButton Text="Shine" Click="submit" Style="width: 80px;" /> *@
@@ -13,9 +25,57 @@
 
 
 @code {
+    private static string DefaultDragClass = "relative rounded-lg border-2 border-dashed pa-4 mt-4 mud-width-full mud-height-full z-10";
+    private string DragClass = DefaultDragClass;
+
+    private IBrowserFile imageFile;
+    private byte[] imageFileBytes = {};
+    private string imageFileSrc = "";
+    private string imageFileUrl = "";
+
+    protected async Task OnInitializedAsync()
+    {
+
+    }
+
+    private async Task UploadLc()
+    {
+        LcDto lcDto = new()
+        {
+            Romaji = "",
+            OriginalText = "",
+            EnglishTranslation = "",
+            Image = imageFileBytes,
+            AddedDateTime = DateTime.Now,
+            LastModifiedDateTime = DateTime.Now
+        };
+
+        await LcService.UploadLcRecord(lcDto);
+    }
 
     private void closeDialog()
     {
         DialogService.Close(true);
+    }
+
+    private async Task OnInputFileChanged(InputFileChangeEventArgs e)
+    {
+        ClearDragClass();
+
+        await imageFile.OpenReadStream(imageFile.Size).ReadAsync(imageFileBytes);
+        imageFileSrc = Convert.ToBase64String(imageFileBytes);
+        imageFileUrl = string.Format("data:image/jpeg;base64,{0}", imageFileSrc);
+
+        // Change to display image mode
+    }
+
+    private void SetDragClass()
+    {
+        DragClass = $"{DefaultDragClass} mud-border-primary";
+    }
+
+    private void ClearDragClass()
+    {
+        DragClass = DefaultDragClass;
     }
 }

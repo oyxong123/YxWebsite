@@ -4,23 +4,6 @@ namespace MyPersonalWebsite.Models
 {
     public class LanguageCottage
     {
-        // Constructor.
-        public LanguageCottage
-            (
-            string romaji,
-            string originalText,
-            string englishTranslation,
-            byte[] image
-            )
-        {
-            Romaji = romaji;
-            OriginalText = originalText;
-            EnglishTranslation = englishTranslation;
-            Image = image;
-            AddedDateTime = DateTime.Now;
-            LastModifiedDateTime = DateTime.Now;
-        }
-
         [Key]
         public int Id { get; set; }
         public required string Romaji { get; set; }
