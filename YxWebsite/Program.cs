@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using MyPersonalWebsite.Context;
 using MudBlazor.Services;
 using Radzen;
+using YxWebsite.Services;
+using YxWebsite.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +25,7 @@ builder.Services.AddScoped<DialogService>();
 builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<TooltipService>();
 builder.Services.AddScoped<ContextMenuService>();
+builder.Services.AddScoped<ILcService, LcService>();
 
 var app = builder.Build();
 
