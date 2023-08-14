@@ -2,31 +2,56 @@
 @using Interfaces;
 @inject Radzen.DialogService DialogService
 @inject ILcService LcService
+@inject ISnackbar Snackbar
 
-<RadzenDialog />
+<style>
+    .yx-center{
+        display: flex;
+        text-align: center;
+        justify-content: center;   
+        margin:auto;
+    }
+
+    .yx-img{
+        height: 100%;
+        width: 100%;
+        background-size: contain; 
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+    }
+</style>
 
 <RadzenStack Gap="1.5rem">
     <RadzenStack width="100%">
-        <MudFileUpload T="IBrowserFile" @bind-Files="imageFile" OnFilesChanged="OnInputFileChanged" Hidden="false" Class="flex-1" InputClass="absolute mud-width-full mud-height-full overflow-hidden z-20" InputStyle="opacity:0"
-        @ondragenter="@SetDragClass" @ondragleave="@ClearDragClass" @ondragend="@ClearDragClass">
+        <MudFileUpload T="IBrowserFile" @bind-Files="imageFile" OnFilesChanged="OnInputFileChanged" Hidden="false" Class="flex-1" InputClass="absolute mud-width-full mud-height-full overflow-hidden z-20" InputStyle="opacity:0" @ondragenter="@SetDragClass" @ondragleave="@ClearDragClass" @ondragend="@ClearDragClass">
             <ButtonTemplate>
-                <MudPaper Height="150px" Outlined="true" Class="@DragClass">
-                    <MudImage Src="@imageFileUrl" Alt="Image for Upload" Elevation="25" Class="rounded-lg" />
-                </MudPaper>
+                @if (imageUploaded)
+                {
+                    <MudPaper Height="300px" Width="300px" Outlined="true" Class="@DragClass">
+                        <MudImage Src="@imageFileUrl" Alt="Image for Upload" Elevation="25" Class="rounded-lg yx-img" />
+                    </MudPaper>
+                }
+                else
+                {
+                    <MudPaper Height="250px" Outlined="true" Class="@DragClass">
+                        <MudText Class="yx-center">Drop picture</MudText>
+                    </MudPaper>
+                }
             </ButtonTemplate>
         </MudFileUpload>
     </RadzenStack>
 
     <RadzenStack Orientation="Radzen.Orientation.Horizontal" Gap="0.5rem" JustifyContent="JustifyContent.End">
-        @* <RadzenButton Text="Shine" Click="submit" Style="width: 80px;" /> *@
+        <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="Shine" Click="UploadLcRecord" Style="width: 80px;" />
         <RadzenButton Text="Cancel" Click="closeDialog" ButtonStyle="ButtonStyle.Light" />
     </RadzenStack>
 </RadzenStack>
 
 
 @code {
-    private static string DefaultDragClass = "relative rounded-lg border-2 border-dashed pa-4 mt-4 mud-width-full mud-height-full z-10";
+    private static string DefaultDragClass = "relative rounded-lg border-2 border-dashed pa-4 mt-4 mud-width-full mud-height-full z-10 yx-center";
     private string DragClass = DefaultDragClass;
+    private bool imageUploaded = false;
 
     private IBrowserFile imageFile;
     private byte[] imageFileBytes = {};
@@ -38,19 +63,30 @@
 
     }
 
-    private async Task UploadLc()
+    private async Task UploadLcRecord()
     {
-        LcDto lcDto = new()
+        try
         {
-            Romaji = "",
-            OriginalText = "",
-            EnglishTranslation = "",
-            Image = imageFileBytes,
-            AddedDateTime = DateTime.Now,
-            LastModifiedDateTime = DateTime.Now
-        };
+            LcDto lcDto = new()
+                {
+                    Romaji = "",
+                    OriginalText = "",
+                    EnglishTranslation = "",
+                    Image = imageFileBytes,
+                    AddedDateTime = DateTime.Now,
+                    LastModifiedDateTime = DateTime.Now
+                };
 
-        await LcService.UploadLcRecord(lcDto);
+            await LcService.UploadLcRecord(lcDto);
+
+            Snackbar.Add("Lc Record Uploaded Successfully!~~", Severity.Success);
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add("Lc Record Upload Failed.", Severity.Error);
+            Snackbar.Add(ex.ToString(), Severity.Error);
+        }
+
     }
 
     private void closeDialog()
@@ -62,11 +98,14 @@
     {
         ClearDragClass();
 
-        await imageFile.OpenReadStream(imageFile.Size).ReadAsync(imageFileBytes);
+        Stream stream = imageFile.OpenReadStream(imageFile.Size);
+        using MemoryStream memoryString = new MemoryStream();
+        await stream.CopyToAsync(memoryString);
+        imageFileBytes = memoryString.GetBuffer();
         imageFileSrc = Convert.ToBase64String(imageFileBytes);
         imageFileUrl = string.Format("data:image/jpeg;base64,{0}", imageFileSrc);
-
-        // Change to display image mode
+        
+        imageUploaded = true;
     }
 
     private void SetDragClass()
