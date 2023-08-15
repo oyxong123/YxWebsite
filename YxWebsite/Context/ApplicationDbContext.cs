@@ -1,7 +1,7 @@
-﻿using MyPersonalWebsite.Models;
+﻿using YxWebsite.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace MyPersonalWebsite.Context
+namespace YxWebsite.Context
 {
     public class ApplicationDbContext : DbContext // DbContext is inherited from EF Core SQL Server.
     {
@@ -12,7 +12,7 @@ namespace MyPersonalWebsite.Context
         }
 
         // Set the database table reference names
-       public DbSet<JapaneseDictionary> DbJapaneseDictionary { get; set; }
-       public DbSet<LanguageCottage> DbLanguageCottage { get; set; }
+       public DbSet<JapaneseDictionaryModel> DbJapaneseDictionary { get; set; }
+       public DbSet<LanguageCottageModel> DbLanguageCottage { get; set; }
     }
 }

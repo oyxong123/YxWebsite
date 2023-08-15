@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace MyPersonalWebsite.Migrations
+namespace YxWebsite.Migrations
 {
     /// <inheritdoc />
     public partial class testInitialize : Migration

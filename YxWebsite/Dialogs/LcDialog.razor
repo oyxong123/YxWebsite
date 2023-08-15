@@ -105,6 +105,8 @@
             await LcService.UploadLcRecord(lcDto);
 
             Snackbar.Add("Lc Record Uploaded Successfully!~~", Severity.Success);
+
+            closeDialog();
         }
         catch (Exception ex)
         {

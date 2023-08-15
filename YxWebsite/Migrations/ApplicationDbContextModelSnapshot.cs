@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MyPersonalWebsite.Context;
+using YxWebsite.Context;
 
 #nullable disable
 
-namespace MyPersonalWebsite.Migrations
+namespace YxWebsite.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -22,7 +22,7 @@ namespace MyPersonalWebsite.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("MyPersonalWebsite.Models.JapaneseDictionary", b =>
+            modelBuilder.Entity("YxWebsite.Models.JapaneseDictionary", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -55,7 +55,7 @@ namespace MyPersonalWebsite.Migrations
                     b.ToTable("DbJapaneseDictionary");
                 });
 
-            modelBuilder.Entity("MyPersonalWebsite.Models.LanguageCottage", b =>
+            modelBuilder.Entity("YxWebsite.Models.LanguageCottage", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

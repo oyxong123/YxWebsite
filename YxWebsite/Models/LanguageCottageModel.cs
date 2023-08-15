@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MyPersonalWebsite.Models
+namespace YxWebsite.Models
 {
-    public class LanguageCottage
+    public class LanguageCottageModel
     {
         [Key]
         public int Id { get; set; }

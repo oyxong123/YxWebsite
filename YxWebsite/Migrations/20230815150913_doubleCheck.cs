@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace MyPersonalWebsite.Migrations
+namespace YxWebsite.Migrations
 {
     /// <inheritdoc />
     public partial class doubleCheck : Migration

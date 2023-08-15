@@ -1,9 +1,9 @@
-﻿namespace MyPersonalWebsite.Models
+﻿namespace YxWebsite.Models
 {
-    public class JapaneseDictionary
+    public class JapaneseDictionaryModel
     {
         // Class constructor.
-        public JapaneseDictionary
+        public JapaneseDictionaryModel
             (
             string phrase,
             string pKatakana,
@@ -19,7 +19,7 @@
             Meaning = meaning;
         }
 
-        public JapaneseDictionary() { }
+        public JapaneseDictionaryModel() { }
 
         public int Id { get; set; }
         public required string Phrase { get; set; }

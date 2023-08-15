@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.EntityFrameworkCore;
-using MyPersonalWebsite.Context;
+using YxWebsite.Context;
 using MudBlazor.Services;
 using Radzen;
 using YxWebsite.Services;
 using YxWebsite.Interfaces;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(option =>
 
 // Add MudBlazor component services to website.
 builder.Services.AddMudServices();
+
+// Add AutoMapper service to website.
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
 // Add Radzen component services to website.
 builder.Services.AddScoped<DialogService>();
