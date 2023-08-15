@@ -19,6 +19,8 @@
             Meaning = meaning;
         }
 
+        public JapaneseDictionary() { }
+
         public int Id { get; set; }
         public required string Phrase { get; set; }
         public required string PronunciationKatakana { get; set; }
