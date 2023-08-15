@@ -1,6 +1,11 @@
 ﻿/*
 
+What I Did:
+- Download MSSQL and SSMS.
+- 
+
 Excited Achievements:
+- Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
 - 
 
 Website Plans:
