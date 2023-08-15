@@ -15,8 +15,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
 // Add service to the container for connection to the database.
-builder.Services.AddDbContext<ApplicationDbContext>(option =>
-                option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContextFactory<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 // Add MudBlazor component services to website.
 builder.Services.AddMudServices();

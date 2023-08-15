@@ -7,6 +7,7 @@ What I Did:
 - Coded add service method for LC. 
 - Changed all MyPersonalWebsite namespaces to YxWebsite.
 - Debugged and fixed web app not running error.
+- Successfully added LC upload to database.
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
