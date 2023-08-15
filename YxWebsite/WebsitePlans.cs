@@ -20,6 +20,7 @@ Special Notes:
 - 
  
 Thoughts:
+- Ahh, my laptop is no longer using the same "pc name", so the default computer path has to be changed as well
 - 
 
  */
