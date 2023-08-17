@@ -1,46 +1,35 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href=""> Yx Website</a>
-        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</div>
+﻿
+<MudDrawerHeader>
+    <MudNavLink Href="">Yx Website</MudNavLink>
+</MudDrawerHeader>
+<MudNavMenu>
+    <MudNavLink Href="home">
+        <span class="oi oi-list-rich" aria-hidden="true" /> Home
+    </MudNavLink>
+    <MudNavGroup Title="Spaces">
+        <MudNavLink Href="musicsquare">
+            <span class="oi oi-list-rich" aria-hidden="true" /> Music Square
+        </MudNavLink>
+        <MudNavLink Href="yxtalk">
+            <span class="oi oi-list-rich" aria-hidden="true" /> Yx Talk
+        </MudNavLink>
+        <MudNavLink Href="languagecottage">
+            <span class="oi oi-list-rich" aria-hidden="true" /> Language Cottage
+        </MudNavLink>
+        <MudNavLink Href="programminglife">
+            <span class="oi oi-list-rich" aria-hidden="true" /> Programming Life
+        </MudNavLink>
+    </MudNavGroup>
+    <MudNavGroup Title="About Me">
+        <MudNavLink Href="about">
+            <span class="oi oi-list-rich" aria-hidden="true" /> About
+        </MudNavLink>
+    </MudNavGroup>
+    <!--Only for admin-->
+    <MudNavGroup Title="Settings">
 
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="home">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="musicsquare">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Music Square
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="yxtalk">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Yx Talk
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="languagecottage">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Language Cottage
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="programminglife">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Programming Life
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="about">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> About
-            </NavLink>
-        </div>
-    </nav>
-</div>
+    </MudNavGroup>
+</MudNavMenu>
 
 @code {
     private bool collapseNavMenu = true;
