@@ -43,5 +43,33 @@ namespace YxWebsite.Services
                 throw new Exception(ex.ToString());
             }
         }
+
+        public async Task<List<LcDto>> GetAllLcRecord()
+        {
+            List<LcDto> lcDtoList = new();
+
+            try
+            {
+                using (ApplicationDbContext _context = await _contextFactory.CreateDbContextAsync())
+                {
+                    if (_context.DbLanguageCottage == null)
+                    {
+                        throw new Exception("The LanguageCottage db is not initialized.");
+                    }
+
+                    List<LanguageCottageModel> lcList = await _context.DbLanguageCottage.ToListAsync();
+                    foreach (LanguageCottageModel lc in lcList)
+                    {
+                        LcDto _lcModel = _mapper.Map<LcDto>(lc);
+                        lcDtoList.Add(_lcModel);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+            return lcDtoList;
+        }
     }
 }

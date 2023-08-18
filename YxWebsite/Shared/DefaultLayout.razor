@@ -10,10 +10,16 @@
 <RadzenContextMenu />
 <RadzenTooltip />
 
+<style>
+    .mud-appbar.mud-appbar-dense .mud-toolbar-appbar{
+        height: calc(var(--mud-appbar-height) - var(--mud-appbar-height)/6)
+    }
+</style>
+
 <PageTitle>Yx Personal Website</PageTitle>
 
 <MudLayout class="page">
-    <MudAppBar>
+    <MudAppBar Fixed="true" Dense="true">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
     </MudAppBar>
 

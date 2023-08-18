@@ -42,6 +42,10 @@
             </MudFileUpload>
         </RadzenStack>
         <RadzenStack>
+            <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Record ID</RadzenText>
+            <RadzenTextArea @bind-Value="lcForm.RecordId" class="w-100" />
+        </RadzenStack>
+        <RadzenStack>
             <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Original Text</RadzenText>
             <RadzenTextArea @bind-Value="lcForm.OriginalText" class="w-100" />
         </RadzenStack>
@@ -52,6 +56,10 @@
         <RadzenStack>
             <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Englsih Translation</RadzenText>
             <RadzenTextArea @bind-Value="lcForm.EnglishTranslation" class="w-100" />
+        </RadzenStack>
+        <RadzenStack>
+            <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Commentary</RadzenText>
+            <RadzenTextArea @bind-Value="lcForm.Commentary" class="w-100" />
         </RadzenStack>
     </RadzenStack>
     
@@ -66,6 +74,7 @@
 @code {
     private LcDto lcForm = new()
         {
+            RecordId = "",
             Romaji = "",
             OriginalText = "",
             EnglishTranslation = "",
@@ -94,6 +103,7 @@
         {
             LcDto lcDto = new()
                 {
+                    RecordId = lcForm.RecordId,
                     Romaji = lcForm.Romaji,
                     OriginalText = lcForm.OriginalText,
                     EnglishTranslation = lcForm.EnglishTranslation,

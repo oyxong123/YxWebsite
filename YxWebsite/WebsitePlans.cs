@@ -1,14 +1,17 @@
 ﻿/*
 
 What I Did:
-- Styled and configured NavMenu.
+- Added new properties to LC model. 
+- Set up lc record mudcards.
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
+- Woo!! @o@ I'm starting to experiment with custom css class dyy.
 - 
 
 Website Plans:
-- Continue set up the image upload dialog for lc, currently setting up the flow and image conversion of the drop zone.
+- Adjust lc record mudcards.
+- Make app bar become Elevation="1" when a dialog is open, other times just make it Elevation="0".
 - Save the state of previously expanded drawer after clicking into any link (Or can just highlight the current page link when open the menu) (NavMenu).
 - Contract other nav groups when a new nav group is opened. (NavMenu)
 - Add audit trails model and create audit trail straight from service.
@@ -23,7 +26,15 @@ Special Notes:
 - 
  
 Thoughts:
-- Ahh, my laptop is no longer using the same "pc name", so the default computer path has to be changed as well
 - 
 
  */
+
+
+/*
+
+20230818
+- Added new properties to LC model. 
+- Set up lc record mudcards.
+
+*/
