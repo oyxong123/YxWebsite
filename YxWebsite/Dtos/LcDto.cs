@@ -6,7 +6,7 @@ namespace YxWebsite.Dtos
     public class LcDto
     {
         public int Id { get; set; }
-        public required string RecordId { get; set; }
+        public int RecordId { get; set; }
         public required string Romaji { get; set; }
         public required string OriginalText { get; set; }
         public required string EnglishTranslation { get; set; }
@@ -17,5 +17,8 @@ namespace YxWebsite.Dtos
 
         [NotMapped]
         public string? ImageUrl { get; set; }
+
+        [NotMapped]
+        public string? RecordIdForDisplay { get; set; }
     }
 }

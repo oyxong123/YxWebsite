@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace YxWebsite.Models
 {
@@ -6,7 +7,7 @@ namespace YxWebsite.Models
     {
         [Key]
         public int Id { get; set; }
-        public required string RecordId { get; set; }
+        public int RecordId { get; set; }
         public required string Romaji { get; set; }
         public required string OriginalText { get; set; }
         public required string EnglishTranslation { get; set; }

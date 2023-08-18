@@ -1,8 +1,8 @@
 ﻿/*
 
 What I Did:
-- Added new properties to LC model. 
-- Set up lc record mudcards.
+- Updated database.
+- Updated LC service to account for record ID. 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -33,7 +33,9 @@ Thoughts:
 
 /*
 
-20230818
+Development Log:
+
+2023_08_18
 - Added new properties to LC model. 
 - Set up lc record mudcards.
 

@@ -29,6 +29,16 @@ namespace YxWebsite.Services
                         throw new Exception("The LanguageCottage db is not initialized.");
                     }
 
+                    LanguageCottageModel? previousRecord = await _context.DbLanguageCottage.OrderByDescending(lc => lc.RecordId).FirstOrDefaultAsync();
+                    if (previousRecord  == null) 
+                    {
+                        newLcDto.RecordId = 1;
+                    }
+                    else
+                    {
+                        newLcDto.RecordId = previousRecord.RecordId++;
+                    }
+
                     LanguageCottageModel _lcModel = _mapper.Map<LanguageCottageModel>(newLcDto);
                     await _context.DbLanguageCottage.AddAsync(_lcModel);
                     await _context.SaveChangesAsync();
