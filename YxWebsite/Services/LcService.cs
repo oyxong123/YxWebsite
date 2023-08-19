@@ -29,6 +29,7 @@ namespace YxWebsite.Services
                         throw new Exception("The LanguageCottage db is not initialized.");
                     }
 
+                    // Set latest LC's record ID as plus one of the previous record.
                     LanguageCottageModel? previousRecord = await _context.DbLanguageCottage.OrderByDescending(lc => lc.RecordId).FirstOrDefaultAsync();
                     if (previousRecord  == null) 
                     {
@@ -67,7 +68,7 @@ namespace YxWebsite.Services
                         throw new Exception("The LanguageCottage db is not initialized.");
                     }
 
-                    List<LanguageCottageModel> lcList = await _context.DbLanguageCottage.ToListAsync();
+                    List<LanguageCottageModel> lcList = await _context.DbLanguageCottage.OrderByDescending(lc => lc.Id).ToListAsync();
                     foreach (LanguageCottageModel lc in lcList)
                     {
                         LcDto _lcModel = _mapper.Map<LcDto>(lc);

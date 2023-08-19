@@ -1,8 +1,8 @@
 ﻿/*
 
 What I Did:
-- Updated database.
-- Updated LC service to account for record ID. 
+- Add isInitialized variable to check if all data is loaded before page displays data. 
+- 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -35,8 +35,13 @@ Thoughts:
 
 Development Log:
 
+2023_08_19
+- 
+
 2023_08_18
 - Added new properties to LC model. 
 - Set up lc record mudcards.
+- Updated database.
+- Updated LC service to account for record ID. 
 
 */

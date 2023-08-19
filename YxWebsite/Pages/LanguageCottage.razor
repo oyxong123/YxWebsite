@@ -12,59 +12,65 @@
     }
 
     .card{
-
+        margin:40px;
     }
 </style>
 
-<h3>LanguageCottage</h3>
+@if (IsInitialized)
+{
+    <h3>LanguageCottage</h3>
 
-<MudContainer MaxWidth="MaxWidth.Medium">
-    @foreach(LcDto lc in lcDtoDisplayList)
-    {
-        <MudCard Class="card">
-            <MudCardHeader>
-                <CardHeaderAvatar>
-                    <!--placeholder-->
-                </CardHeaderAvatar>
-                <CardHeaderContent>
-                    <MudText Typo="Typo.body1">@lc.RecordId</MudText>
-                    <MudText Typo="Typo.body2">placeholder</MudText>
-                </CardHeaderContent>
-                <!--Only show this control if current login mode is admin-->
-                <!--or maybe make it check a boolean from a button on page that triggers the edit mode?-->
-                <CardHeaderActions>
-                    <MudIconButton Icon="@Icons.Material.Filled.Edit" Color="Color.Default" OnClick="lcEdit"/>
-                </CardHeaderActions>
-            </MudCardHeader>
-            <MudCardMedia Image="@lc.ImageUrl" Height="100" Title="@lc.RecordId"/>
-            <MudCardContent>
-                <MudText Typo="Typo.body2">@lc.Commentary</MudText>
-            </MudCardContent>
-        </MudCard>
-    }
-</MudContainer>
+    <MudContainer MaxWidth="MaxWidth.Small">
+        @foreach (LcDto lc in lcDtoDisplayList)
+        {
+            <MudCard Class="card">
+                <MudCardHeader>
+                    <CardHeaderAvatar>
+                        <!--placeholder-->
+                    </CardHeaderAvatar>
+                    <CardHeaderContent>
+                        <MudText Typo="Typo.body1">@lc.RecordIdForDisplay</MudText>
+                        <MudText Typo="Typo.body2">placeholder</MudText>
+                    </CardHeaderContent>
+                    <!--Only show this control if current login mode is admin-->
+                    <!--or maybe make it check a boolean from a button on page that triggers the edit mode?-->
+                    <CardHeaderActions>
+                        <MudIconButton Icon="@Icons.Material.Filled.Edit" Color="Color.Default" OnClick="lcEdit" />
+                    </CardHeaderActions>
+                </MudCardHeader>
+                <MudCardMedia Image="@lc.ImageUrl" Height="768" Style="height: " Title="@lc.RecordIdForDisplay" />
+                <MudCardContent>
+                    <MudText Typo="Typo.body2">@lc.Commentary</MudText>
+                </MudCardContent>
+            </MudCard>
+        }
+    </MudContainer>
 
-<div>
-    <MudFab StartIcon="@Icons.Material.Filled.Add" Color="Color.Success" aria-label="Upload" OnClick="lcUpload"></MudFab>
-    <MudScrollToTop>
-        <MudFab Color="Color.Tertiary" StartIcon="@Icons.Material.Filled.ArrowCircleUp" />
-    </MudScrollToTop>
-</div>
+    <div>
+        <MudFab StartIcon="@Icons.Material.Filled.Add" Color="Color.Success" aria-label="Upload" OnClick="lcUpload"></MudFab>
+        <MudScrollToTop>
+            <MudFab Color="Color.Tertiary" StartIcon="@Icons.Material.Filled.ArrowCircleUp" />
+        </MudScrollToTop>
+    </div>
+}
 
 @code {
     List<LcDto> lcDtoDisplayList = new();
+    private bool IsInitialized = false;
 
-    protected override async Task OnInitializedAsync()
+    protected override async Task OnParametersSetAsync()
     {
         lcDtoDisplayList = await LcService.GetAllLcRecord();
 
         foreach (LcDto lc in lcDtoDisplayList)
         {
-            lc.RecordId = "#" + lc.RecordId;
+            lc.RecordIdForDisplay = "#" + lc.RecordId.ToString();
             lc.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(lc.Image);
         }
 
-        await base.OnInitializedAsync();
+        IsInitialized = true;
+
+        await base.OnParametersSetAsync();
     }
 
     private void lcUpload()
