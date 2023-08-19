@@ -4,7 +4,7 @@
 @using Dtos;
 @using Dialogs;
 @inject Radzen.DialogService DialogService
-@inject ILcService LcService
+@inject ILcService ILcService
 
 <style>
     .dialog{
@@ -12,7 +12,7 @@
     }
 
     .card{
-        margin:40px;
+        margin:20px;
     }
 </style>
 
@@ -38,7 +38,7 @@
                         <MudIconButton Icon="@Icons.Material.Filled.Edit" Color="Color.Default" OnClick="lcEdit" />
                     </CardHeaderActions>
                 </MudCardHeader>
-                <MudCardMedia Image="@lc.ImageUrl" Height="768" Style="height: " Title="@lc.RecordIdForDisplay" />
+                <MudCardMedia Image="@lc.ImageUrl" Height="768" Style="height: 40vh" Title="@lc.RecordIdForDisplay" />
                 <MudCardContent>
                     <MudText Typo="Typo.body2">@lc.Commentary</MudText>
                 </MudCardContent>
@@ -47,10 +47,10 @@
     </MudContainer>
 
     <div>
-        <MudFab StartIcon="@Icons.Material.Filled.Add" Color="Color.Success" aria-label="Upload" OnClick="lcUpload"></MudFab>
         <MudScrollToTop>
             <MudFab Color="Color.Tertiary" StartIcon="@Icons.Material.Filled.ArrowCircleUp" />
         </MudScrollToTop>
+        <MudFab StartIcon="@Icons.Material.Filled.Add" Color="Color.Success" aria-label="Upload" OnClick="lcUpload"></MudFab>
     </div>
 }
 
@@ -60,7 +60,7 @@
 
     protected override async Task OnParametersSetAsync()
     {
-        lcDtoDisplayList = await LcService.GetAllLcRecord();
+        lcDtoDisplayList = await ILcService.GetAllLcRecord();
 
         foreach (LcDto lc in lcDtoDisplayList)
         {

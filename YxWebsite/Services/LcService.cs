@@ -57,8 +57,6 @@ namespace YxWebsite.Services
 
         public async Task<List<LcDto>> GetAllLcRecord()
         {
-            List<LcDto> lcDtoList = new();
-
             try
             {
                 using (ApplicationDbContext _context = await _contextFactory.CreateDbContextAsync())
@@ -68,19 +66,48 @@ namespace YxWebsite.Services
                         throw new Exception("The LanguageCottage db is not initialized.");
                     }
 
-                    List<LanguageCottageModel> lcList = await _context.DbLanguageCottage.OrderByDescending(lc => lc.Id).ToListAsync();
-                    foreach (LanguageCottageModel lc in lcList)
+                    List<LcDto> lcDtoList = new();
+                    List<LanguageCottageModel> _lcList = await _context.DbLanguageCottage.OrderByDescending(lc => lc.Id).ToListAsync();
+                    foreach (LanguageCottageModel _lc in _lcList)
                     {
-                        LcDto _lcModel = _mapper.Map<LcDto>(lc);
+                        LcDto _lcModel = _mapper.Map<LcDto>(_lc);
                         lcDtoList.Add(_lcModel);
                     }
+
+                    return lcDtoList;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.ToString());
             }
-            return lcDtoList;
+        }
+
+        public async Task<LcDto> GetLcRecordById(int lcId)
+        {
+            try
+            {
+                using (ApplicationDbContext _context = await _contextFactory.CreateDbContextAsync())
+                {
+                    if (_context.DbLanguageCottage == null)
+                    {
+                        throw new Exception("The LanguageCottage db is not initialized.");
+                    }
+
+                    LanguageCottageModel? _lcModel = await _context.DbLanguageCottage.SingleOrDefaultAsync(lc => lc.Id == lcId);
+                    if (_lcModel == null)
+                    {
+                        throw new Exception("Lc record not found.");
+                    }
+                    LcDto lcDto = _mapper.Map<LcDto>(_lcModel);
+
+                    return lcDto;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
     }
 }

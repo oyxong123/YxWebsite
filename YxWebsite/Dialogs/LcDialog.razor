@@ -1,7 +1,7 @@
 ﻿@using Dtos;
 @using Interfaces;
 @inject Radzen.DialogService DialogService
-@inject ILcService LcService
+@inject ILcService ILcService
 @inject ISnackbar Snackbar
 
 <style>
@@ -68,6 +68,7 @@
 
 
 @code {
+    //private bool IsEditForm;
     private LcDto lcForm = new()
         {
             Romaji = "",
@@ -89,7 +90,16 @@
 
     protected async Task OnInitializedAsync()
     {
+        if (!IsEditForm)
+        {
 
+        }
+        else
+        {
+            LcDto lcDto = await ILcService.; // Get lc by ID.
+
+            //Map lcDto to LcForm
+        }
     }
 
     private async Task UploadLcRecord()
@@ -107,7 +117,7 @@
                     LastModifiedDateTime = DateTime.Now
                 };
 
-            await LcService.UploadLcRecord(lcDto);
+            await ILcService.UploadLcRecord(lcDto);
 
             Snackbar.Add("Lc Record Uploaded Successfully!~~", Severity.Success);
 

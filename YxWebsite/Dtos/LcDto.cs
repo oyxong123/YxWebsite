@@ -5,6 +5,8 @@ namespace YxWebsite.Dtos
 {
     public class LcDto
     {
+        public LcDto() { }
+
         public int Id { get; set; }
         public int RecordId { get; set; }
         public required string Romaji { get; set; }

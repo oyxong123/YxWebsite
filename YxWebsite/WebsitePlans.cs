@@ -2,7 +2,7 @@
 
 What I Did:
 - Add isInitialized variable to check if all data is loaded before page displays data. 
-- 
+- Write GetLcRecordById method in LC service.
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
