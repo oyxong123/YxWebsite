@@ -7,6 +7,7 @@ What I Did:
 - Made data reload and page refresh after upload or edit LC. 
 - Update GetAllLcRecord from LC service to retrieve data based on ascending order of record ID.
 - Debugged and fixed RecordID not stored correctly for new LC record upload.
+- Updated code in EditLcRecord method of LC service.
 - 
 
 Excited Achievements:
@@ -15,7 +16,7 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Fill in EditLcRecord method from LC service.
+- Send back LcDto from uploadLcRecord and editLcRecord method from LC service for audit trails modularity.
 - Add "required asterisk" and "required validator" to LC form.
 - Add optional field to specify the record ID instead of auto-increment in LC form.
 - Figure out the load flow of Lc page. (https://www.editorx.com/shaping-design/article/resize-image-css)

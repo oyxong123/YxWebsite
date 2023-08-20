@@ -18,7 +18,7 @@ namespace YxWebsite.Services
             _mapper = mapper;
         }
 
-        public async Task<bool> UploadLcRecord(LcDto newLcDto)
+        public async Task<LcDto> UploadLcRecord(LcDto newLcDto)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace YxWebsite.Services
                     // Add audit trail model and call.
                 }
 
-                return true;
+                return newLcDto;
             }
             catch (Exception ex)
             {

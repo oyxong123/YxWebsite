@@ -129,7 +129,10 @@
                     Image = imageFileBytes
                 };
 
-            await ILcService.UploadLcRecord(lcDto);
+            lcDto = await ILcService.UploadLcRecord(lcDto);
+            //check if the above lcDto has the increamented record ID.
+
+            // Add audit trails.
 
             Snackbar.Add("Lc Record Uploaded Successfully!~~", Severity.Success);
 
@@ -157,6 +160,8 @@
                 };
 
             await ILcService.EditLcRecord(lcDto);
+
+            // Add audit trails.
 
             Snackbar.Add("Lc Record Edited Successfully!~~", Severity.Success);
 
