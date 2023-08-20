@@ -3,6 +3,9 @@
 What I Did:
 - Add isInitialized variable to check if all data is loaded before page displays data. 
 - Write GetLcRecordById method in LC service.
+- Set up code for EditLcRecord. 
+- Made data reload and page refresh after upload or edit LC. 
+- Update GetAllLcRecord from LC service to retrieve data based on ascending order of record ID.
 - 
 
 Excited Achievements:
@@ -11,7 +14,8 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Something is wrong with the upload Record algorithm, I suspect I accidentally modified the previous record's record ID.
+- Something is wrong with the upload Record algorithm, I suspect I accidentally modified the previous record's record ID, fix it.
+- Fill in EditLcRecord method from LC service.
 - Figure out the load flow of Lc page. (https://www.editorx.com/shaping-design/article/resize-image-css)
 - Adjust lc record mudcards.
 - Make app bar become Elevation="1" when a dialog is open, other times just make it Elevation="0".
@@ -31,6 +35,7 @@ Special Notes:
 Thoughts:
 - Learned how to get context arguments from razor to c# for passing temporary context variables.
 - Finally understand how passing arguments to Radzen dialog works.
+- I finally encountered it! The situation where adding ++ before variable is the correct way to achieve the functionality I want!
 - 
 
  */

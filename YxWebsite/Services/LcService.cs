@@ -30,14 +30,14 @@ namespace YxWebsite.Services
                     }
 
                     // Set latest LC's record ID as plus one of the previous record.
-                    LanguageCottageModel? previousRecord = await _context.DbLanguageCottage.OrderByDescending(lc => lc.RecordId).FirstOrDefaultAsync();
-                    if (previousRecord  == null) 
+                    LcDto? previousRecordDto = _mapper.Map<LcDto>(await _context.DbLanguageCottage.OrderByDescending(lc => lc.RecordId).FirstOrDefaultAsync());
+                    if (previousRecordDto  == null) 
                     {
                         newLcDto.RecordId = 1;
                     }
                     else
                     {
-                        newLcDto.RecordId = previousRecord.RecordId++;
+                        newLcDto.RecordId = ++previousRecordDto.RecordId;
                     }
 
                     newLcDto.AddedDateTime = DateTime.Now;
