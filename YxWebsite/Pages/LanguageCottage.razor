@@ -35,7 +35,7 @@
                     <!--Only show this control if current login mode is admin-->
                     <!--or maybe make it check a boolean from a button on page that triggers the edit mode?-->
                     <CardHeaderActions>
-                        <MudIconButton Icon="@Icons.Material.Filled.Edit" Color="Color.Default" OnClick="lcEdit" />
+                        <MudIconButton Icon="@Icons.Material.Filled.Edit" Color="Color.Default" OnClick="lcEditDto => lcEdit(lc)" />
                     </CardHeaderActions>
                 </MudCardHeader>
                 <MudCardMedia Image="@lc.ImageUrl" Height="768" Style="height: 40vh" Title="@lc.RecordIdForDisplay" />
@@ -73,14 +73,15 @@
         await base.OnParametersSetAsync();
     }
 
-    private void lcUpload()
+    private async Task lcUpload()
     {
-        DialogService.OpenAsync<LcDialog>("New LC Upload", null, new Radzen.DialogOptions() { CssClass="dialog", Draggable = false, Height="85%" });
+        await DialogService.OpenAsync<LcDialog>("New LC Upload", new Dictionary<string, object> { { "IsEditForm", false }, { "PassedLcId", 0 } }, new Radzen.DialogOptions() { CssClass="dialog", Draggable = false, Height="85%" });
+        await OnParametersSetAsync();
     }
 
-    private void lcEdit()
+    private async Task lcEdit(LcDto lcEditDto)
     {
-        DialogService.OpenAsync<LcDialog>("Edit LC Record", null, new Radzen.DialogOptions() { CssClass = "dialog", Draggable = false, Height = "85%" });
-        
+        await DialogService.OpenAsync<LcDialog>("Edit LC Record", new Dictionary<string, object> { { "IsEditForm", true }, { "PassedLcId", lcEditDto.Id } }, new Radzen.DialogOptions() { CssClass = "dialog", Draggable = false, Height = "85%" });
+        await OnParametersSetAsync();
     }
 }

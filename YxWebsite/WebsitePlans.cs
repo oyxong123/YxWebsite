@@ -3,6 +3,7 @@
 What I Did:
 - Add isInitialized variable to check if all data is loaded before page displays data. 
 - Write GetLcRecordById method in LC service.
+- 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -10,6 +11,8 @@ Excited Achievements:
 - 
 
 Website Plans:
+- Something is wrong with the upload Record algorithm, I suspect I accidentally modified the previous record's record ID.
+- Figure out the load flow of Lc page. (https://www.editorx.com/shaping-design/article/resize-image-css)
 - Adjust lc record mudcards.
 - Make app bar become Elevation="1" when a dialog is open, other times just make it Elevation="0".
 - Save the state of previously expanded drawer after clicking into any link (Or can just highlight the current page link when open the menu) (NavMenu).
@@ -18,7 +21,7 @@ Website Plans:
 - Set border size based on LC image in LcDialog. Later on should be uploading images in 16:9.
 - Add a login function so that if it is me that has logged in, I can utilize the add post delete post etc function.
 - Resize image of Lc upload properly. (https://www.w3docs.com/snippets/css/how-to-auto-resize-an-image-to-fit-an-html-container.html)
- 
+- 
 
 Special Notes:
 - The dialogs of Radzen look better. Use Radzen for dialogs. 
@@ -26,6 +29,8 @@ Special Notes:
 - 
  
 Thoughts:
+- Learned how to get context arguments from razor to c# for passing temporary context variables.
+- Finally understand how passing arguments to Radzen dialog works.
 - 
 
  */

@@ -14,8 +14,8 @@ namespace YxWebsite.Dtos
         public required string EnglishTranslation { get; set; }
         public string? Commentary { get; set; }
         public required byte[] Image { get; set; }
-        public required DateTime AddedDateTime { get; set; }
-        public required DateTime LastModifiedDateTime { get; set; }
+        public DateTime AddedDateTime { get; set; }
+        public DateTime LastModifiedDateTime { get; set; }
 
         [NotMapped]
         public string? ImageUrl { get; set; }

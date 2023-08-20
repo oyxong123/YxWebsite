@@ -1,4 +1,5 @@
-﻿@using Dtos;
+﻿
+@using Dtos;
 @using Interfaces;
 @inject Radzen.DialogService DialogService
 @inject ILcService ILcService
@@ -68,7 +69,9 @@
 
 
 @code {
-    //private bool IsEditForm;
+    [Parameter] public bool IsEditForm { get; set; }
+    [Parameter] public int PassedLcId { get; set; }
+
     private LcDto lcForm = new()
         {
             Romaji = "",
@@ -88,7 +91,7 @@
     private string imageFileSrc = "";
     private string imageFileUrl = "";
 
-    protected async Task OnInitializedAsync()
+    protected override async Task OnInitializedAsync()
     {
         if (!IsEditForm)
         {
@@ -96,12 +99,23 @@
         }
         else
         {
-            LcDto lcDto = await ILcService.; // Get lc by ID.
-
-            //Map lcDto to LcForm
+            lcForm = await ILcService.GetLcRecordById(PassedLcId); 
         }
+
+        await base.OnInitializedAsync();
     }
 
+    private async Task ProcessLcRecord()
+    {
+        if (!IsEditForm)
+        {
+            await UploadLcRecord();
+        }
+        else
+        {
+            await EditLcRecord();
+        }
+    }
     private async Task UploadLcRecord()
     {
         try
@@ -112,9 +126,7 @@
                     Romaji = lcForm.Romaji,
                     OriginalText = lcForm.OriginalText,
                     EnglishTranslation = lcForm.EnglishTranslation,
-                    Image = imageFileBytes,
-                    AddedDateTime = DateTime.Now,
-                    LastModifiedDateTime = DateTime.Now
+                    Image = imageFileBytes
                 };
 
             await ILcService.UploadLcRecord(lcDto);
@@ -128,7 +140,33 @@
             Snackbar.Add("Lc Record Upload Failed.", Severity.Error);
             Snackbar.Add(ex.ToString(), Severity.Error);
         }
+    }
 
+    private async Task EditLcRecord()
+    {
+        try
+        {
+            LcDto lcDto = new()
+                {
+                    RecordId = lcForm.RecordId,
+                    Romaji = lcForm.Romaji,
+                    OriginalText = lcForm.OriginalText,
+                    EnglishTranslation = lcForm.EnglishTranslation,
+                    Image = imageFileBytes,
+                    LastModifiedDateTime = DateTime.Now
+                };
+
+            await ILcService.EditLcRecord(lcDto);
+
+            Snackbar.Add("Lc Record Edited Successfully!~~", Severity.Success);
+
+            closeDialog();
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add("Lc Record Edit Failed.", Severity.Error);
+            Snackbar.Add(ex.ToString(), Severity.Error);
+        }
     }
 
     private void closeDialog()

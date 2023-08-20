@@ -40,6 +40,9 @@ namespace YxWebsite.Services
                         newLcDto.RecordId = previousRecord.RecordId++;
                     }
 
+                    newLcDto.AddedDateTime = DateTime.Now;
+                    newLcDto.LastModifiedDateTime = DateTime.Now;
+
                     LanguageCottageModel _lcModel = _mapper.Map<LanguageCottageModel>(newLcDto);
                     await _context.DbLanguageCottage.AddAsync(_lcModel);
                     await _context.SaveChangesAsync();
@@ -55,6 +58,12 @@ namespace YxWebsite.Services
             }
         }
 
+        public async Task<bool> EditLcRecord(LcDto lcDto)
+        {
+            // Code for edit lc record
+            return true;
+        }
+
         public async Task<List<LcDto>> GetAllLcRecord()
         {
             try
@@ -67,7 +76,7 @@ namespace YxWebsite.Services
                     }
 
                     List<LcDto> lcDtoList = new();
-                    List<LanguageCottageModel> _lcList = await _context.DbLanguageCottage.OrderByDescending(lc => lc.Id).ToListAsync();
+                    List<LanguageCottageModel> _lcList = await _context.DbLanguageCottage.OrderBy(lc => lc.RecordId).ToListAsync();
                     foreach (LanguageCottageModel _lc in _lcList)
                     {
                         LcDto _lcModel = _mapper.Map<LcDto>(_lc);
