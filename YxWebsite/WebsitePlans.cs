@@ -8,6 +8,7 @@ What I Did:
 - Update GetAllLcRecord from LC service to retrieve data based on ascending order of record ID.
 - Debugged and fixed RecordID not stored correctly for new LC record upload.
 - Updated code in EditLcRecord method of LC service.
+- Updated UploadLcRecord of LC service to return the updated LcDto.
 - 
 
 Excited Achievements:
@@ -16,7 +17,7 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Send back LcDto from uploadLcRecord and editLcRecord method from LC service for audit trails modularity.
+- Commentary not showing in Language Cottage MudCards.
 - Add "required asterisk" and "required validator" to LC form.
 - Add optional field to specify the record ID instead of auto-increment in LC form.
 - Figure out the load flow of Lc page. (https://www.editorx.com/shaping-design/article/resize-image-css)
@@ -39,6 +40,7 @@ Thoughts:
 - Learned how to get context arguments from razor to c# for passing temporary context variables.
 - Finally understand how passing arguments to Radzen dialog works.
 - I finally encountered it! The situation where adding ++ before variable is the correct way to achieve the functionality I want!
+- That's a bunch of code I vomitted out.
 - 
 
  */
