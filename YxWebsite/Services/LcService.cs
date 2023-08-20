@@ -58,10 +58,30 @@ namespace YxWebsite.Services
             }
         }
 
-        public async Task<bool> EditLcRecord(LcDto lcDto)
+        public async Task<bool> EditLcRecord(LcDto editLcDto)
         {
-            // Code for edit lc record
-            return true;
+            try
+            {
+                using (ApplicationDbContext _context = await _contextFactory.CreateDbContextAsync())
+                {
+                    if (_context.DbLanguageCottage == null)
+                    {
+                        throw new Exception("The LanguageCottage db is not initialized.");
+                    }
+
+                    LanguageCottageModel? _lcModel = await _context.DbLanguageCottage.Where(lc => lc.Id == editLcDto.Id).SingleOrDefaultAsync();
+                    _lcModel = _mapper.Map<LanguageCottageModel>(editLcDto);
+                    await _context.SaveChangesAsync();
+
+                    // Add audit trail model and call.
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
         }
 
         public async Task<List<LcDto>> GetAllLcRecord()

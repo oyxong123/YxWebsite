@@ -6,6 +6,7 @@ What I Did:
 - Set up code for EditLcRecord. 
 - Made data reload and page refresh after upload or edit LC. 
 - Update GetAllLcRecord from LC service to retrieve data based on ascending order of record ID.
+- Debugged and fixed RecordID not stored correctly for new LC record upload.
 - 
 
 Excited Achievements:
@@ -14,8 +15,9 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Something is wrong with the upload Record algorithm, I suspect I accidentally modified the previous record's record ID, fix it.
 - Fill in EditLcRecord method from LC service.
+- Add "required asterisk" and "required validator" to LC form.
+- Add optional field to specify the record ID instead of auto-increment in LC form.
 - Figure out the load flow of Lc page. (https://www.editorx.com/shaping-design/article/resize-image-css)
 - Adjust lc record mudcards.
 - Make app bar become Elevation="1" when a dialog is open, other times just make it Elevation="0".
