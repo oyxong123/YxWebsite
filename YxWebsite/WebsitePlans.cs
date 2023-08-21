@@ -2,6 +2,7 @@
 
 What I Did:
 - Debugged and fixed commentary not storedin database.
+- Debugged and fixed edit record uploading as new record.
 - 
 
 Excited Achievements:
