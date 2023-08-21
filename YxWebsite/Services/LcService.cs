@@ -58,7 +58,7 @@ namespace YxWebsite.Services
             }
         }
 
-        public async Task<bool> EditLcRecord(LcDto editLcDto)
+        public async Task<bool> EditLcRecord(LcDto editLcDto, int lcId)
         {
             try
             {
@@ -69,10 +69,10 @@ namespace YxWebsite.Services
                         throw new Exception("The LanguageCottage db is not initialized.");
                     }
 
-                    LanguageCottageModel? _lcModel = await _context.DbLanguageCottage.Where(lc => lc.Id == editLcDto.Id).SingleOrDefaultAsync();
+                    LanguageCottageModel? _lcModel = await _context.DbLanguageCottage.Where(lc => lc.Id == lcId).SingleOrDefaultAsync();
                     _lcModel = _mapper.Map<LanguageCottageModel>(editLcDto);
                     await _context.SaveChangesAsync();
-
+                    
                     // Add audit trail model and call.
                 }
 

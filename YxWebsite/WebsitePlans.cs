@@ -3,6 +3,7 @@
 What I Did:
 - Debugged and fixed commentary not storedin database.
 - Debugged and fixed edit record uploading as new record.
+- Debugged and fixed commentary still not storing bug.
 - 
 
 Excited Achievements:

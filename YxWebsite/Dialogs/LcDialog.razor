@@ -161,7 +161,7 @@
                     LastModifiedDateTime = DateTime.Now
                 };
 
-            await ILcService.EditLcRecord(lcDto);
+            await ILcService.EditLcRecord(lcDto, PassedLcId);
 
             // Add audit trails.
 
