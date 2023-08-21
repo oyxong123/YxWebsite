@@ -116,6 +116,7 @@
             await EditLcRecord();
         }
     }
+
     private async Task UploadLcRecord()
     {
         try
@@ -126,6 +127,7 @@
                     Romaji = lcForm.Romaji,
                     OriginalText = lcForm.OriginalText,
                     EnglishTranslation = lcForm.EnglishTranslation,
+                    Commentary = lcForm.Commentary,
                     Image = imageFileBytes
                 };
 
@@ -154,6 +156,7 @@
                     Romaji = lcForm.Romaji,
                     OriginalText = lcForm.OriginalText,
                     EnglishTranslation = lcForm.EnglishTranslation,
+                    Commentary = lcForm.Commentary,
                     Image = imageFileBytes,
                     LastModifiedDateTime = DateTime.Now
                 };
