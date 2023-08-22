@@ -1,9 +1,7 @@
 ﻿/*
 
 What I Did:
-- Debugged and fixed commentary not storedin database.
-- Debugged and fixed edit record uploading as new record.
-- Debugged and fixed commentary still not storing bug.
+- Clean code.
 - 
 
 Excited Achievements:
@@ -45,7 +43,9 @@ Thoughts:
 Development Log:
 
 2023_08_21
-- 
+- Debugged and fixed commentary not storedin database.
+- Debugged and fixed edit record uploading as new record.
+- Debugged and fixed commentary still not storing bug.
 
 2023_08_20
 - Made data reload and page refresh after upload or edit LC. 

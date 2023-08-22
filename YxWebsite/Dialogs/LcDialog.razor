@@ -88,7 +88,6 @@
 
     private IBrowserFile imageFile;
     private byte[] imageFileBytes = {};
-    private string imageFileSrc = "";
     private string imageFileUrl = "";
 
     protected override async Task OnInitializedAsync()
@@ -99,7 +98,11 @@
         }
         else
         {
-            lcForm = await ILcService.GetLcRecordById(PassedLcId); 
+            LcDto lcDto = await ILcService.GetLcRecordById(PassedLcId);
+            lcForm = lcDto.ShallowCopy();
+            lcForm.ImageUrl = string.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String(lcForm.Image));
+
+            imageUploaded = true;
         }
 
         await base.OnInitializedAsync();
@@ -152,6 +155,7 @@
         {
             LcDto lcDto = new()
                 {
+                    Id = lcForm.Id,
                     RecordId = lcForm.RecordId,
                     Romaji = lcForm.Romaji,
                     OriginalText = lcForm.OriginalText,
@@ -189,8 +193,7 @@
         using MemoryStream memoryString = new MemoryStream();
         await stream.CopyToAsync(memoryString);
         imageFileBytes = memoryString.GetBuffer();
-        imageFileSrc = Convert.ToBase64String(imageFileBytes);
-        imageFileUrl = string.Format("data:image/jpeg;base64,{0}", imageFileSrc);
+        imageFileUrl = string.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String(imageFileBytes));
         
         imageUploaded = true;
     }
