@@ -2,6 +2,7 @@
 
 What I Did:
 - Clean code.
+- Grind. 
 - 
 
 Excited Achievements:

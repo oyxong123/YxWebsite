@@ -69,8 +69,7 @@ namespace YxWebsite.Services
                         throw new Exception("The LanguageCottage db is not initialized.");
                     }
 
-                    LanguageCottageModel? _lcModel = await _context.DbLanguageCottage.Where(lc => lc.Id == lcId).SingleOrDefaultAsync();
-                    _lcModel = _mapper.Map<LanguageCottageModel>(editLcDto);
+                    LanguageCottageModel _lcModel = _mapper.Map<LanguageCottageModel>(editLcDto);
                     _context.Entry(_lcModel).State = EntityState.Modified;
                     await _context.SaveChangesAsync();
                     
