@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace YxWebsite.Models
@@ -7,6 +8,7 @@ namespace YxWebsite.Models
     {
         [Key]
         public int Id { get; set; }
+        [Column(TypeName = "decimal(4,3)")]
         public decimal RecordId { get; set; }
         public required string Romaji { get; set; }
         public required string OriginalText { get; set; }
