@@ -29,15 +29,18 @@ namespace YxWebsite.Services
                         throw new Exception("The LanguageCottage db is not initialized.");
                     }
 
-                    // Set latest LC's record ID as plus one of the previous record.
-                    LcDto? previousRecordDto = _mapper.Map<LcDto>(await _context.DbLanguageCottage.OrderByDescending(lc => lc.RecordId).FirstOrDefaultAsync());
-                    if (previousRecordDto  == null) 
+                    // Set latest LC's record ID as plus one of the previous record if no record ID is specified.
+                    if (newLcDto.RecordId == 0)
                     {
-                        newLcDto.RecordId = 1;
-                    }
-                    else
-                    {
-                        newLcDto.RecordId = ++previousRecordDto.RecordId;
+                        LcDto? previousRecordDto = _mapper.Map<LcDto>(await _context.DbLanguageCottage.OrderByDescending(lc => lc.RecordId).FirstOrDefaultAsync());
+                        if (previousRecordDto == null)
+                        {
+                            newLcDto.RecordId = 1;
+                        }
+                        else
+                        {
+                            newLcDto.RecordId = ++previousRecordDto.RecordId;
+                        }
                     }
 
                     newLcDto.AddedDateTime = DateTime.Now;

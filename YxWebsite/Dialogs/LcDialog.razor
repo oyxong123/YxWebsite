@@ -30,7 +30,7 @@
                     @if (imageUploaded)
                     {
                         <MudPaper Height="300px" Width="300px" Outlined="true" Class="@DragClass">
-                            <MudImage Src="@imageFileUrl" Alt="Image for Upload" Elevation="25" Class="rounded-lg yx-img" />
+                            <MudImage Src="@lcForm.ImageUrl" Alt="Image for Upload" Elevation="25" Class="rounded-lg yx-img" />
                         </MudPaper>
                     }
                     else
@@ -43,6 +43,10 @@
             </MudFileUpload>
         </RadzenStack>
         <RadzenStack>
+            <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Record ID</RadzenText>
+            <RadzenNumeric @bind-Value="lcForm.RecordId" class="w-100" />
+        </RadzenStack>
+        <RadzenStack>
             <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Original Text</RadzenText>
             <RadzenTextArea @bind-Value="lcForm.OriginalText" class="w-100" />
         </RadzenStack>
@@ -51,8 +55,15 @@
             <RadzenTextArea @bind-Value="lcForm.Romaji" class="w-100" />
         </RadzenStack>
         <RadzenStack>
-            <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Englsih Translation</RadzenText>
-            <RadzenTextArea @bind-Value="lcForm.EnglishTranslation" class="w-100" />
+            <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Englsih Translation<span class="text-danger">*</span></RadzenText>
+            <RadzenFormField>
+                <ChildContent>
+                    <RadzenTextArea Name="EnglishTranslation" @bind-Value="lcForm.EnglishTranslation" class="w-100" />
+                </ChildContent>
+                <Helper>
+                    <RadzenRequiredValidator Component="EnglishTranslation" Text="English Translation is required" Popup=true Style="position: absolute" />
+                </Helper>
+            </RadzenFormField>
         </RadzenStack>
         <RadzenStack>
             <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Commentary</RadzenText>
@@ -82,13 +93,10 @@
             LastModifiedDateTime = DateTime.Now
         };
 
+    private IBrowserFile imageFile;
     private static string DefaultDragClass = "relative rounded-lg border-2 border-dashed pa-4 mt-4 mud-width-full mud-height-full z-10 yx-center";
     private string DragClass = DefaultDragClass;
     private bool imageUploaded = false;
-
-    private IBrowserFile imageFile;
-    private byte[] imageFileBytes = {};
-    private string imageFileUrl = "";
 
     protected override async Task OnInitializedAsync()
     {
@@ -131,7 +139,7 @@
                     OriginalText = lcForm.OriginalText,
                     EnglishTranslation = lcForm.EnglishTranslation,
                     Commentary = lcForm.Commentary,
-                    Image = imageFileBytes
+                    Image = lcForm.Image
                 };
 
             lcDto = await ILcService.UploadLcRecord(lcDto);
@@ -161,7 +169,7 @@
                     OriginalText = lcForm.OriginalText,
                     EnglishTranslation = lcForm.EnglishTranslation,
                     Commentary = lcForm.Commentary,
-                    Image = imageFileBytes,
+                    Image = lcForm.Image,
                     LastModifiedDateTime = DateTime.Now
                 };
 
@@ -192,8 +200,8 @@
         Stream stream = imageFile.OpenReadStream(imageFile.Size);
         using MemoryStream memoryString = new MemoryStream();
         await stream.CopyToAsync(memoryString);
-        imageFileBytes = memoryString.GetBuffer();
-        imageFileUrl = string.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String(imageFileBytes));
+        lcForm.Image = memoryString.GetBuffer();
+        lcForm.ImageUrl = string.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String(lcForm.Image));
         
         imageUploaded = true;
     }

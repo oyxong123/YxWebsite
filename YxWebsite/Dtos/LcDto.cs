@@ -8,7 +8,7 @@ namespace YxWebsite.Dtos
         public LcDto() { }
 
         public int Id { get; set; }
-        public int RecordId { get; set; }
+        public decimal RecordId { get; set; }
         public required string Romaji { get; set; }
         public required string OriginalText { get; set; }
         public required string EnglishTranslation { get; set; }

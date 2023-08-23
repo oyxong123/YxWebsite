@@ -1,8 +1,6 @@
 ﻿/*
 
 What I Did:
-- Clean code.
-- Grind. 
 - 
 
 Excited Achievements:
@@ -11,10 +9,8 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Fix "Commentary not showing in Language Cottage MudCards" bug.
-- Fix "Picture not appearing in edit form" bug.
-- Add "required asterisk" and "required validator" to LC form.
-- Add optional field to specify the record ID instead of auto-increment in LC form.
+- Assign the record ID value to the new/edit Dto if the optional field has value in LC dialog. 
+- Add "required asterisk" and "required validator" to LC form. Optional for romaji and original text? since sometimes we can only describe what's going on in a pic without text.
 - Figure out the load flow of Lc page. (https://www.editorx.com/shaping-design/article/resize-image-css)
 - Adjust lc record mudcards.
 - Make app bar become Elevation="1" when a dialog is open, other times just make it Elevation="0".
@@ -33,7 +29,7 @@ Special Notes:
 - 
  
 Thoughts:
-~ 
+> 
 
 */
 
@@ -43,10 +39,20 @@ Thoughts:
 
 Development Log:
 
+2023_08_23
+- Fixed "Picture not appearing in edit form" bug.
+- Added optional field to enter record ID. 
+
+2023_08_22
+- Clean code.
+- Grind. 
+> Helped by Lau to fix my code. 
+
 2023_08_21
 - Debugged and fixed commentary not storedin database.
 - Debugged and fixed edit record uploading as new record.
-- Debugged and fixed commentary still not storing bug.
+- Debugged and fixed commentary still not storing bug
+> Code 到 sleep.
 
 2023_08_20
 - Made data reload and page refresh after upload or edit LC. 
