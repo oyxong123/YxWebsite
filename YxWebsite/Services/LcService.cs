@@ -43,9 +43,6 @@ namespace YxWebsite.Services
                         }
                     }
 
-                    newLcDto.AddedDateTime = DateTime.Now;
-                    newLcDto.LastModifiedDateTime = DateTime.Now;
-
                     LanguageCottageModel _lcModel = _mapper.Map<LanguageCottageModel>(newLcDto);
                     await _context.DbLanguageCottage.AddAsync(_lcModel);
                     await _context.SaveChangesAsync();

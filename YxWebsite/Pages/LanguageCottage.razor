@@ -29,7 +29,7 @@
                         <!--placeholder-->
                     </CardHeaderAvatar>
                     <CardHeaderContent>
-                        <MudText Typo="Typo.body1">@lc.RecordIdForDisplay</MudText>
+                        <MudText Typo="Typo.body1">@lc.RecordIdString</MudText>
                         <MudText Typo="Typo.body2">placeholder</MudText>
                     </CardHeaderContent>
                     <!--Only show this control if current login mode is admin-->
@@ -38,7 +38,7 @@
                         <MudIconButton Icon="@Icons.Material.Filled.Edit" Color="Color.Default" OnClick="lcEditDto => lcEdit(lc)" />
                     </CardHeaderActions>
                 </MudCardHeader>
-                <MudCardMedia Image="@lc.ImageUrl" Height="768" Style="height: 40vh" Title="@lc.RecordIdForDisplay" />
+                <MudCardMedia Image="@lc.ImageUrl" Height="768" Style="height: 40vh" Title="@lc.RecordIdString" />
                 <MudCardContent>
                     <MudText Typo="Typo.body2">@lc.Commentary</MudText>
                 </MudCardContent>
@@ -64,7 +64,7 @@
 
         foreach (LcDto lc in lcDtoDisplayList)
         {
-            lc.RecordIdForDisplay = "#" + lc.RecordId.ToString();
+            lc.RecordIdString = "#" + lc.RecordId.ToString();
             lc.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(lc.Image);
         }
 

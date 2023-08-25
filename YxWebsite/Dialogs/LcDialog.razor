@@ -44,7 +44,8 @@
         </RadzenStack>
         <RadzenStack>
             <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Record ID</RadzenText>
-            <RadzenNumeric @bind-Value="lcForm.RecordId" class="w-100" />
+            <RadzenTextArea @bind-Value="lcForm.RecordIdString" class="w-100" />
+            <!--add Record ID numeric validator here-->
         </RadzenStack>
         <RadzenStack>
             <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Original Text</RadzenText>
@@ -89,8 +90,8 @@
             OriginalText = "",
             EnglishTranslation = "",
             Image = Array.Empty<byte>(),
-            AddedDateTime = DateTime.Now,
-            LastModifiedDateTime = DateTime.Now
+            AddedDateTime = DateTime.UtcNow,
+            LastModifiedDateTime = DateTime.UtcNow,
         };
 
     private IBrowserFile imageFile;
@@ -109,7 +110,7 @@
             LcDto lcDto = await ILcService.GetLcRecordById(PassedLcId);
             lcForm = lcDto.ShallowCopy();
             lcForm.ImageUrl = string.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String(lcForm.Image));
-
+            lcForm.RecordIdString = lcForm.RecordId.ToString();
             imageUploaded = true;
         }
 
@@ -118,13 +119,30 @@
 
     private async Task ProcessLcRecord()
     {
-        if (!IsEditForm)
+        try
         {
-            await UploadLcRecord();
+            //rewrite
+            if (lcForm.RecordIdString.Trim() == "")
+            {
+                lcForm.RecordId = -1;
+            }
+            else
+            {
+                lcForm.RecordId = Convert.ToInt32(lcForm.RecordIdString.Trim()); // validate whether this is optimal conversion method.
+            }
+
+            if (!IsEditForm)
+            {
+                await UploadLcRecord();
+            }
+            else
+            {
+                await EditLcRecord();
+            }
         }
-        else
+        catch (Exception ex)
         {
-            await EditLcRecord();
+            snackbarEditFailed(ex);
         }
     }
 
@@ -135,11 +153,13 @@
             LcDto lcDto = new()
                 {
                     RecordId = lcForm.RecordId,
-                    Romaji = lcForm.Romaji,
-                    OriginalText = lcForm.OriginalText,
-                    EnglishTranslation = lcForm.EnglishTranslation,
-                    Commentary = lcForm.Commentary,
-                    Image = lcForm.Image
+                    Romaji = lcForm.Romaji.Trim(),
+                    OriginalText = lcForm.OriginalText.Trim(),
+                    EnglishTranslation = lcForm.EnglishTranslation.Trim(),
+                    Commentary = lcForm.Commentary?.Trim(),
+                    Image = lcForm.Image,
+                    AddedDateTime = DateTime.UtcNow,
+                    LastModifiedDateTime = DateTime.UtcNow
                 };
 
             lcDto = await ILcService.UploadLcRecord(lcDto);
@@ -152,8 +172,7 @@
         }
         catch (Exception ex)
         {
-            Snackbar.Add("Lc Record Upload Failed.", Severity.Error);
-            Snackbar.Add(ex.ToString(), Severity.Error);
+            snackbarEditFailed(ex);
         }
     }
 
@@ -165,12 +184,12 @@
                 {
                     Id = lcForm.Id,
                     RecordId = lcForm.RecordId,
-                    Romaji = lcForm.Romaji,
-                    OriginalText = lcForm.OriginalText,
-                    EnglishTranslation = lcForm.EnglishTranslation,
-                    Commentary = lcForm.Commentary,
+                    Romaji = lcForm.Romaji.Trim(),
+                    OriginalText = lcForm.OriginalText.Trim(),
+                    EnglishTranslation = lcForm.EnglishTranslation.Trim(),
+                    Commentary = lcForm.Commentary?.Trim(),
                     Image = lcForm.Image,
-                    LastModifiedDateTime = DateTime.Now
+                    LastModifiedDateTime = DateTime.UtcNow
                 };
 
             await ILcService.EditLcRecord(lcDto, PassedLcId);
@@ -183,8 +202,7 @@
         }
         catch (Exception ex)
         {
-            Snackbar.Add("Lc Record Edit Failed.", Severity.Error);
-            Snackbar.Add(ex.ToString(), Severity.Error);
+            snackbarEditFailed(ex);
         }
     }
 
@@ -202,7 +220,7 @@
         await stream.CopyToAsync(memoryString);
         lcForm.Image = memoryString.GetBuffer();
         lcForm.ImageUrl = string.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String(lcForm.Image));
-        
+
         imageUploaded = true;
     }
 
@@ -214,5 +232,11 @@
     private void ClearDragClass()
     {
         DragClass = DefaultDragClass;
+    }
+
+    private void snackbarEditFailed(Exception ex)
+    {
+        Snackbar.Add("Lc Record Edit Failed.", Severity.Error);
+        Snackbar.Add(ex.ToString(), Severity.Error);
     }
 }

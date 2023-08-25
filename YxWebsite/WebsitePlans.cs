@@ -9,7 +9,12 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Assign the record ID value to the new/edit Dto if the optional field has value in LC dialog. 
+- Assign the record ID value to the new/edit Dto if the optional field has value in LC dialog (Check in services). 
+- Make empty initialization a public method in lc DTO.
+- Validate record ID field can only have value > 0, -1 reserved for null value. 
+- Add an insert function. If the specified recordID value has already existed increment all record ID >= to that ID value by one.
+- Add a delete function. When a record is deleted, decrement all record with record ID > to that ID value by one. 
+- Verify if record ID string is parsable/castable.
 - Add "required asterisk" and "required validator" to LC form. Optional for romaji and original text? since sometimes we can only describe what's going on in a pic without text.
 - Figure out the load flow of Lc page. (https://www.editorx.com/shaping-design/article/resize-image-css)
 - Adjust lc record mudcards.
@@ -38,6 +43,10 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_08_24
+- Updated database.
+- Plan out what other elements need to be considered.
 
 2023_08_23
 - Fixed "Picture not appearing in edit form" bug.

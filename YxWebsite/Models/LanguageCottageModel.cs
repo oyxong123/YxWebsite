@@ -9,7 +9,7 @@ namespace YxWebsite.Models
         [Key]
         public int Id { get; set; }
         [Column(TypeName = "decimal(4,3)")]
-        public decimal RecordId { get; set; }
+        public int RecordId { get; set; }
         public required string Romaji { get; set; }
         public required string OriginalText { get; set; }
         public required string EnglishTranslation { get; set; }
