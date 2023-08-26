@@ -5,7 +5,7 @@
 namespace YxWebsite.Migrations
 {
     /// <inheritdoc />
-    public partial class RevertToInt : Migration
+    public partial class RevertToInt2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

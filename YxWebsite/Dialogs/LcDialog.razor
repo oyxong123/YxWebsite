@@ -95,7 +95,7 @@
             LastModifiedDateTime = DateTime.UtcNow
         };
 
-    private IBrowserFile imageFile;
+    private IBrowserFile? imageFile;
     private static string DefaultDragClass = "relative rounded-lg border-2 border-dashed pa-4 mt-4 mud-width-full mud-height-full z-10 yx-center";
     private string DragClass = DefaultDragClass;
     private bool imageUploaded = false;
@@ -135,7 +135,7 @@
             else
             {
                 int.TryParse(lcForm.RecordIdString, out int parsedRecordId);
-                lcForm.RecordId = parsedRecordId; // validate whether this is optimal conversion method.
+                lcForm.RecordId = parsedRecordId;
                 await EditLcRecord();
             }
         }
@@ -214,11 +214,14 @@
     {
         ClearDragClass();
 
-        Stream stream = imageFile.OpenReadStream(imageFile.Size);
-        using MemoryStream memoryString = new MemoryStream();
-        await stream.CopyToAsync(memoryString);
-        lcForm.Image = memoryString.GetBuffer();
-        lcForm.ImageUrl = string.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String(lcForm.Image));
+        if (imageFile != null)
+        {
+            Stream stream = imageFile.OpenReadStream(imageFile.Size);
+            using MemoryStream memoryString = new MemoryStream();
+            await stream.CopyToAsync(memoryString);
+            lcForm.Image = memoryString.GetBuffer();
+            lcForm.ImageUrl = string.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String(lcForm.Image));
+        }
 
         imageUploaded = true;
     }

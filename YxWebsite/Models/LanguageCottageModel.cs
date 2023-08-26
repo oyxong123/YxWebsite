@@ -8,7 +8,6 @@ namespace YxWebsite.Models
     {
         [Key]
         public int Id { get; set; }
-        [Column(TypeName = "decimal(4,3)")]
         public int RecordId { get; set; }
         public required string Romaji { get; set; }
         public required string OriginalText { get; set; }

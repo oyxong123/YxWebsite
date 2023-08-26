@@ -1,7 +1,9 @@
 ﻿/*
 
 What I Did:
-- 
+- Validated the best conversion method from string to integer.
+- Debugged and fixed decimal error in database. (Manually created migration)
+- Coded out where LC Record ID is an optional field. If nothing is filled, it will be saved as a new record. Otherwise, it will be saved and set as the entered record ID.
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -34,7 +36,8 @@ Special Notes:
 - 
  
 Thoughts:
-> 
+> It's a bit intriguing how people outside are all discussing on how much they want to move into presoft's inner room.
+> This is pretty incredible. Even though both LC upload and edit methods use similar code, they are both serving different functions at different times.
 
 */
 

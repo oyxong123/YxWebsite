@@ -69,6 +69,20 @@ namespace YxWebsite.Services
                         throw new Exception("The LanguageCottage db is not initialized.");
                     }
 
+                    // Set latest LC's record ID as plus one of the previous record if no record ID is specified.
+                    if (editLcDto.RecordId == 0)
+                    {
+                        LcDto? previousRecordDto = _mapper.Map<LcDto>(await _context.DbLanguageCottage.OrderByDescending(lc => lc.RecordId).FirstOrDefaultAsync());
+                        if (previousRecordDto == null)
+                        {
+                            editLcDto.RecordId = 1;
+                        }
+                        else
+                        {
+                            editLcDto.RecordId = ++previousRecordDto.RecordId;
+                        }
+                    }
+
                     LanguageCottageModel _lcModel = _mapper.Map<LanguageCottageModel>(editLcDto);
                     _context.Entry(_lcModel).State = EntityState.Modified;
                     await _context.SaveChangesAsync();
