@@ -46,6 +46,7 @@
             <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Record ID</RadzenText>
             <RadzenTextArea @bind-Value="lcForm.RecordIdString" class="w-100" />
             <!--add Record ID numeric validator here-->
+            <!--must have record ID entered if in edit mode.-->
         </RadzenStack>
         <RadzenStack>
             <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Original Text</RadzenText>
@@ -91,7 +92,7 @@
             EnglishTranslation = "",
             Image = Array.Empty<byte>(),
             AddedDateTime = DateTime.UtcNow,
-            LastModifiedDateTime = DateTime.UtcNow,
+            LastModifiedDateTime = DateTime.UtcNow
         };
 
     private IBrowserFile imageFile;
@@ -121,22 +122,20 @@
     {
         try
         {
-            //rewrite
-            if (lcForm.RecordIdString.Trim() == "")
-            {
-                lcForm.RecordId = -1;
-            }
-            else
-            {
-                lcForm.RecordId = Convert.ToInt32(lcForm.RecordIdString.Trim()); // validate whether this is optimal conversion method.
-            }
-
             if (!IsEditForm)
             {
+                lcForm.RecordIdString = lcForm.RecordIdString.Trim();
+                if (lcForm.RecordIdString != "")
+                {
+                    int.TryParse(lcForm.RecordIdString, out int parsedRecordId);
+                    lcForm.RecordId = parsedRecordId;
+                }
                 await UploadLcRecord();
             }
             else
             {
+                int.TryParse(lcForm.RecordIdString, out int parsedRecordId);
+                lcForm.RecordId = parsedRecordId; // validate whether this is optimal conversion method.
                 await EditLcRecord();
             }
         }
