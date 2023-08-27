@@ -1,9 +1,9 @@
 ﻿/*
 
 What I Did:
-- Validated the best conversion method from string to integer.
-- Debugged and fixed decimal error in database. (Manually created migration)
-- Coded out where LC Record ID is an optional field. If nothing is filled, it will be saved as a new record. Otherwise, it will be saved and set as the entered record ID.
+- Debugged and fixed RadzenCustomValidator not working bug. (RadzenTemplateForm outer block is required)
+- Coded required asterisk to be present on Record ID in Edit LC Upload form.
+- Coded validation for Record ID. 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -11,12 +11,10 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Assign the record ID value to the new/edit Dto if the optional field has value in LC dialog (Check in services). 
-- Make empty initialization a public method in lc DTO.
 - Validate record ID field can only have value > 0, -1 reserved for null value. 
 - Add an insert function. If the specified recordID value has already existed increment all record ID >= to that ID value by one.
 - Add a delete function. When a record is deleted, decrement all record with record ID > to that ID value by one. 
-- Verify if record ID string is parsable/castable.
+- Make empty initialization a public method in lc DTO.
 - Add "required asterisk" and "required validator" to LC form. Optional for romaji and original text? since sometimes we can only describe what's going on in a pic without text.
 - Figure out the load flow of Lc page. (https://www.editorx.com/shaping-design/article/resize-image-css)
 - Adjust lc record mudcards.
@@ -36,8 +34,8 @@ Special Notes:
 - 
  
 Thoughts:
-> It's a bit intriguing how people outside are all discussing on how much they want to move into presoft's inner room.
-> This is pretty incredible. Even though both LC upload and edit methods use similar code, they are both serving different functions at different times.
+> Pffff=sodhffw, is it that I need to add RadzenTemplateForm outside the RadzenFormField. So RadzenFormField is in the inner code block.
+> Man, this took a lot more time than I thought.
 
 */
 
@@ -46,6 +44,13 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_08_26
+- Validated the best conversion method from string to integer.
+- Debugged and fixed decimal error in database. (Manually created migration)
+- Coded out where LC Record ID is an optional field. If nothing is filled, it will be saved as a new record. Otherwise, it will be saved and set as the entered record ID.
+> It's a bit intriguing how people outside are all discussing on how much they want to move into presoft's inner room.
+> This is pretty incredible. Even though both LC upload and edit methods use similar code, they are both serving different functions at different times.
 
 2023_08_24
 - Updated database.
