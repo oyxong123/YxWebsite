@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 using YxWebsite.Context;
 using YxWebsite.Dtos;
 using YxWebsite.Interfaces;
@@ -42,7 +43,12 @@ namespace YxWebsite.Services
                             newLcDto.RecordId = ++previousRecordDto.RecordId;
                         }
                     }
-
+                    else
+                    {
+                        // Increment all record ID equal or larger than the specified record ID by 1.
+                        await _context.DbLanguageCottage.Where(lc => lc.RecordId >= newLcDto.RecordId).ExecuteUpdateAsync(lc => lc.SetProperty(u => u.RecordId, u => u.RecordId + 1));
+                    }
+                    
                     LanguageCottageModel _lcModel = _mapper.Map<LanguageCottageModel>(newLcDto);
                     await _context.DbLanguageCottage.AddAsync(_lcModel);
                     await _context.SaveChangesAsync();
@@ -80,6 +86,23 @@ namespace YxWebsite.Services
                         else
                         {
                             editLcDto.RecordId = ++previousRecordDto.RecordId;
+                        }
+                    }
+                    else
+                    {
+                        // Insert the new record to a previous Record ID location and increment/decrement other records by 1 to fill in its previous location.
+                        if (await _context.DbLanguageCottage.AnyAsync(lc => lc.RecordId == editLcDto.RecordId))
+                        {
+                            int oldRecordId = await _context.DbLanguageCottage.Where(lc => lc.Id == lcId).Select(lc => lc.RecordId);
+                            if (editLcDto.RecordId < oldRecordId){
+                                // Increment all record ID larger than the specified record ID and smaller than the old RecordID by 1.
+                                await _context.DbLanguageCottage.Where(lc => lc.RecordId > editLcDto.RecordId && lc.RecordId < oldRecordId).ExecuteUpdateAsync(lc => lc.SetProperty(u => u.RecordId, u => u.RecordId + 1));
+                            }
+                            else if (editLcDto.RecordId > oldRecordId)
+                            {
+                                // Increment all record ID less than the specified record ID and larger than the old RecordID by 1.
+                                await _context.DbLanguageCottage.Where(lc => lc.RecordId < editLcDto.RecordId && lc.RecordId > oldRecordId).ExecuteUpdateAsync(lc => lc.SetProperty(u => u.RecordId, u => u.RecordId + 1));
+                            }
                         }
                     }
 

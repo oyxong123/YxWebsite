@@ -45,13 +45,13 @@
                 </MudFileUpload>
             </RadzenStack>
                 <RadzenStack>
-                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">
-                    Record ID 
-                    @if (IsEditForm)
-                    {
-                        <span class="text-danger">*</span>
-                    }
-                </RadzenText>
+                    <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">
+                        Record ID 
+                        @if (IsEditForm)
+                        {
+                            <span class="text-danger">*</span>
+                        }
+                    </RadzenText>
                     <RadzenFormField>
                         <ChildContent>
                             <RadzenTextArea Name="RecordIdString" @bind-Value="lcForm.RecordIdString" class="w-100" />

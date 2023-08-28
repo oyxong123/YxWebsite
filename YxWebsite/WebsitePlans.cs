@@ -1,9 +1,7 @@
 ﻿/*
 
 What I Did:
-- Debugged and fixed RadzenCustomValidator not working bug. (RadzenTemplateForm outer block is required)
-- Coded required asterisk to be present on Record ID in Edit LC Upload form.
-- Coded validation for Record ID. 
+- Added insert function code for when LC record is uploaded or edited with a specified Record ID. 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -11,7 +9,6 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Validate record ID field can only have value > 0, -1 reserved for null value. 
 - Add an insert function. If the specified recordID value has already existed increment all record ID >= to that ID value by one.
 - Add a delete function. When a record is deleted, decrement all record with record ID > to that ID value by one. 
 - Make empty initialization a public method in lc DTO.
@@ -26,7 +23,6 @@ Website Plans:
 - Add a login function so that if it is me that has logged in, I can utilize the add post delete post etc function.
 - Resize image of Lc upload properly. (https://www.w3docs.com/snippets/css/how-to-auto-resize-an-image-to-fit-an-html-container.html)
 - When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
-- 
 
 Special Notes:
 - The dialogs of Radzen look better. Use Radzen for dialogs. 
@@ -34,8 +30,8 @@ Special Notes:
 - 
  
 Thoughts:
-> Pffff=sodhffw, is it that I need to add RadzenTemplateForm outside the RadzenFormField. So RadzenFormField is in the inner code block.
-> Man, this took a lot more time than I thought.
+> Man, I didn't know there's something so convenient like this.
+> 
 
 */
 
@@ -44,6 +40,13 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_08_27
+- Debugged and fixed RadzenCustomValidator not working bug. (RadzenTemplateForm outer block is required)
+- Coded required asterisk to be present on Record ID in Edit LC Upload form.
+- Coded validation for Record ID. 
+> Pffff=sodhffw, is it that I need to add RadzenTemplateForm outside the RadzenFormField. So RadzenFormField is in the inner code block.
+> Man, this took a lot more time than I thought.
 
 2023_08_26
 - Validated the best conversion method from string to integer.
