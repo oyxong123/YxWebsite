@@ -93,7 +93,7 @@ namespace YxWebsite.Services
                         // Insert the new record to a previous Record ID location and increment/decrement other records by 1 to fill in its previous location.
                         if (await _context.DbLanguageCottage.AnyAsync(lc => lc.RecordId == editLcDto.RecordId))
                         {
-                            int oldRecordId = await _context.DbLanguageCottage.Where(lc => lc.Id == lcId).Select(lc => lc.RecordId);
+                            int oldRecordId = await _context.DbLanguageCottage.Where(lc => lc.Id == lcId).Select(lc => lc.RecordId).SingleOrDefaultAsync();
                             if (editLcDto.RecordId < oldRecordId){
                                 // Increment all record ID larger than the specified record ID and smaller than the old RecordID by 1.
                                 await _context.DbLanguageCottage.Where(lc => lc.RecordId > editLcDto.RecordId && lc.RecordId < oldRecordId).ExecuteUpdateAsync(lc => lc.SetProperty(u => u.RecordId, u => u.RecordId + 1));

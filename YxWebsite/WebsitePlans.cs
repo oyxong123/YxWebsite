@@ -1,7 +1,7 @@
 ﻿/*
 
 What I Did:
-- Added insert function code for when LC record is uploaded or edited with a specified Record ID. 
+- 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -9,7 +9,7 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Add an insert function. If the specified recordID value has already existed increment all record ID >= to that ID value by one.
+- Add an insert function. If the specified recordID value has already existed increment all record ID >= to that ID value by one. Validate function.
 - Add a delete function. When a record is deleted, decrement all record with record ID > to that ID value by one. 
 - Make empty initialization a public method in lc DTO.
 - Add "required asterisk" and "required validator" to LC form. Optional for romaji and original text? since sometimes we can only describe what's going on in a pic without text.
@@ -30,7 +30,6 @@ Special Notes:
 - 
  
 Thoughts:
-> Man, I didn't know there's something so convenient like this.
 > 
 
 */
@@ -40,6 +39,11 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_08_28
+- Added insert function code for when LC record is uploaded or edited with a specified Record ID. 
+> Man, I didn't know there's something so convenient like this.
+> Coding is a time-consuming but rewarding routine.
 
 2023_08_27
 - Debugged and fixed RadzenCustomValidator not working bug. (RadzenTemplateForm outer block is required)
