@@ -94,10 +94,12 @@ namespace YxWebsite.Services
                         if (await _context.DbLanguageCottage.AnyAsync(lc => lc.RecordId == editLcDto.RecordId))
                         {
                             int oldRecordId = await _context.DbLanguageCottage.Where(lc => lc.Id == lcId).Select(lc => lc.RecordId).SingleOrDefaultAsync();
-                            if (editLcDto.RecordId < oldRecordId){
+                            if (editLcDto.RecordId < oldRecordId)
+                            {
                                 // Increment all record ID larger than the specified record ID and smaller than the old RecordID by 1.
                                 await _context.DbLanguageCottage.Where(lc => lc.RecordId > editLcDto.RecordId && lc.RecordId < oldRecordId).ExecuteUpdateAsync(lc => lc.SetProperty(u => u.RecordId, u => u.RecordId + 1));
                             }
+
                             else if (editLcDto.RecordId > oldRecordId)
                             {
                                 // Increment all record ID less than the specified record ID and larger than the old RecordID by 1.
@@ -109,11 +111,37 @@ namespace YxWebsite.Services
                     LanguageCottageModel _lcModel = _mapper.Map<LanguageCottageModel>(editLcDto);
                     _context.Entry(_lcModel).State = EntityState.Modified;
                     await _context.SaveChangesAsync();
-                    
+
                     // Add audit trail model and call.
                 }
 
                 return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.ToString());
+            }
+        }
+
+        public async Task<bool> DeleteLcRecord(LcDto deleteLcDto)
+        {
+            try
+            {
+                using (ApplicationDbContext _context = await _contextFactory.CreateDbContextAsync())
+                {
+                    if (_context.DbLanguageCottage == null)
+                    {
+                        throw new Exception("The LanguageCottage db is not initialized.");
+                    }
+
+                    LanguageCottageModel _lcModel = _mapper.Map<LanguageCottageModel>(deleteLcDto);
+                    _context.Remove(_lcModel);
+                    await _context.SaveChangesAsync();
+
+                    // Add audit trail model and call.
+
+                    return true;
+                }
             }
             catch (Exception ex)
             {

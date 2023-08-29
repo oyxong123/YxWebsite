@@ -1,6 +1,8 @@
 ﻿/*
 
 What I Did:
+- Debugged and fixed 'cannot convert from IQuery<int> to <int>' error.
+- Validated inset on Upload LC Record works.
 - 
 
 Excited Achievements:
