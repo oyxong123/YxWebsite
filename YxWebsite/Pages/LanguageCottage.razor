@@ -4,6 +4,7 @@
 @using Dtos;
 @using Dialogs;
 @inject Radzen.DialogService DialogService
+@inject ISnackbar Snackbar
 @inject ILcService ILcService
 
 <style>
@@ -90,8 +91,13 @@
 
     private async Task lcDelete(LcDto lcDeleteDto)
     {
-        await ILcService.DeleteLcRecord(lcDeleteDto);
-        await OnParametersSetAsync();
-        StateHasChanged();
+        bool? dialogResult = await DialogService.Confirm("Delete LcRecord [Record ID: #" + lcDeleteDto.RecordId + "]?", "Language Cottage", new ConfirmOptions() { OkButtonText = "Yes", CancelButtonText = "No" });
+        if (dialogResult == true)
+        {
+            await ILcService.DeleteLcRecord(lcDeleteDto);
+            await OnParametersSetAsync();
+            StateHasChanged();
+            Snackbar.Add("Deleted LC record.", Severity.Success);
+        }
     }
 }

@@ -3,6 +3,7 @@
 What I Did:
 - Fixed 'LC insert not working as expected' error.
 - Reinserted database LC records.
+- Updated delete LC record method to decrement all record ID of records with larger record ID by 1.
 - 
 
 Excited Achievements:
