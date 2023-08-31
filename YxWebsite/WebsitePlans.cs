@@ -1,8 +1,8 @@
 ﻿/*
 
 What I Did:
-- Debugged and fixed 'cannot convert from IQuery<int> to <int>' error.
-- Validated inset on Upload LC Record works.
+- Fixed 'LC insert not working as expected' error.
+- Reinserted database LC records.
 - 
 
 Excited Achievements:
@@ -41,6 +41,13 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_08_30
+- Add delete function in LC. 
+
+2023_08_29
+- Debugged and fixed 'cannot convert from IQuery<int> to <int>' error.
+- Validated inset on Upload LC Record works.
 
 2023_08_28
 - Added insert function code for when LC record is uploaded or edited with a specified Record ID. 
