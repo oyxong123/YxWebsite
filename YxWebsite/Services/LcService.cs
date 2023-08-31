@@ -119,7 +119,7 @@ namespace YxWebsite.Services
                                 List<LanguageCottageModel> lcModelList = await _context.DbLanguageCottage.Where(lc => lc.RecordId < editLcDto.RecordId && lc.RecordId > oldRecordId).ToListAsync();
                                 foreach (LanguageCottageModel lc in lcModelList)
                                 {
-                                    lc.RecordId++;
+                                    lc.RecordId--;
                                     _context.Entry(lc).State = EntityState.Modified;
                                 }
                             }

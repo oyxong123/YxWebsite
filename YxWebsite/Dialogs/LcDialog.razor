@@ -27,6 +27,7 @@
     <RadzenStack Gap="1.5rem">
         <RadzenStack width="100%">
             <RadzenStack>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Image (16:9)<span class="text-danger">*</span></RadzenText>
                 <MudFileUpload T="IBrowserFile" @bind-Files="imageFile" OnFilesChanged="OnInputFileChanged" Hidden="false" Class="flex-1" InputClass="absolute mud-width-full mud-height-full overflow-hidden z-20" InputStyle="opacity:0" @ondragenter="@SetDragClass" @ondragleave="@ClearDragClass" @ondragend="@ClearDragClass">
                     <ButtonTemplate Context="Image">
                         @if (imageUploaded)
