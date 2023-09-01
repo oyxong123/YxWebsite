@@ -1,11 +1,7 @@
 ﻿/*
 
 What I Did:
-- Fixed 'LC insert not working as expected' error.
-- Reinserted database LC records.
-- Updated delete LC record method to decrement all record ID of records with larger record ID by 1.
-- Added confirmation dialog before deleting LC record.
-- Validated insert function code in upload and edit dialog is working. 
+- 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -13,10 +9,11 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Change insert function code in upload, edit, and delete LC methods back to ExecuteUpdateAsync EF Core Expression.
-- Make empty initialization a public method in lc DTO. (It is also possible to straight define a default value for all instances by setting default value in model and dto)
+- Show hiragana romaji translation details on LC page mudcards.
 - Adjust LC page images to rescale automatically. (https://www.editorx.com/shaping-design/article/resize-image-css) (https://www.w3docs.com/snippets/css/how-to-auto-resize-an-image-to-fit-an-html-container.html)
 - Set border size based on LC image in LcDialog. Later on should be uploading images in 16:9.
+- Change insert function code in upload, edit, and delete LC methods back to ExecuteUpdateAsync EF Core Expression.
+- Make empty initialization a public method in lc DTO. (It is also possible to straight define a default value for all instances by setting default value in model and dto)
 - Make app bar become Elevation="1" when a dialog is open, other times just make it Elevation="0".
 - Save the state of previously expanded drawer after clicking into any link (Or can just highlight the current page link when open the menu) (NavMenu).
 - Contract other nav groups when a new nav group is opened. (NavMenu)
@@ -30,7 +27,7 @@ Special Notes:
 - 
  
 Thoughts:
-> omaigosh, lmaoo, don't tell me the reason .ExecuteUpdateAsync didn't work before is because I incremented the records in between the new insert record ID and old record ID. Thus causing all of them to increment back to the same number due to simple math and sequence logic. SoI might not have needed to change the function actually. Ahhhh. Hey, should I change it back during the next session?
+> using ctrl+c then ctrl+v without highlighting text first copy and postes the whole line by default in VS, which is so pretty useful
 > 
 
 */
@@ -40,6 +37,15 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_08_31
+- Fixed 'LC insert not working as expected' error.
+- Reinserted database LC records.
+- Updated delete LC record method to decrement all record ID of records with larger record ID by 1.
+- Added confirmation dialog before deleting LC record.
+- Validated insert function code in upload and edit dialog is working. 
+- Updated LC edit dialog fields.
+> omaigosh, lmaoo, don't tell me the reason '.ExecuteUpdateAsync' didn't work before is because I incremented the records in between the new insert record ID and old record ID. Thus causing all of them to increment back to the same number due to simple math and sequence logic. SoI might not have needed to change the function actually. Ahhhh. Hey, should I change it back during the next session?
 
 2023_08_30
 - Add delete function in LC. 
