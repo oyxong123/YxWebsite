@@ -1,6 +1,8 @@
 ﻿/*
 
 What I Did:
+- Adjusted LC MudCards to display basic record details. 
+- Changed insert function code in upload, edit, and delete LC methods back to ExecuteUpdateAsync EF Core Expression.
 - 
 
 Excited Achievements:
@@ -9,10 +11,8 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Show hiragana romaji translation details on LC page mudcards.
 - Adjust LC page images to rescale automatically. (https://www.editorx.com/shaping-design/article/resize-image-css) (https://www.w3docs.com/snippets/css/how-to-auto-resize-an-image-to-fit-an-html-container.html)
 - Set border size based on LC image in LcDialog. Later on should be uploading images in 16:9.
-- Change insert function code in upload, edit, and delete LC methods back to ExecuteUpdateAsync EF Core Expression.
 - Make empty initialization a public method in lc DTO. (It is also possible to straight define a default value for all instances by setting default value in model and dto)
 - Make app bar become Elevation="1" when a dialog is open, other times just make it Elevation="0".
 - Save the state of previously expanded drawer after clicking into any link (Or can just highlight the current page link when open the menu) (NavMenu).

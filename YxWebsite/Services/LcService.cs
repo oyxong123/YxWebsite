@@ -48,7 +48,7 @@ namespace YxWebsite.Services
                         // Insert the new record to a previous Record ID location and increment/decrement other records by 1 to fill in its previous location.
                         if (await _context.DbLanguageCottage.AnyAsync(lc => lc.RecordId == newLcDto.RecordId))
                         {
-                            // Increment all record ID larger than the specified record ID and smaller than the old RecordID by 1.
+                            // Increment all record ID larger than the specified record ID by 1.
                             List<LanguageCottageModel> lcModelList = await _context.DbLanguageCottage.Where(lc => lc.RecordId >= newLcDto.RecordId).ToListAsync();
                             foreach (LanguageCottageModel lc in lcModelList)
                             {
@@ -106,22 +106,12 @@ namespace YxWebsite.Services
                             if (editLcDto.RecordId < oldRecordId)
                             {
                                 // Increment all record ID equal or larger than the specified record ID and smaller than the old RecordID by 1.
-                                List<LanguageCottageModel> lcModelList = await _context.DbLanguageCottage.Where(lc => lc.RecordId >= editLcDto.RecordId && lc.RecordId < oldRecordId).ToListAsync();
-                                foreach (LanguageCottageModel lc in lcModelList)
-                                {
-                                    lc.RecordId++;
-                                    _context.Entry(lc).State = EntityState.Modified;
-                                }
+                                await _context.DbLanguageCottage.Where(lc => lc.RecordId >= editLcDto.RecordId && lc.RecordId < oldRecordId).ExecuteUpdateAsync(lc => lc.SetProperty(u => u.RecordId, u => u.RecordId + 1));
                             }
                             else if (editLcDto.RecordId > oldRecordId)
                             {
-                                // Increment all record ID equal or lesser than the specified record ID and larger than the old RecordID by 1.
-                                List<LanguageCottageModel> lcModelList = await _context.DbLanguageCottage.Where(lc => lc.RecordId < editLcDto.RecordId && lc.RecordId > oldRecordId).ToListAsync();
-                                foreach (LanguageCottageModel lc in lcModelList)
-                                {
-                                    lc.RecordId--;
-                                    _context.Entry(lc).State = EntityState.Modified;
-                                }
+                                // Decrement all record ID equal or lesser than the specified record ID and larger than the old RecordID by 1.
+                                await _context.DbLanguageCottage.Where(lc => lc.RecordId <= editLcDto.RecordId && lc.RecordId > oldRecordId).ExecuteUpdateAsync(lc => lc.SetProperty(u => u.RecordId, u => u.RecordId - 1));
                             }
                         }
                     }
@@ -153,12 +143,7 @@ namespace YxWebsite.Services
                     }
 
                     // Decrement all record ID larger than the deleting record's record ID.
-                    List<LanguageCottageModel> lcModelList = await _context.DbLanguageCottage.Where(lc => lc.RecordId > deleteLcDto.RecordId).ToListAsync();
-                    foreach (LanguageCottageModel lc in lcModelList)
-                    {
-                        lc.RecordId--;
-                        _context.Entry(lc).State = EntityState.Modified;
-                    }
+                    await _context.DbLanguageCottage.Where(lc => lc.RecordId > deleteLcDto.RecordId).ExecuteUpdateAsync(lc => lc.SetProperty(u => u.RecordId, u => u.RecordId - 1));
 
                     LanguageCottageModel _lcModel = _mapper.Map<LanguageCottageModel>(deleteLcDto);
                     _context.Remove(_lcModel);

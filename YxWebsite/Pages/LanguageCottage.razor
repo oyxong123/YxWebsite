@@ -15,6 +15,11 @@
     .card{
         margin:20px;
     }
+
+    .mud-card-content > div{
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
 </style>
 
 @if (IsInitialized)
@@ -42,14 +47,22 @@
                 </MudCardHeader>
                 <MudCardMedia Image="@lc.ImageUrl" Height="768" Style="height: 40vh" />
                 <MudCardContent>
-                    <MudText Typo="Typo.body1">Original Text:</MudText>
-                    <MudText Typo="Typo.body2">@lc.OriginalText</MudText>
-                    <MudText Typo="Typo.body1">Romaji:</MudText>
-                    <MudText Typo="Typo.body2">@lc.Romaji</MudText>
-                    <MudText Typo="Typo.body1">Translation:</MudText>
-                    <MudText Typo="Typo.body2">@lc.EnglishTranslation</MudText>
-                    <MudText Typo="Typo.body1">Commentary:</MudText>
-                    <MudText Typo="Typo.body2">@lc.Commentary</MudText>
+                    <div>
+                        <MudText Typo="Typo.body2">Original Text:</MudText>
+                        <MudText Typo="Typo.body2">@lc.OriginalText</MudText>
+                    </div>
+                    <div>
+                        <MudText Typo="Typo.body2">Romaji:</MudText>
+                        <MudText Typo="Typo.body2">@lc.Romaji</MudText>
+                    </div>
+                    <div>
+                        <MudText Typo="Typo.body2">Translation:</MudText>
+                        <MudText Typo="Typo.body2">@lc.EnglishTranslation</MudText>
+                    </div>
+                    <div>
+                        <MudText Typo="Typo.body2">Commentary:</MudText>
+                        <MudText Typo="Typo.body2">@lc.Commentary</MudText>
+                    </div>
                 </MudCardContent>
             </MudCard>
         }
