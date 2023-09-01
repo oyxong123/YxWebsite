@@ -85,7 +85,6 @@
                      <RadzenTextArea @bind-Value="lcForm.Commentary" class="w-100" />
                  </RadzenStack>
         </RadzenStack>
-
         <RadzenStack Orientation="Radzen.Orientation.Horizontal" Gap="0.5rem" JustifyContent="JustifyContent.End">
             <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="Shine!!" Style="width: 80px;" />
             <RadzenButton Text="Cancel" Click="closeDialog" ButtonStyle="ButtonStyle.Light" />
@@ -99,10 +98,6 @@
 
     private LcDto lcForm = new()
         {
-            Romaji = "",
-            OriginalText = "",
-            EnglishTranslation = "",
-            Image = Array.Empty<byte>(),
             AddedDateTime = DateTime.UtcNow,
             LastModifiedDateTime = DateTime.UtcNow
         };

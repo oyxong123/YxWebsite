@@ -11,9 +11,10 @@ Excited Achievements:
 - 
 
 Website Plans:
+- Make empty initialization a public method in lc DTO.
+- Reduce back the initialization code within pages and dialogs. 
 - Adjust LC page images to rescale automatically. (https://www.editorx.com/shaping-design/article/resize-image-css) (https://www.w3docs.com/snippets/css/how-to-auto-resize-an-image-to-fit-an-html-container.html)
 - Set border size based on LC image in LcDialog. Later on should be uploading images in 16:9.
-- Make empty initialization a public method in lc DTO. (It is also possible to straight define a default value for all instances by setting default value in model and dto)
 - Make app bar become Elevation="1" when a dialog is open, other times just make it Elevation="0".
 - Save the state of previously expanded drawer after clicking into any link (Or can just highlight the current page link when open the menu) (NavMenu).
 - Contract other nav groups when a new nav group is opened. (NavMenu)
@@ -27,8 +28,8 @@ Special Notes:
 - 
  
 Thoughts:
-> using ctrl+c then ctrl+v without highlighting text first copy and postes the whole line by default in VS, which is so pretty useful
-> 
+> using ctrl+c then ctrl+v without highlighting text first copy and postes the whole line by default in VS, which is so pretty useful.
+> Ahhhs, so the reason it didn't worked before this is because I didn't add "SetsRequiredMembers" above my constructor to auto set the required properties.
 
 */
 
