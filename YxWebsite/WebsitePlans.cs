@@ -1,7 +1,7 @@
 ﻿/*
 
 What I Did:
-- 
+- Set border size as 16:9 in LC edit dialog.
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
