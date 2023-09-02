@@ -20,6 +20,10 @@
         background-repeat: no-repeat;
         background-position: 50% 50%;
     }
+
+    .rz-stack{
+        gap: 0px;
+    }
 </style>
 
 <RadzenTemplateForm TItem="LcDto" Data="lcForm" Submit="ProcessLcRecord" class="modal-body">
@@ -31,59 +35,59 @@
                     <ButtonTemplate Context="Image">
                         @if (imageUploaded)
                         {
-                            <MudPaper Height="300px" Width="300px" Outlined="true" Class="@DragClass">
+                            <MudPaper Height="200px" Width="356px" Outlined="true" Class="@DragClass">
                                 <MudImage Src="@lcForm.ImageUrl" Alt="Image for Upload" Elevation="25" Class="rounded-lg yx-img" />
                             </MudPaper>
                         }
                         else
                         {
-                            <MudPaper Height="250px" Outlined="true" Class="@DragClass">
+                            <MudPaper Height="200px" Width="356px" Outlined="true" Class="@DragClass">
                                 <MudText Class="yx-center">Drop picture</MudText>
                             </MudPaper>
                         }
                     </ButtonTemplate>
                 </MudFileUpload>
             </RadzenStack>
-                <RadzenStack>
-                    <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">
-                        Record ID 
-                        @if (IsEditForm)
-                        {
-                            <span class="text-danger">*</span>
-                        }
-                    </RadzenText>
-                    <RadzenFormField>
-                        <ChildContent>
-                            <RadzenTextArea Name="RecordIdString" @bind-Value="lcForm.RecordIdString" class="w-100" />
-                        </ChildContent>
-                        <Helper>
-                            <RadzenCustomValidator Component="RecordIdString" Validator="@(() => ValidateRecordIdString(lcForm.RecordIdString))" Text="@validatorTextRecordIdString" Popup />
-                         </Helper>
-                     </RadzenFormField>
-                 </RadzenStack>
-                 <RadzenStack>
-                     <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Original Text</RadzenText>
-                     <RadzenTextArea @bind-Value="lcForm.OriginalText" class="w-100" />
-                 </RadzenStack>
-                 <RadzenStack>
-                     <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Romaji</RadzenText>
-                     <RadzenTextArea @bind-Value="lcForm.Romaji" class="w-100" />
-                 </RadzenStack>
-                 <RadzenStack>
-                     <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Englsih Translation<span class="text-danger">*</span></RadzenText>
-                     <RadzenFormField>
-                         <ChildContent>
-                             <RadzenTextArea Name="EnglishTranslation" @bind-Value="lcForm.EnglishTranslation" class="w-100" />
-                         </ChildContent>
-                         <Helper>
-                             <RadzenRequiredValidator Component="EnglishTranslation" Text="English Translation is required" Popup=true Style="position: absolute" />
-                         </Helper>
-                     </RadzenFormField>
-                 </RadzenStack>
-                 <RadzenStack>
-                     <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Commentary</RadzenText>
-                     <RadzenTextArea @bind-Value="lcForm.Commentary" class="w-100" />
-                 </RadzenStack>
+            <RadzenStack>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">
+                    Record ID 
+                    @if (IsEditForm)
+                    {
+                        <span class="text-danger">*</span>
+                    }
+                </RadzenText>
+                <RadzenFormField>
+                    <ChildContent>
+                        <RadzenTextArea Name="RecordIdString" @bind-Value="lcForm.RecordIdString" class="w-100" />
+                    </ChildContent>
+                    <Helper>
+                        <RadzenCustomValidator Component="RecordIdString" Validator="@(() => ValidateRecordIdString(lcForm.RecordIdString))" Text="@validatorTextRecordIdString" Popup />
+                    </Helper>
+                </RadzenFormField>
+            </RadzenStack>
+            <RadzenStack>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Original Text</RadzenText>
+                <RadzenTextArea @bind-Value="lcForm.OriginalText" class="w-100" />
+            </RadzenStack>
+            <RadzenStack>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Romaji</RadzenText>
+                <RadzenTextArea @bind-Value="lcForm.Romaji" class="w-100" />
+            </RadzenStack>
+            <RadzenStack>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Englsih Translation<span class="text-danger">*</span></RadzenText>
+                <RadzenFormField>
+                    <ChildContent>
+                        <RadzenTextArea Name="EnglishTranslation" @bind-Value="lcForm.EnglishTranslation" class="w-100" />
+                    </ChildContent>
+                    <Helper>
+                        <RadzenRequiredValidator Component="EnglishTranslation" Text="English Translation is required" Popup=true Style="position: absolute" />
+                    </Helper>
+                </RadzenFormField>
+            </RadzenStack>
+            <RadzenStack>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Commentary</RadzenText>
+                <RadzenTextArea @bind-Value="lcForm.Commentary" class="w-100" />
+            </RadzenStack>
         </RadzenStack>
         <RadzenStack Orientation="Radzen.Orientation.Horizontal" Gap="0.5rem" JustifyContent="JustifyContent.End">
             <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="Shine!!" Style="width: 80px;" />
@@ -106,7 +110,7 @@
     private bool imageUploaded = false;
 
     // Css variables
-    private static string DefaultDragClass = "relative rounded-lg border-2 border-dashed pa-4 mt-4 mud-width-full mud-height-full z-10 yx-center";
+    private static string DefaultDragClass = "relative rounded-lg border-2 border-dashed pa-4 mud-width-full mud-height-full z-10 yx-center";
     private string DragClass = DefaultDragClass;
 
     // Validator text variables.

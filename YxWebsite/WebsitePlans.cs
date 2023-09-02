@@ -1,8 +1,6 @@
 ﻿/*
 
 What I Did:
-- Adjusted LC MudCards to display basic record details. 
-- Changed insert function code in upload, edit, and delete LC methods back to ExecuteUpdateAsync EF Core Expression.
 - 
 
 Excited Achievements:
@@ -11,8 +9,6 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Make empty initialization a public method in lc DTO.
-- Reduce back the initialization code within pages and dialogs. 
 - Adjust LC page images to rescale automatically. (https://www.editorx.com/shaping-design/article/resize-image-css) (https://www.w3docs.com/snippets/css/how-to-auto-resize-an-image-to-fit-an-html-container.html)
 - Set border size based on LC image in LcDialog. Later on should be uploading images in 16:9.
 - Make app bar become Elevation="1" when a dialog is open, other times just make it Elevation="0".
@@ -28,8 +24,7 @@ Special Notes:
 - 
  
 Thoughts:
-> using ctrl+c then ctrl+v without highlighting text first copy and postes the whole line by default in VS, which is so pretty useful.
-> Ahhhs, so the reason it didn't worked before this is because I didn't add "SetsRequiredMembers" above my constructor to auto set the required properties.
+> 
 
 */
 
@@ -38,6 +33,14 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_09_01
+- Adjusted LC MudCards to display basic record details. 
+- Changed insert function code in upload, edit, and delete LC methods back to ExecuteUpdateAsync EF Core Expression.
+- Made LC Dto an empty initialization.
+- Deleted code that initializes empty fields.
+> using ctrl+c then ctrl+v without highlighting text first copy and postes the whole line by default in VS, which is so pretty useful.
+> Ahhhs, so the reason it didn't worked before this is because I didn't add "SetsRequiredMembers" above my constructor to auto set the required properties.
 
 2023_08_31
 - Fixed 'LC insert not working as expected' error.
