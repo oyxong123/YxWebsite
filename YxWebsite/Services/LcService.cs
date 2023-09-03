@@ -49,8 +49,8 @@ namespace YxWebsite.Services
                         if (await _context.DbLanguageCottage.AnyAsync(lc => lc.RecordId == newLcDto.RecordId))
                         {
                             // Increment all record ID larger than the specified record ID by 1.
-                            List<LanguageCottageModel> lcModelList = await _context.DbLanguageCottage.Where(lc => lc.RecordId >= newLcDto.RecordId).ToListAsync();
-                            foreach (LanguageCottageModel lc in lcModelList)
+                            List<LcModel> lcModelList = await _context.DbLanguageCottage.Where(lc => lc.RecordId >= newLcDto.RecordId).ToListAsync();
+                            foreach (LcModel lc in lcModelList)
                             {
                                 lc.RecordId++;
                                 _context.Entry(lc).State = EntityState.Modified;
@@ -58,7 +58,7 @@ namespace YxWebsite.Services
                         }
                     }
                     
-                    LanguageCottageModel _lcModel = _mapper.Map<LanguageCottageModel>(newLcDto);
+                    LcModel _lcModel = _mapper.Map<LcModel>(newLcDto);
                     await _context.DbLanguageCottage.AddAsync(_lcModel);
                     await _context.SaveChangesAsync();
 
@@ -116,7 +116,7 @@ namespace YxWebsite.Services
                         }
                     }
 
-                    LanguageCottageModel _lcModel = _mapper.Map<LanguageCottageModel>(editLcDto);
+                    LcModel _lcModel = _mapper.Map<LcModel>(editLcDto);
                     _context.Entry(_lcModel).State = EntityState.Modified;
                     await _context.SaveChangesAsync();
 
@@ -145,7 +145,7 @@ namespace YxWebsite.Services
                     // Decrement all record ID larger than the deleting record's record ID.
                     await _context.DbLanguageCottage.Where(lc => lc.RecordId > deleteLcDto.RecordId).ExecuteUpdateAsync(lc => lc.SetProperty(u => u.RecordId, u => u.RecordId - 1));
 
-                    LanguageCottageModel _lcModel = _mapper.Map<LanguageCottageModel>(deleteLcDto);
+                    LcModel _lcModel = _mapper.Map<LcModel>(deleteLcDto);
                     _context.Remove(_lcModel);
                     await _context.SaveChangesAsync();
 
@@ -172,8 +172,8 @@ namespace YxWebsite.Services
                     }
 
                     List<LcDto> lcDtoList = new();
-                    List<LanguageCottageModel> _lcList = await _context.DbLanguageCottage.OrderBy(lc => lc.RecordId).ToListAsync();
-                    foreach (LanguageCottageModel _lc in _lcList)
+                    List<LcModel> _lcList = await _context.DbLanguageCottage.OrderBy(lc => lc.RecordId).ToListAsync();
+                    foreach (LcModel _lc in _lcList)
                     {
                         LcDto _lcModel = _mapper.Map<LcDto>(_lc);
                         lcDtoList.Add(_lcModel);
@@ -199,7 +199,7 @@ namespace YxWebsite.Services
                         throw new Exception("The LanguageCottage db is not initialized.");
                     }
 
-                    LanguageCottageModel? _lcModel = await _context.DbLanguageCottage.SingleOrDefaultAsync(lc => lc.Id == lcId);
+                    LcModel? _lcModel = await _context.DbLanguageCottage.SingleOrDefaultAsync(lc => lc.Id == lcId);
                     if (_lcModel == null)
                     {
                         throw new Exception("Lc record not found.");

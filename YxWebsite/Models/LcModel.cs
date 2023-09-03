@@ -1,10 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace YxWebsite.Models
 {
-    public class LanguageCottageModel
+    public class LcModel
     {
         [Key]
         public int Id { get; set; }
@@ -16,5 +17,8 @@ namespace YxWebsite.Models
         public required byte[] Image { get; set; }
         public required DateTime AddedDateTime { get; set; }
         public required DateTime LastModifiedDateTime { get; set; }
+        public required int LcCategoryId { get; set; }
+        [ForeignKey("LcCategoryId")]
+        public LcCategoryModel? LcCategory { get; set; }
     }
 }

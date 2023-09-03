@@ -2,7 +2,7 @@
 
 What I Did:
 - Styled LC page to rescale images automatically and did some small UI tweeks.
-- 
+- Updated models. 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -10,11 +10,16 @@ Excited Achievements:
 - 
 
 Website Plans:
+- Update database.
+- Create model for game/media selection for LC page. (LC Categories?)
+- Draw EERD for website using Draw.io on google drive cloud file.
 - Save the state of previously expanded drawer after clicking into any link (Or can just highlight the current page link when open the menu) (NavMenu).
 - Contract other nav groups when a new nav group is opened. (NavMenu)
 - Add audit trails model and create audit trail straight from service.
 - Add a login function so that if it is me that has logged in, I can utilize the add post delete post etc function.
 - When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
+- Implement LC category selection. (Have another nav menu of sorts at right or left side to show what category the user is viewing, they can switch to other categories at any time)
+- Add search feature to search for the record based on record ID in top right side of the page.
 
 Special Notes:
 - The dialogs of Radzen look better. Use Radzen for dialogs. 
@@ -25,6 +30,7 @@ Thoughts:
 > Ahhh, now I get what bootstrap css documentation is trying to say with their shorthand css names.
 > Seems like bootstrap css uses SASS too.
 > oOoOoooOoOO, sir you just hit gold.
+> In an ideal world, I would hope everyone learns programming. This feels like idk, such another side of the world.
 > 
 
 */

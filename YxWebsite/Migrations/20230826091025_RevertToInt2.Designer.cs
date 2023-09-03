@@ -58,7 +58,7 @@ namespace YxWebsite.Migrations
                     b.ToTable("DbJapaneseDictionary");
                 });
 
-            modelBuilder.Entity("YxWebsite.Models.LanguageCottageModel", b =>
+            modelBuilder.Entity("YxWebsite.Models.LcModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()

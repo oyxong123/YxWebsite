@@ -9,7 +9,7 @@ namespace YxWebsite.Mappings
         public ModelMappings() 
         {
             // LanguageCottage
-            CreateMap<LanguageCottageModel, LcDto>().ReverseMap();
+            CreateMap<LcModel, LcDto>().ReverseMap();
         }
     }
 }

@@ -27,5 +27,7 @@
         public required string PronunciationHiragana { get; set; }
         public required string Romaji { get; set; }
         public required string Meaning { get; set; }
+        public required DateTime AddedDateTime { get; set; }
+        public required DateTime LastModifiedDateTime { get; set; }
     }
 }
