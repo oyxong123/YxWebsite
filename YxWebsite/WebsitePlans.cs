@@ -1,7 +1,8 @@
 ﻿/*
 
 What I Did:
-- Set border size as 16:9 in LC edit dialog.
+- Styled LC page to rescale images automatically and did some small UI tweeks.
+- 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -9,8 +10,6 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Adjust LC page images to rescale automatically. (https://www.editorx.com/shaping-design/article/resize-image-css) (https://www.w3docs.com/snippets/css/how-to-auto-resize-an-image-to-fit-an-html-container.html)
-- Make app bar become Elevation="1" when a dialog is open, other times just make it Elevation="0".
 - Save the state of previously expanded drawer after clicking into any link (Or can just highlight the current page link when open the menu) (NavMenu).
 - Contract other nav groups when a new nav group is opened. (NavMenu)
 - Add audit trails model and create audit trail straight from service.
@@ -20,9 +19,12 @@ Website Plans:
 Special Notes:
 - The dialogs of Radzen look better. Use Radzen for dialogs. 
 - New and edit pages/dialog should reuse the same component/code to reduce duplicated code.
-- 
+- Resizing image reference: https://www.editorx.com/shaping-design/article/resize-image-css
  
 Thoughts:
+> Ahhh, now I get what bootstrap css documentation is trying to say with their shorthand css names.
+> Seems like bootstrap css uses SASS too.
+> oOoOoooOoOO, sir you just hit gold.
 > 
 
 */
@@ -32,6 +34,10 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_09_02
+- Set border size as 16:9 in LC edit dialog
+- Experimented with elevation.
 
 2023_09_01
 - Adjusted LC MudCards to display basic record details. 

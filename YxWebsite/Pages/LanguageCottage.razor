@@ -35,8 +35,8 @@
                         <!--placeholder-->
                     </CardHeaderAvatar>
                     <CardHeaderContent>
+                        <MudText Typo="Typo.overline">英雄伝説 空の軌跡 The 3rd</MudText> <!--Change this so that it displays whatever game or media these records are from-->
                         <MudText Typo="Typo.body1">@lc.RecordIdString</MudText>
-                        <MudText Typo="Typo.body2">placeholder</MudText>
                     </CardHeaderContent>
                     <!--Only show this control if current login mode is admin-->
                     <!--or maybe make it check a boolean from a button on page that triggers the edit mode?-->
@@ -45,7 +45,7 @@
                         <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error" OnClick="lcDeleteDto => lcDelete(lc)" />
                     </CardHeaderActions>
                 </MudCardHeader>
-                <MudCardMedia Image="@lc.ImageUrl" Height="768" Style="height: 40vh" />
+                <MudCardMedia Image="@lc.ImageUrl" Height="250" Class="ml-4 mr-4" Style="background-size:contain"/>
                 <MudCardContent>
                     <div>
                         <MudText Typo="Typo.body2">Original Text:</MudText>
