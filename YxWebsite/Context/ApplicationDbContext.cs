@@ -11,7 +11,7 @@ namespace YxWebsite.Context
 
         }
 
-        // Set the database table reference names
+        // Set the database table reference names.
        public DbSet<JapaneseDictionaryModel> DbJapaneseDictionary { get; set; }
        public DbSet<LcModel> DbLanguageCottage { get; set; }
        public DbSet<LcCategoryModel> DbLanguageCottageCategory { get; set; }

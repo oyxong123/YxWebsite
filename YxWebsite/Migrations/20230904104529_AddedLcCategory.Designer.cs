@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using YxWebsite.Context;
 
@@ -11,9 +12,11 @@ using YxWebsite.Context;
 namespace YxWebsite.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230904104529_AddedLcCategory")]
+    partial class AddedLcCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -117,7 +120,7 @@ namespace YxWebsite.Migrations
                     b.Property<DateTime>("LastModifiedDateTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("LcCategoryId")
+                    b.Property<int?>("LcCategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("OriginalText")
@@ -142,9 +145,7 @@ namespace YxWebsite.Migrations
                 {
                     b.HasOne("YxWebsite.Models.LcCategoryModel", "LcCategory")
                         .WithMany()
-                        .HasForeignKey("LcCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LcCategoryId");
 
                     b.Navigation("LcCategory");
                 });

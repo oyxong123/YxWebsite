@@ -1,8 +1,7 @@
 ﻿/*
 
 What I Did:
-- Styled LC page to rescale images automatically and did some small UI tweeks.
-- Updated models. 
+- Updated database with LcCategory. 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -10,8 +9,6 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Update database.
-- Create model for game/media selection for LC page. (LC Categories?)
 - Draw EERD for website using Draw.io on google drive cloud file.
 - Save the state of previously expanded drawer after clicking into any link (Or can just highlight the current page link when open the menu) (NavMenu).
 - Contract other nav groups when a new nav group is opened. (NavMenu)
@@ -27,10 +24,6 @@ Special Notes:
 - Resizing image reference: https://www.editorx.com/shaping-design/article/resize-image-css
  
 Thoughts:
-> Ahhh, now I get what bootstrap css documentation is trying to say with their shorthand css names.
-> Seems like bootstrap css uses SASS too.
-> oOoOoooOoOO, sir you just hit gold.
-> In an ideal world, I would hope everyone learns programming. This feels like idk, such another side of the world.
 > 
 
 */
@@ -40,6 +33,14 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_09_03
+- Styled LC page to rescale images automatically and did some small UI tweaks.
+- Updated models. 
+> Ahhh, now I get what bootstrap css documentation is trying to say with their shorthand css names.
+> Seems like bootstrap css uses SASS too.
+> oOoOoooOoOO, sir you just hit gold.
+> In an ideal world, I would hope everyone learns programming. This feels like idk, such another side of the world.
 
 2023_09_02
 - Set border size as 16:9 in LC edit dialog
