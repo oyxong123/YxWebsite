@@ -1,7 +1,7 @@
 ﻿/*
 
 What I Did:
-- Updated database with LcCategory. 
+- Created LcCategory and updated database.
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -10,7 +10,6 @@ Excited Achievements:
 
 Website Plans:
 - Draw EERD for website using Draw.io on google drive cloud file.
-- Save the state of previously expanded drawer after clicking into any link (Or can just highlight the current page link when open the menu) (NavMenu).
 - Contract other nav groups when a new nav group is opened. (NavMenu)
 - Add audit trails model and create audit trail straight from service.
 - Add a login function so that if it is me that has logged in, I can utilize the add post delete post etc function.
@@ -24,6 +23,7 @@ Special Notes:
 - Resizing image reference: https://www.editorx.com/shaping-design/article/resize-image-css
  
 Thoughts:
+> Mann, the API and attribute options in Mud Components are good man. 
 > 
 
 */

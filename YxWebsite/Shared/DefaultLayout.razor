@@ -16,14 +16,14 @@
     }
 </style>
 
-<PageTitle>Yx Personal Website</PageTitle>
+<PageTitle>Yx Website</PageTitle>
 
 <MudLayout class="page">
     <MudAppBar Fixed="true" Dense="true" Elevation="1">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
     </MudAppBar>
 
-    <MudDrawer Elevation="1" Anchor="Anchor.Left" Variant="@DrawerVariant.Temporary" @bind-Open="@_drawerOpen">
+    <MudDrawer Elevation="1" Anchor="Anchor.Left"  Variant="@DrawerVariant.Temporary" @bind-Open="@_drawerOpen">
         <NavMenu />
     </MudDrawer>
 
