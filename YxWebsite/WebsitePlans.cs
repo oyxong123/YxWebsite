@@ -1,6 +1,8 @@
 ﻿/*
 
 What I Did:
+- Created audit trails model, service, dto, and update context.
+- Added migration and updated database.
 - 
 
 Excited Achievements:
