@@ -3,7 +3,7 @@
     <MudNavLink Href="">Yx Website</MudNavLink>
 </MudDrawerHeader>
 <MudNavMenu>
-    <MudNavLink Href="home">
+    <MudNavLink Href="home" >
         <span class="oi oi-list-rich" aria-hidden="true" /> Home
     </MudNavLink>
     <MudNavGroup Title="Spaces">
@@ -27,8 +27,14 @@
     </MudNavGroup>
     <!--Only for admin-->
     <MudNavGroup Title="Settings">
-
     </MudNavGroup>
+
+    <CustomNavMenu MenuItems="@(new List<CustomNavMenu.MenuItem>
+      {
+        new(new CustomNavMenu.Link("Home", "/")),
+        new(new CustomNavMenu.Link("Food"), new List<CustomNavMenu.Link> { new("Food 1", "food/1"), new("Food 2", "food/2") }),
+        new(new CustomNavMenu.Link("Drinks"), new List<CustomNavMenu.Link> { new("Drink 1", "drink/1"), new("Drink 2", "drink/2") })
+      })" />
 </MudNavMenu>
 
 @code {

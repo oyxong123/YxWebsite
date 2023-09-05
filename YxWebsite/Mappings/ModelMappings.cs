@@ -8,8 +8,11 @@ namespace YxWebsite.Mappings
     {
         public ModelMappings() 
         {
-            // LanguageCottage
+            // Language Cottage
             CreateMap<LcModel, LcDto>().ReverseMap();
+
+            // Audit Trails
+            CreateMap<AuditTrailsModel, AuditTrailsDto>().ReverseMap();
         }
     }
 }

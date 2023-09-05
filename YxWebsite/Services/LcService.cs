@@ -27,7 +27,7 @@ namespace YxWebsite.Services
                 {
                     if (_context.DbLanguageCottage == null)
                     {
-                        throw new Exception("The LanguageCottage db is not initialized.");
+                        throw new Exception("DbLanguageCottage is not initialized.");
                     }
 
                     // Set latest LC's record ID as plus one of the previous record if no record ID is specified.
@@ -81,7 +81,7 @@ namespace YxWebsite.Services
                 {
                     if (_context.DbLanguageCottage == null)
                     {
-                        throw new Exception("The LanguageCottage db is not initialized.");
+                        throw new Exception("DbLanguageCottage is not initialized.");
                     }
 
                     // Set latest LC's record ID as plus one of the previous record if no record ID is specified.
@@ -139,7 +139,7 @@ namespace YxWebsite.Services
                 {
                     if (_context.DbLanguageCottage == null)
                     {
-                        throw new Exception("The LanguageCottage db is not initialized.");
+                        throw new Exception("DbLanguageCottage is not initialized.");
                     }
 
                     // Decrement all record ID larger than the deleting record's record ID.
@@ -168,7 +168,7 @@ namespace YxWebsite.Services
                 {
                     if (_context.DbLanguageCottage == null)
                     {
-                        throw new Exception("The LanguageCottage db is not initialized.");
+                        throw new Exception("DbLanguageCottage is not initialized.");
                     }
 
                     List<LcDto> lcDtoList = new();
@@ -196,7 +196,7 @@ namespace YxWebsite.Services
                 {
                     if (_context.DbLanguageCottage == null)
                     {
-                        throw new Exception("The LanguageCottage db is not initialized.");
+                        throw new Exception("DbLanguageCottage is not initialized.");
                     }
 
                     LcModel? _lcModel = await _context.DbLanguageCottage.SingleOrDefaultAsync(lc => lc.Id == lcId);

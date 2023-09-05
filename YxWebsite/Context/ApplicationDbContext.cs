@@ -15,5 +15,6 @@ namespace YxWebsite.Context
        public DbSet<JapaneseDictionaryModel> DbJapaneseDictionary { get; set; }
        public DbSet<LcModel> DbLanguageCottage { get; set; }
        public DbSet<LcCategoryModel> DbLanguageCottageCategory { get; set; }
+       public DbSet<AuditTrailsModel> DbAuditTrails { get; set;}
     }
 }

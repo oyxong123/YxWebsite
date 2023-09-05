@@ -1,7 +1,7 @@
 ﻿/*
 
 What I Did:
-- Created LcCategory and updated database.
+- 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -23,7 +23,6 @@ Special Notes:
 - Resizing image reference: https://www.editorx.com/shaping-design/article/resize-image-css
  
 Thoughts:
-> Mann, the API and attribute options in Mud Components are good man. 
 > 
 
 */
@@ -33,6 +32,12 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_09_04
+- Created LcCategory and updated database.
+- Checked that nav menu selection is stayed on previous selection. 
+> Mann, the API and attribute options in Mud Components are good man. 
+> Now that I finally know how to read documentation, and have read so much documentation including from Radzen and other sources. Man, MudBlazor documentation is so reader friendly man.
 
 2023_09_03
 - Styled LC page to rescale images automatically and did some small UI tweaks.
