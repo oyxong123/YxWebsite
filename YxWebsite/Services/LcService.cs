@@ -12,6 +12,7 @@ namespace YxWebsite.Services
     {
         private readonly IDbContextFactory<ApplicationDbContext> _contextFactory;
         private readonly IMapper _mapper;
+        private readonly IAuditTrailsService AuditTrailsService;
 
         public LcService(IDbContextFactory<ApplicationDbContext> contextFactory, IMapper mapper)
         {
@@ -49,12 +50,7 @@ namespace YxWebsite.Services
                         if (await _context.DbLanguageCottage.AnyAsync(lc => lc.RecordId == newLcDto.RecordId))
                         {
                             // Increment all record ID larger than the specified record ID by 1.
-                            List<LcModel> lcModelList = await _context.DbLanguageCottage.Where(lc => lc.RecordId >= newLcDto.RecordId).ToListAsync();
-                            foreach (LcModel lc in lcModelList)
-                            {
-                                lc.RecordId++;
-                                _context.Entry(lc).State = EntityState.Modified;
-                            }
+                            await _context.DbLanguageCottage.Where(lc => lc.RecordId >= newLcDto.RecordId).ExecuteUpdateAsync(lc => lc.SetProperty(u => u.RecordId, u => u.RecordId + 1));
                         }
                     }
                     
@@ -62,7 +58,12 @@ namespace YxWebsite.Services
                     await _context.DbLanguageCottage.AddAsync(_lcModel);
                     await _context.SaveChangesAsync();
 
-                    // Add audit trail model and call.
+                    AuditTrailsDto _auditTrailsDto = new()
+                    {
+                        Description = "Inserted LC Record at Record ID #" + newLcDto.RecordId,
+                        AddedDateTime = DateTime.UtcNow
+                    };
+                    await AuditTrailsService.AddAuditTrail(_auditTrailsDto);
                 }
 
                 return newLcDto;
@@ -120,7 +121,12 @@ namespace YxWebsite.Services
                     _context.Entry(_lcModel).State = EntityState.Modified;
                     await _context.SaveChangesAsync();
 
-                    // Add audit trail model and call.
+                    AuditTrailsDto _auditTrailsDto = new()
+                    {
+                        Description = "Inserted LC Record at Record ID #" + editLcDto.RecordId,
+                        AddedDateTime = DateTime.UtcNow
+                    };
+                    await AuditTrailsService.AddAuditTrail(_auditTrailsDto);
                 }
 
                 return true;
@@ -149,7 +155,12 @@ namespace YxWebsite.Services
                     _context.Remove(_lcModel);
                     await _context.SaveChangesAsync();
 
-                    // Add audit trail model and call.
+                    AuditTrailsDto _auditTrailsDto = new()
+                    {
+                        Description = "Inserted LC Record at Record ID #" + deleteLcDto.RecordId,
+                        AddedDateTime = DateTime.UtcNow
+                    };
+                    await AuditTrailsService.AddAuditTrail(_auditTrailsDto);
 
                     return true;
                 }

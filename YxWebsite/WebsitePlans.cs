@@ -11,9 +11,9 @@ Excited Achievements:
 - 
 
 Website Plans:
+- Add audit trails model and create audit trail straight from service.
 - Draw EERD for website using Draw.io on google drive cloud file.
 - Contract other nav groups when a new nav group is opened. (NavMenu)
-- Add audit trails model and create audit trail straight from service.
 - Add a login function so that if it is me that has logged in, I can utilize the add post delete post etc function.
 - When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
 - Implement LC category selection. (Have another nav menu of sorts at right or left side to show what category the user is viewing, they can switch to other categories at any time)

@@ -177,8 +177,6 @@
 
             lcDto = await ILcService.UploadLcRecord(lcDto);
 
-            // Add audit trails.
-
             Snackbar.Add("Lc Record Uploaded Successfully!~~", Severity.Success);
 
             closeDialog();
@@ -206,8 +204,6 @@
                 };
 
             await ILcService.EditLcRecord(lcDto, PassedLcId);
-
-            // Add audit trails.
 
             Snackbar.Add("Lc Record Edited Successfully!~~", Severity.Success);
 
