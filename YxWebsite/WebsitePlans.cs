@@ -1,20 +1,18 @@
 ﻿/*
 
 What I Did:
-- Created audit trails model, service, dto, and update context.
-- Added migration and updated database.
 - 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
-- Woo!! @o@ I'm starting to experiment with custom css class dyy.
+- Woo!! @o@ I'm starting to experiment with custom css class dyy. 
 - 
 
 Website Plans:
-- Add audit trails model and create audit trail straight from service.
 - Draw EERD for website using Draw.io on google drive cloud file.
 - Contract other nav groups when a new nav group is opened. (NavMenu)
 - Add a login function so that if it is me that has logged in, I can utilize the add post delete post etc function.
+- Create sign up page. 
 - When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
 - Implement LC category selection. (Have another nav menu of sorts at right or left side to show what category the user is viewing, they can switch to other categories at any time)
 - Add search feature to search for the record based on record ID in top right side of the page.
@@ -25,6 +23,8 @@ Special Notes:
 - Resizing image reference: https://www.editorx.com/shaping-design/article/resize-image-css
  
 Thoughts:
+> Me creating this website plan file is one of the most correct decesion I made to my project.
+> Weird realization, but I think I might not like to talk more than I thought I am.
 > 
 
 */
@@ -34,6 +34,11 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_09_05
+- Created audit trails model, service, dto, and update context.
+- Added migration and updated database.
+- Added audit trail calls to LC service.
 
 2023_09_04
 - Created LcCategory and updated database.

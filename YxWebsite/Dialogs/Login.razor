@@ -1,0 +1,48 @@
+﻿@using Dtos;
+
+<RadzenTemplateForm TItem="LoginDto" Data="loginForm" Submit="ProcessLogin" class="modal-body">
+    <RadzenStack Gap="1.5rem">
+        <RadzenStack width="100%">
+            <RadzenStack>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Username<span class="text-danger">*</span></RadzenText>
+                <RadzenFormField>
+                    <ChildContent>
+                        <RadzenTextArea Name="Username" @bind-Value="loginForm.Username" class="w-100" />
+                    </ChildContent>
+                    <Helper>
+                        <RadzenRequiredValidator Component="Username" Text="Username is required" Popup=true Style="position: absolute" />
+                    </Helper>
+                </RadzenFormField>
+            </RadzenStack>
+            <RadzenStack>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Password<span class="text-danger">*</span></RadzenText>
+                <RadzenFormField>
+                    <ChildContent>
+                        <RadzenTextArea Name="Password" @bind-Value="loginForm.Password" class="w-100" />
+                    </ChildContent>
+                    <Helper>
+                        <RadzenRequiredValidator Component="Password" Text="Password is required" Popup=true Style="position: absolute" />
+                    </Helper>
+                </RadzenFormField>
+            </RadzenStack>
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" Gap="0.5rem" JustifyContent="JustifyContent.End">
+                <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="Shine!!" Style="width: 80px;" />
+                <RadzenButton Text="Cancel" Click="closeDialog" ButtonStyle="ButtonStyle.Light" />
+            </RadzenStack>
+        </RadzenStack>
+    </RadzenStack>
+ </RadzenTemplateForm>
+
+@code {
+    LoginDto loginForm;
+    LoginDto loginDto;
+
+    private async Task ProcessLogin()
+    {
+    }
+
+    private void closeDialog()
+    {
+        DialogService.Close();
+    }
+}
