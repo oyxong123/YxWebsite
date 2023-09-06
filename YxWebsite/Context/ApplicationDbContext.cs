@@ -16,5 +16,6 @@ namespace YxWebsite.Context
        public DbSet<LcModel> DbLanguageCottage { get; set; }
        public DbSet<LcCategoryModel> DbLanguageCottageCategory { get; set; }
        public DbSet<AuditTrailsModel> DbAuditTrails { get; set;}
+       public DbSet<LoginModel> DbLogin { get; set; }
     }
 }

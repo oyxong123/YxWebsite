@@ -1,6 +1,7 @@
 ﻿/*
 
 What I Did:
+- Updated database. 
 - 
 
 Excited Achievements:
@@ -23,8 +24,6 @@ Special Notes:
 - Resizing image reference: https://www.editorx.com/shaping-design/article/resize-image-css
  
 Thoughts:
-> Me creating this website plan file is one of the most correct decesion I made to my project.
-> Weird realization, but I think I might not like to talk more than I thought I am.
 > 
 
 */
@@ -34,6 +33,13 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_09_07
+
+2023_09_06
+- Created login model, dto, and dialog. (not done)
+> Me creating this website plan file is one of the most correct decesion I made to my project.
+> Weird realization, but I think I might not like to talk more than I thought I am.
 
 2023_09_05
 - Created audit trails model, service, dto, and update context.
