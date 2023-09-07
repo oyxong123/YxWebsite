@@ -1,4 +1,6 @@
-﻿
+﻿@using Dialogs;
+@inject Radzen.DialogService DialogService
+
 <MudDrawerHeader>
     <MudNavLink Href="">Yx Website</MudNavLink>
 </MudDrawerHeader>
@@ -26,7 +28,7 @@
         </MudNavLink>
     </MudNavGroup>
     <MudNavGroup Title="Settings">
-        <MudNavLink Href="login">
+        <MudNavLink OnClick="Login">
             <span class="oi oi-list-key" aria-hidden="true" /> Login
         </MudNavLink>
         <!--Only for admin-->
@@ -48,5 +50,10 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+
+    private void Login()
+    {
+        DialogService.OpenAsync<LoginDialog>("Login", null, new Radzen.DialogOptions(){ Height="300px", Width="500px"});
     }
 }

@@ -97,14 +97,14 @@
 
     private async Task lcUpload()
     {
-        await DialogService.OpenAsync<LcDialog>("New LC Upload", new Dictionary<string, object> { { "IsEditForm", false }, { "PassedLcId", 0 } }, new Radzen.DialogOptions() { CssClass="dialog", Draggable = false, Height="85%" });
+        await DialogService.OpenAsync<LcDialog>("New LC Upload", new Dictionary<string, object> { { "IsEditForm", false }, { "PassedLcId", 0 } }, new Radzen.DialogOptions() { CssClass="dialog", Height="85%" });
         await OnParametersSetAsync();
         StateHasChanged();
     }
 
     private async Task lcEdit(LcDto lcEditDto)
     {
-        await DialogService.OpenAsync<LcDialog>("Edit LC Record", new Dictionary<string, object> { { "IsEditForm", true }, { "PassedLcId", lcEditDto.Id } }, new Radzen.DialogOptions() { CssClass = "dialog", Draggable = false, Height = "85%" });
+        await DialogService.OpenAsync<LcDialog>("Edit LC Record", new Dictionary<string, object> { { "IsEditForm", true }, { "PassedLcId", lcEditDto.Id } }, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%" });
         await OnParametersSetAsync();
         StateHasChanged();
     }

@@ -1,6 +1,7 @@
 ﻿@using Dtos;
+@inject Radzen.DialogService DialogService
 
-<RadzenTemplateForm TItem="LoginDto" Data="loginForm" Submit="ProcessLogin" class="modal-body">
+<RadzenTemplateForm TItem="LoginDto" Data="loginForm" Submit="ProcessForm" class="modal-body">
     <RadzenStack Gap="1.5rem">
         <RadzenStack width="100%">
             <RadzenStack>
@@ -36,13 +37,32 @@
 @code {
     LoginDto loginForm;
     LoginDto loginDto;
+    bool IsSignUpMode = false;
 
-    private async Task ProcessLogin()
+    private async Task ProcessForm()
     {
+        if (IsSignUpMode)
+        {
+            await SignUp();
+        }
+        else
+        {
+            await Login();
+        }
+    }
+
+    private async Task Login()
+    {
+
+    }
+
+    private async Task SignUp()
+    {
+        
     }
 
     private void closeDialog()
     {
-        //.Close();
+        DialogService.Close();
     }
 }

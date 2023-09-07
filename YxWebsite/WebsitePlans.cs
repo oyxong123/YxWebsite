@@ -2,6 +2,7 @@
 
 What I Did:
 - Updated database. 
+- Created login service and updated login dialog.
 - 
 
 Excited Achievements:
