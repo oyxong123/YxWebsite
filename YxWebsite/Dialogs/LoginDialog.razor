@@ -1,5 +1,8 @@
 ﻿@using Dtos;
+@using Interfaces;
 @inject Radzen.DialogService DialogService
+@inject ILoginService LoginService
+@inject ISnackbar Snackbar
 
 <RadzenTemplateForm TItem="LoginDto" Data="loginForm" Submit="ProcessForm" class="modal-body">
     <RadzenStack Gap="1.5rem">
@@ -41,6 +44,8 @@
 
     private async Task ProcessForm()
     {
+        loginForm.Username = loginForm.Username.Trim();
+
         if (IsSignUpMode)
         {
             await SignUp();
@@ -54,6 +59,12 @@
     private async Task Login()
     {
 
+
+        if (await LoginService.VerifyLogin(loginForm))
+        {
+            Snackbar.Add("Ayo~~ You're finally back!~~", Severity.Success);
+            //add to session storage
+        }
     }
 
     private async Task SignUp()

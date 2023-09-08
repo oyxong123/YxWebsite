@@ -1,9 +1,6 @@
 ﻿/*
 
 What I Did:
-- Updated database. 
-- Created login service and updated login dialog.
-- 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -14,6 +11,7 @@ Website Plans:
 - Draw EERD for website using Draw.io on google drive cloud file.
 - Contract other nav groups when a new nav group is opened. (NavMenu)
 - Add a login function so that if it is me that has logged in, I can utilize the add post delete post etc function.
+- Fill validator stringin LC dialog. 
 - Create sign up page. 
 - When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
 - Implement LC category selection. (Have another nav menu of sorts at right or left side to show what category the user is viewing, they can switch to other categories at any time)
@@ -35,7 +33,12 @@ Thoughts:
 
 Development Log:
 
+2023_09_09
+- Drawn Yx Website EERD. 
+
 2023_09_07
+- Updated database. 
+- Created login service and updated login dialog. (not done)
 
 2023_09_06
 - Created login model, dto, and dialog. (not done)

@@ -18,9 +18,11 @@ namespace YxWebsite.Services
             _mapper = mapper;
         }
 
-        public async Task VerifyLogin(LoginDto loginDto)
+        public async Task<bool> VerifyLogin(LoginDto loginDto)
         {
+            //verify login
 
+            return true;
         }
     }
 }

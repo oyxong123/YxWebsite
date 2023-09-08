@@ -114,7 +114,7 @@
     private string DragClass = DefaultDragClass;
 
     // Validator text variables.
-    private string validatorTextRecordIdString = "F";
+    private string validatorTextRecordIdString = "F"; //fill this validator string?
 
     protected override async Task OnInitializedAsync()
     {
@@ -163,7 +163,7 @@
     {
         try
         {
-            LcDto lcDto = new()
+            LcDto lcUploadDto = new()
                 {
                     RecordId = lcForm.RecordId,
                     Romaji = lcForm.Romaji.Trim(),
@@ -175,7 +175,7 @@
                     LastModifiedDateTime = DateTime.UtcNow
                 };
 
-            lcDto = await ILcService.UploadLcRecord(lcDto);
+            lcUploadDto = await ILcService.UploadLcRecord(lcUploadDto);
 
             Snackbar.Add("Lc Record Uploaded Successfully!~~", Severity.Success);
 
@@ -191,7 +191,7 @@
     {
         try
         {
-            LcDto lcDto = new()
+            LcDto lcEditDto = new()
                 {
                     Id = lcForm.Id,
                     RecordId = lcForm.RecordId,
@@ -203,7 +203,7 @@
                     LastModifiedDateTime = DateTime.UtcNow
                 };
 
-            await ILcService.EditLcRecord(lcDto, PassedLcId);
+            await ILcService.EditLcRecord(lcEditDto, PassedLcId);
 
             Snackbar.Add("Lc Record Edited Successfully!~~", Severity.Success);
 
