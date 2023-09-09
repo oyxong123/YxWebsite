@@ -3,17 +3,20 @@
     {
         if (item.SubItems == null)
         {
-            <MudNavLink Href="@item.Link.Url">@item.Link.Name</MudNavLink>
+            <MudNavLink Href="@item.Link.Url">
+                <span class="@item.Link.Icon" aria-hidden="true" /> 
+                @item.Link.Name
+            </MudNavLink>
         }
         else
         {
-            <MudNavGroup @ref="@this.subMenuItems[item.Link.Name]"
-                         Title="@item.Link.Name"
-                         ExpandedChanged="@(e => this.ToggleExpanded(e, item.Link.Name))">
-
+            <MudNavGroup @ref="@this.subMenuItems[item.Link.Name]" Title="@item.Link.Name" ExpandedChanged="@(e => this.ToggleExpanded(e, item.Link.Name))">
                 @foreach (var subItem in item.SubItems)
                 {
-                    <MudNavLink Href="@subItem.Url">@subItem.Name</MudNavLink>
+                    <MudNavLink Href="@subItem.Url">
+                        <span class="@subItem.Icon" aria-hidden="true" />
+                        @subItem.Name
+                    </MudNavLink>
                 }
             </MudNavGroup>
         }
@@ -21,14 +24,10 @@
 </MudNavMenu>
 
 @code {
-    private Dictionary<string, MudNavGroup> subMenuItems = new();
-
-    [Parameter]
-    public List<MenuItem> MenuItems { get; set; } = new();
-
+    [Parameter] public List<MenuItem> MenuItems { get; set; } = new();
+    private Dictionary<string, MudNavGroup> subMenuItems = new(); //what this for?
     public record MenuItem(Link Link, List<Link>? SubItems = null);
-
-    public record Link(string Name, string Url = "");
+    public record Link(string Icon = "", string Name = "", string Url = "");
 
     private void ToggleExpanded(bool expanded, string itemName)
     {

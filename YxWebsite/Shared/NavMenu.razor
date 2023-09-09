@@ -5,41 +5,26 @@
     <MudNavLink Href="">Yx Website</MudNavLink>
 </MudDrawerHeader>
 <MudNavMenu>
-    <MudNavLink Href="home" >
-        <span class="oi oi-list-rich" aria-hidden="true" /> Home
-    </MudNavLink>
-    <MudNavGroup Title="Spaces">
-        <MudNavLink Href="musicsquare">
-            <span class="oi oi-list-rich" aria-hidden="true" /> Music Square
-        </MudNavLink>
-        <MudNavLink Href="yxtalk">
-            <span class="oi oi-list-rich" aria-hidden="true" /> Yx Talk
-        </MudNavLink>
-        <MudNavLink Href="languagecottage">
-            <span class="oi oi-list-rich" aria-hidden="true" /> Language Cottage
-        </MudNavLink>
-        <MudNavLink Href="programminglife">
-            <span class="oi oi-list-rich" aria-hidden="true" /> Programming Life
-        </MudNavLink>
-    </MudNavGroup>
-    <MudNavGroup Title="About Me">
-        <MudNavLink Href="about">
-            <span class="oi oi-list-rich" aria-hidden="true" /> About
-        </MudNavLink>
-    </MudNavGroup>
+    <CustomNavMenu MenuItems="@(new List<CustomNavMenu.MenuItem>
+      {
+        new(new CustomNavMenu.Link("oi oi-list-rich", "Home", "home")),
+        new(new CustomNavMenu.Link("", "Spaces"), new List<CustomNavMenu.Link> { 
+            new("oi oi-list-rich", "Music Square", "musicsquare"),
+            new("oi oi-list-rich", "Yx Talk", "yxtalk"),
+            new("oi oi-list-rich", "Language Cottage", "languagecottage"),
+            new("oi oi-list-rich", "Programming Life", "programminglife") }),
+        new(new CustomNavMenu.Link("", "About Me"), new List<CustomNavMenu.Link> { 
+            new("oi oi-list-rich", "About", "about")}),
+        new(new CustomNavMenu.Link("", "Settings"), new List<CustomNavMenu.Link> { 
+            new("oi oi-list-key", "Login", "")})
+      })" />
+
     <MudNavGroup Title="Settings">
         <MudNavLink OnClick="Login">
             <span class="oi oi-list-key" aria-hidden="true" /> Login
         </MudNavLink>
         <!--Only for admin-->
     </MudNavGroup>
-
-    <CustomNavMenu MenuItems="@(new List<CustomNavMenu.MenuItem>
-      {
-        new(new CustomNavMenu.Link("Home", "/")),
-        new(new CustomNavMenu.Link("Food"), new List<CustomNavMenu.Link> { new("Food 1", "food/1"), new("Food 2", "food/2") }),
-        new(new CustomNavMenu.Link("Drinks"), new List<CustomNavMenu.Link> { new("Drink 1", "drink/1"), new("Drink 2", "drink/2") })
-      })" />
 </MudNavMenu>
 
 @code {

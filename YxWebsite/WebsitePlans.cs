@@ -1,6 +1,7 @@
 ﻿/*
 
 What I Did:
+- Implemented custom nav menu.
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -8,8 +9,8 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Draw EERD for website using Draw.io on google drive cloud file.
-- Contract other nav groups when a new nav group is opened. (NavMenu)
+- Solve custom nav menu handle onclick event functions. (passing onclick function parameter to custom nav menu, or do a hard code string check in custom nav menu)
+- Seems like it's only when the page goes to the splash screen that the nav menu collapses to its header nav item closed. (see if there is a workaround around this, tho it has quite a low priority)
 - Add a login function so that if it is me that has logged in, I can utilize the add post delete post etc function.
 - Fill validator stringin LC dialog. 
 - Create sign up page. 
@@ -23,6 +24,8 @@ Special Notes:
 - Resizing image reference: https://www.editorx.com/shaping-design/article/resize-image-css
  
 Thoughts:
+> Owhh, so attributes are actually just parameters of the component code file.
+> This random person's custom nav menu component design is really genius.
 > 
 
 */
