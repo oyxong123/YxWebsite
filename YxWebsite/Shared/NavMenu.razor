@@ -16,7 +16,7 @@
         new(new CustomNavMenu.Link("", "About Me"), new List<CustomNavMenu.Link> { 
             new("oi oi-list-rich", "About", "about")}),
         new(new CustomNavMenu.Link("", "Settings"), new List<CustomNavMenu.Link> { 
-            new("oi oi-list-key", "Login", "")})
+            new("oi oi-list-key", "Login", "", () => Login())})
       })" />
 
     <MudNavGroup Title="Settings">

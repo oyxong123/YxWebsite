@@ -1,4 +1,6 @@
-﻿<MudNavMenu>
+﻿
+
+<MudNavMenu>
     @foreach (var item in this.MenuItems)
     {
         if (item.SubItems == null)
@@ -10,7 +12,7 @@
         }
         else
         {
-            <MudNavGroup @ref="@this.subMenuItems[item.Link.Name]" Title="@item.Link.Name" ExpandedChanged="@(e => this.ToggleExpanded(e, item.Link.Name))">
+            <MudNavGroup @ref="@subMenuItems[item.Link.Name]" Title="@item.Link.Name" ExpandedChanged="@(e => ToggleExpanded(e, item.Link.Name))">
                 @foreach (var subItem in item.SubItems)
                 {
                     <MudNavLink Href="@subItem.Url">
@@ -25,15 +27,15 @@
 
 @code {
     [Parameter] public List<MenuItem> MenuItems { get; set; } = new();
-    private Dictionary<string, MudNavGroup> subMenuItems = new(); //what this for?
+    private Dictionary<string, MudNavGroup> subMenuItems = new(); //used by ToggleExpanded function to loop and close all other expanded submenus.
     public record MenuItem(Link Link, List<Link>? SubItems = null);
-    public record Link(string Icon = "", string Name = "", string Url = "");
+    public record Link(string Icon = "", string Name = "", string Url = "", Action? clickEvent = null);
 
     private void ToggleExpanded(bool expanded, string itemName)
     {
         if (expanded)
         {
-            foreach (var entry in this.subMenuItems.Where(entry => entry.Key != itemName))
+            foreach (var entry in subMenuItems.Where(entry => entry.Key != itemName))
             {
                 entry.Value.Expanded = false;
             }

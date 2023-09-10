@@ -1,7 +1,7 @@
 ﻿/*
 
 What I Did:
-- Implemented custom nav menu.
+- 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -24,8 +24,6 @@ Special Notes:
 - Resizing image reference: https://www.editorx.com/shaping-design/article/resize-image-css
  
 Thoughts:
-> Owhh, so attributes are actually just parameters of the component code file.
-> This random person's custom nav menu component design is really genius.
 > 
 
 */
@@ -36,7 +34,18 @@ Thoughts:
 
 Development Log:
 
+2023_09_10
+- Refine custom nav menu code.
+> Man, this original coder's implementation of custom nav menu is genius man!
+
 2023_09_09
+- Implemented custom nav menu.
+> Owhh, so attributes are actually just parameters of the component code file.
+> This random person's custom nav menu component design is really genius.
+> I'm starting to feel a bit gandong that I am now learning how to build custom components already.
+> When using a web app, I never realized just how much knowledge goes into retrieving and modifying all the values of a form/record.
+
+2023_09_08
 - Drawn Yx Website EERD. 
 
 2023_09_07
