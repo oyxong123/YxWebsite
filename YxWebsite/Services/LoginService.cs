@@ -6,7 +6,7 @@ using YxWebsite.Interfaces;
 
 namespace YxWebsite.Services
 {
-    public class LoginService
+    public class LoginService : ILoginService
     {
         private readonly IDbContextFactory<ApplicationDbContext> _contextFactory;
         private readonly IMapper _mapper;

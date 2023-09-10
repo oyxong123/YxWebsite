@@ -1,6 +1,7 @@
 ﻿/*
 
 What I Did:
+- Added ability to pass Action delegate to custom nav menu. 
 - 
 
 Excited Achievements:
@@ -9,9 +10,8 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Solve custom nav menu handle onclick event functions. (passing onclick function parameter to custom nav menu, or do a hard code string check in custom nav menu)
-- Seems like it's only when the page goes to the splash screen that the nav menu collapses to its header nav item closed. (see if there is a workaround around this, tho it has quite a low priority)
 - Add a login function so that if it is me that has logged in, I can utilize the add post delete post etc function.
+- Seems like it's only when the page goes to the splash screen that the nav menu collapses to its header nav item closed. (see if there is a workaround around this, tho it has quite a low priority)
 - Fill validator stringin LC dialog. 
 - Create sign up page. 
 - When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
@@ -24,6 +24,10 @@ Special Notes:
 - Resizing image reference: https://www.editorx.com/shaping-design/article/resize-image-css
  
 Thoughts:
+> aHHHHHH, I actually implemented it. 
+> fdsiaoivnclnk, IT'S A SUCCESS!!!
+> MMMM, I'm able to understand what is going on behind the error visual stusio is showing immediately even though it's not explicitly stated.
+> Ohh, the reason the login dialog received object null reference is because no loginForm was initialized yet. 
 > 
 
 */

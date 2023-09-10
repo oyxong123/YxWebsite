@@ -15,10 +15,20 @@
             <MudNavGroup @ref="@subMenuItems[item.Link.Name]" Title="@item.Link.Name" ExpandedChanged="@(e => ToggleExpanded(e, item.Link.Name))">
                 @foreach (var subItem in item.SubItems)
                 {
-                    <MudNavLink Href="@subItem.Url">
-                        <span class="@subItem.Icon" aria-hidden="true" />
-                        @subItem.Name
-                    </MudNavLink>
+                    if (subItem.clickEvent == null)
+                    {
+                        <MudNavLink Href="@subItem.Url">
+                            <span class="@subItem.Icon" aria-hidden="true" />
+                            @subItem.Name
+                        </MudNavLink>
+                    }
+                    else
+                    {
+                        <MudNavLink OnClick="@subItem.clickEvent">
+                            <span class="@subItem.Icon" aria-hidden="true" />
+                            @subItem.Name
+                        </MudNavLink>
+                    }
                 }
             </MudNavGroup>
         }

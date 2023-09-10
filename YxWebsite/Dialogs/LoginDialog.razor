@@ -38,9 +38,17 @@
  </RadzenTemplateForm>
 
 @code {
-    LoginDto loginForm;
-    LoginDto loginDto;
+    LoginDto loginForm = new();
+    LoginDto loginDto = new();
     bool IsSignUpMode = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (IsSignUpMode)
+        {
+
+        }
+    }
 
     private async Task ProcessForm()
     {
@@ -58,18 +66,32 @@
 
     private async Task Login()
     {
-
-
-        if (await LoginService.VerifyLogin(loginForm))
+        try
         {
-            Snackbar.Add("Ayo~~ You're finally back!~~", Severity.Success);
-            //add to session storage
+            if (await LoginService.VerifyLogin(loginForm))
+            {
+                Snackbar.Add("Ayo~~ You're finally back!~~", Severity.Success);
+                //add to session storage
+            }
+        }
+        catch
+        {
+            // Add error message snackbar.
         }
     }
 
     private async Task SignUp()
     {
-        
+        try
+        {
+            await LoginService.SignUp(loginForm);
+            // Add snackbar.
+            // Open this dialog again in login mode. 
+        }
+        catch
+        {
+            // Add error message snackbar.
+        }
     }
 
     private void closeDialog()
