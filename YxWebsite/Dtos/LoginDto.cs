@@ -10,7 +10,8 @@ namespace YxWebsite.Dtos
         public int Id { get; set; }
         public required string Username { get; set; } = string.Empty;
         public required string Password { get; set; } = string.Empty;
-        public required string Hash { get; set; } = string.Empty;
+        public string ConfirmPassword { get; set; } = string.Empty;
+        public required string Salt { get; set; } = string.Empty;
         public int IsAdmin { get; set; }
     }
 }
