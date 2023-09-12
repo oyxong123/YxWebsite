@@ -8,7 +8,7 @@ namespace YxWebsite.Models
         public int Id { get; set; }
         public required string Username { get; set; }
         public required string Password { get; set; }
-        public required string Hash { get; set; }
+        public required string Salt { get; set; }
         public int IsAdmin { get; set; }
         public required DateTime AddedDateTime { get; set; }
         public required DateTime LastModifiedDateTime { get; set; }

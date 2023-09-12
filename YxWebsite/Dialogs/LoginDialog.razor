@@ -29,6 +29,20 @@
                     </Helper>
                 </RadzenFormField>
             </RadzenStack>
+            @if (IsSignUpMode)
+            {
+                <RadzenStack>
+                    <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Confirm Password<span class="text-danger">*</span></RadzenText>
+                    <RadzenFormField>
+                        <ChildContent>
+                            <RadzenTextArea Name="ConfirmPassword" @bind-Value="loginForm.ConfirmPassword" class="w-100" />
+                        </ChildContent>
+                        <Helper>
+                            <RadzenRequiredValidator Component="ConfirmPassword" Text="Retype Password is required" Popup=true Style="position: absolute" />
+                        </Helper>
+                    </RadzenFormField>
+                </RadzenStack>
+            }
             <RadzenStack Orientation="Radzen.Orientation.Horizontal" Gap="0.5rem" JustifyContent="JustifyContent.End">
                 <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="Shine!!" Style="width: 80px;" />
                 <RadzenButton Text="Cancel" Click="closeDialog" ButtonStyle="ButtonStyle.Light" />
@@ -41,14 +55,6 @@
     LoginDto loginForm = new();
     LoginDto loginDto = new();
     bool IsSignUpMode = false;
-
-    protected override async Task OnInitializedAsync()
-    {
-        if (IsSignUpMode)
-        {
-
-        }
-    }
 
     private async Task ProcessForm()
     {
@@ -74,9 +80,9 @@
                 //add to session storage
             }
         }
-        catch
+        catch (Exception ex)
         {
-            // Add error message snackbar.
+            snackbarFailed(ex);
         }
     }
 
@@ -85,17 +91,23 @@
         try
         {
             await LoginService.SignUp(loginForm);
-            // Add snackbar.
+            Snackbar.Add("Idk who you are, but welcome to the club!~~", Severity.Success);
             // Open this dialog again in login mode. 
         }
-        catch
+        catch (Exception ex)
         {
-            // Add error message snackbar.
+            snackbarFailed(ex);
         }
     }
 
     private void closeDialog()
     {
         DialogService.Close();
+    }
+
+    private void snackbarFailed(Exception ex)
+    {
+        Snackbar.Add("Something went wrong.", Severity.Error);
+        Snackbar.Add(ex.ToString(), Severity.Error);
     }
 }

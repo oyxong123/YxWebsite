@@ -155,7 +155,7 @@
         }
         catch (Exception ex)
         {
-            snackbarEditFailed(ex);
+            snackbarFailed(ex);
         }
     }
 
@@ -183,7 +183,7 @@
         }
         catch (Exception ex)
         {
-            snackbarEditFailed(ex);
+            snackbarFailed(ex);
         }
     }
 
@@ -211,7 +211,7 @@
         }
         catch (Exception ex)
         {
-            snackbarEditFailed(ex);
+            snackbarFailed(ex);
         }
     }
 
@@ -271,9 +271,9 @@
         return true;
     }
 
-    private void snackbarEditFailed(Exception ex)
+    private void snackbarFailed(Exception ex)
     {
-        Snackbar.Add("Lc Record Edit Failed.", Severity.Error);
+        Snackbar.Add("Something went wrong.", Severity.Error);
         Snackbar.Add(ex.ToString(), Severity.Error);
     }
 

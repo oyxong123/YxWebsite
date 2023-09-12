@@ -1,7 +1,6 @@
 ﻿/*
 
 What I Did:
-- Added ability to pass Action delegate to custom nav menu. 
 - 
 
 Excited Achievements:
@@ -24,10 +23,9 @@ Special Notes:
 - Resizing image reference: https://www.editorx.com/shaping-design/article/resize-image-css
  
 Thoughts:
-> aHHHHHH, I actually implemented it. 
-> fdsiaoivnclnk, IT'S A SUCCESS!!!
-> MMMM, I'm able to understand what is going on behind the error visual stusio is showing immediately even though it's not explicitly stated.
-> Ohh, the reason the login dialog received object null reference is because no loginForm was initialized yet. 
+> Interesting. New iteration of tuple way of using is quite cool.
+> Man, refactoring my old function, so its naming and use cases can be broader. Things really came a long way man. 
+> Yx Website is really like the baby of LMS and Project Triangle.
 > 
 
 */
@@ -38,9 +36,26 @@ Thoughts:
 
 Development Log:
 
+2023_09_11
+- Changed name of "hash" in login model into "salt".
+- Progress build login/sign up algorithm.
+> Tried examining code through github mobile for the 1st time! This is pretty interesting.
+> Mannn, the font colors and font of github mobile is SO GOOOOD.
+> Uwaaaah, this code is so badd mannnn who wrote this code.
+> Omaigoddd 不忍直视哇啊啊啊
+> Puuuuuuuuuuuuu.... did I really just hash my password on client page (arr g hhh ghh ahh_
+> ..this is pain.
+> The more I learn, the more painful looking at my old code is.
+
 2023_09_10
 - Refine custom nav menu code.
+- Added ability to pass Action delegate to custom nav menu. 
+- Added auto initialization for login dto.
 > Man, this original coder's implementation of custom nav menu is genius man!
+> aHHHHHH, I actually implemented it. 
+> fdsiaoivnclnk, IT'S A SUCCESS!!!
+> MMMM, I'm able to understand what is going on behind the error visual stusio is showing immediately even though it's not explicitly stated.
+> Ohh, the reason the login dialog received object null reference is because no loginForm was initialized yet. 
 
 2023_09_09
 - Implemented custom nav menu.
