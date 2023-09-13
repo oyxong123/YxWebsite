@@ -29,7 +29,22 @@ namespace YxWebsite.Services
             }
             try
             {
-                //verify login
+                // Find username and verify password.
+                using (ApplicationDbContext _context = _contextFactory.CreateDbContext()) 
+                {
+                    LoginModel _loginModel =  await _context.DbLogin.SingleOrDefaultAsync(u => u.Username == loginDto.Username) ?? throw new Exception("I can't find you. Are you just typing random username in? :H");
+                    if (_loginModel.Password != HashPassword(loginDto.Password, _loginModel.Salt))
+                    {
+                        throw new Exception("I am very sorry but I must inform that you have amnesia cuz you can't remember your password $^$");
+                    }
+
+                    AuditTrailsDto auditTrailsDto = new()
+                    {
+                        Description = _loginModel.Username + " has logged in.",
+                        AddedDateTime = DateTime.UtcNow
+                    };
+                    await AuditTrailsService.AddAuditTrail(auditTrailsDto);
+                }
 
                 return true;
             }
@@ -57,14 +72,22 @@ namespace YxWebsite.Services
                     throw new Exception("Did you have a typo? Because the two passwords you provided are different :/");
                 }
 
-                // Encrypt password with sha256 + salt.
+                // Encrypt password with SHA256 + Salt.
                 LoginModel _loginModel = _mapper.Map<LoginModel>(signUpDto);
-                (_loginModel.Password, _loginModel.Salt) = HashPassword(_loginModel.Password);
+                _loginModel.Salt = GenerateString(4);
+                _loginModel.Password = HashPassword(_loginModel.Password, _loginModel.Salt);
 
                 using (ApplicationDbContext _context = _contextFactory.CreateDbContext())
                 {
                     await _context.AddAsync(_loginModel);
                     await _context.SaveChangesAsync();
+
+                    AuditTrailsDto auditTrailsDto = new()
+                    {
+                        Description = _loginModel.Username + " has signed up.",
+                        AddedDateTime = DateTime.UtcNow
+                    };
+                    await AuditTrailsService.AddAuditTrail(auditTrailsDto);
                 }
 
                 return true;
@@ -98,24 +121,23 @@ namespace YxWebsite.Services
             }
         }
 
-        private (string, string) HashPassword(string password)
+        private static string HashPassword(string password, string salt)
         {
-            string salt = GenerateString(4);
             byte[] asByteArray = Encoding.Default.GetBytes(password + salt);
             byte[] hashedPasswordBytes = SHA256.HashData(asByteArray);
             string hashedPassword = Convert.ToBase64String(hashedPasswordBytes);
-            return new (hashedPassword, salt);
+            return hashedPassword;
         }
 
-        private string GenerateString(int length)
+        private static string GenerateString(int length)
         {
-            Random Random = new Random();
+            Random Random = new();
             string inclusion = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
             string generatedString = "";
             for (int i = 0; i < length; i++)
             {
                 int x = Random.Next(inclusion.Length);  // Select a random index value within the string length of inclusion.
-                generatedString = generatedString + inclusion[x];  // Find char from inclusion string using random index, then add it to the generating string.
+                generatedString += inclusion[x];  // Find char from inclusion string using random index, then add it to the generating string.
             }
             return generatedString;
         }
