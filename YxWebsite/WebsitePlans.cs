@@ -1,7 +1,7 @@
 ﻿/*
 
 What I Did:
-- Coded out method for login and added audit trails registration for it and sign up.
+- 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -9,7 +9,8 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Code service method for login.
+- Set up login dialog and db communication and flow. 
+- Remove the duplicated settings in nav menu. 
 - Add a login function so that if it is me that has logged in, I can utilize the add post delete post etc function.
 - Seems like it's only when the page goes to the splash screen that the nav menu collapses to its header nav item closed. (see if there is a workaround around this, tho it has quite a low priority)
 - Fill validator stringin LC dialog. 
@@ -24,9 +25,6 @@ Special Notes:
 - Resizing image reference: https://www.editorx.com/shaping-design/article/resize-image-css
  
 Thoughts:
-> Moly, I'm starting to use dynamic to do weird stuff. Is this a sign of gradual movement towards bad code practice.
-> Hmm, I think, am I starting to understand what static is?
-> Ooooooffh, burnnnn. Why'd you gotta burn yourself ))))
 > 
 
 */
@@ -36,6 +34,12 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_09_13
+- Coded out method for login and added audit trails registration for it and sign up.
+> Moly, I'm starting to use dynamic to do weird stuff. Is this a sign of gradual movement towards bad code practice.
+> Hmm, I think, am I starting to understand what static is?
+> Ooooooffh, burnnnn. Why'd you gotta burn yourself ))))
 
 2023_09_12
 - Coded in the sign up algorithm.

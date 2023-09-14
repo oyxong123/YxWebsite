@@ -5,13 +5,13 @@
 @inject ISnackbar Snackbar
 
 <RadzenTemplateForm TItem="LoginDto" Data="loginForm" Submit="ProcessForm" class="modal-body">
-    <RadzenStack Gap="1.5rem">
-        <RadzenStack width="100%">
-            <RadzenStack>
+    <RadzenStack Gap="0.5rem">
+        <RadzenStack Gap="1rem" width="100%">
+            <RadzenStack Gap="0">
                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Username<span class="text-danger">*</span></RadzenText>
                 <RadzenFormField>
                     <ChildContent>
-                        <RadzenTextArea Name="Username" @bind-Value="loginForm.Username" class="w-100" />
+                        <RadzenTextArea Name="Username" @bind-Value="loginForm.Username" class="w-50" />
                     </ChildContent>
                     <Helper>
                         <RadzenRequiredValidator Component="Username" Text="Username is required" Popup=true Style="position: absolute" />
@@ -22,7 +22,7 @@
                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Password<span class="text-danger">*</span></RadzenText>
                 <RadzenFormField>
                     <ChildContent>
-                        <RadzenTextArea Name="Password" @bind-Value="loginForm.Password" class="w-100" />
+                        <RadzenTextArea Name="Password" @bind-Value="loginForm.Password" class="w-50" />
                     </ChildContent>
                     <Helper>
                         <RadzenRequiredValidator Component="Password" Text="Password is required" Popup=true Style="position: absolute" />
@@ -43,18 +43,21 @@
                     </RadzenFormField>
                 </RadzenStack>
             }
-            <RadzenStack Orientation="Radzen.Orientation.Horizontal" Gap="0.5rem" JustifyContent="JustifyContent.End">
-                <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="Shine!!" Style="width: 80px;" />
-                <RadzenButton Text="Cancel" Click="closeDialog" ButtonStyle="ButtonStyle.Light" />
+            <RadzenStack Orientation="Radzen.Orientation.Horizontal" Gap="0.5rem" JustifyContent="JustifyContent.SpaceEvenly">
+                <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="@(IsSignUpMode ? "Sign me in!" : "Hack into my acc ;]")" />
+                <RadzenButton Text="Cancel" Click="@(() => DialogService.Close())" ButtonStyle="ButtonStyle.Light" />
+            </RadzenStack>
+            <RadzenStack>
+                <RadzenLink Text="Sign up for account (it's free btw,tho I know storing passwords on other people's server are always never safe"  onclick="ReopenDialogInSignUp"/>
             </RadzenStack>
         </RadzenStack>
     </RadzenStack>
  </RadzenTemplateForm>
 
 @code {
-    LoginDto loginForm = new();
-    LoginDto loginDto = new();
-    bool IsSignUpMode = false;
+    [Parameter] public bool IsSignUpMode { get; set; } = false;
+    private LoginDto loginForm = new();
+    private LoginDto loginDto = new();
 
     private async Task ProcessForm()
     {
@@ -100,14 +103,15 @@
         }
     }
 
-    private void closeDialog()
-    {
-        DialogService.Close();
-    }
-
     private void snackbarFailed(Exception ex)
     {
         Snackbar.Add("Something went wrong.", Severity.Error);
         Snackbar.Add(ex.ToString(), Severity.Error);
+    }
+
+    private async Task ReopenDialogInSignUp()
+    {
+        DialogService.Close();
+        await DialogService.OpenAsync<LoginDialog>("Sign Up", new Dictionary<string, object>(){ { "IsSignUpMode", true } }, new Radzen.DialogOptions() { Height = "300px", Width = "500px" });
     }
 }

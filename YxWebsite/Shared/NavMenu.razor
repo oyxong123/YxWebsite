@@ -39,6 +39,6 @@
 
     private void Login()
     {
-        DialogService.OpenAsync<LoginDialog>("Login", null, new Radzen.DialogOptions(){ Height="300px", Width="500px"});
+        DialogService.OpenAsync<LoginDialog>("Login", new Dictionary<string, object>() { { "IsSignUpMode", false } }, new Radzen.DialogOptions() { Height = "300px", Width = "500px" });
     }
 }
