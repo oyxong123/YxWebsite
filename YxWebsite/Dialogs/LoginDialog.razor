@@ -48,7 +48,7 @@
                 <RadzenButton Text="Cancel" Click="@(() => DialogService.Close())" ButtonStyle="ButtonStyle.Light" />
             </RadzenStack>
             <RadzenStack>
-                <RadzenLink Text="Sign up for account (it's free btw,tho I know storing passwords on other people's server are always never safe"  onclick="ReopenDialogInSignUp"/>
+                <RadzenLink Text="Sign up for account (it's free btw,tho I know storing passwords on other people's server are always never safe" onclick="@(() => DialogService.Close("SignUp"))" />
             </RadzenStack>
         </RadzenStack>
     </RadzenStack>
@@ -107,11 +107,5 @@
     {
         Snackbar.Add("Something went wrong.", Severity.Error);
         Snackbar.Add(ex.ToString(), Severity.Error);
-    }
-
-    private async Task ReopenDialogInSignUp()
-    {
-        DialogService.Close();
-        await DialogService.OpenAsync<LoginDialog>("Sign Up", new Dictionary<string, object>(){ { "IsSignUpMode", true } }, new Radzen.DialogOptions() { Height = "300px", Width = "500px" });
     }
 }

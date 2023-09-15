@@ -1,6 +1,8 @@
 ﻿/*
 
 What I Did:
+- Made nav menu close when login button is clicked.
+- Debugged and made reopening of login dialog as sign up dialog work.
 - 
 
 Excited Achievements:
@@ -34,6 +36,9 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_09_14
+- Continued setting up login and sign up flow.
 
 2023_09_13
 - Coded out method for login and added audit trails registration for it and sign up.

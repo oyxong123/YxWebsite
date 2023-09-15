@@ -1,4 +1,6 @@
 ﻿@inherits LayoutComponentBase
+@using Dialogs;
+@inject Radzen.DialogService DialogService
 
 <!--Overrides default blazor theme with mudblazor theme-->
 <MudThemeProvider />
@@ -24,7 +26,31 @@
     </MudAppBar>
 
     <MudDrawer Elevation="1" Anchor="Anchor.Left"  Variant="@DrawerVariant.Temporary" @bind-Open="@_drawerOpen">
-        <NavMenu />
+        <MudDrawerHeader>
+            <MudNavLink Href="">Yx Website</MudNavLink>
+        </MudDrawerHeader>
+        <MudNavMenu>
+            <CustomNavMenuItems MenuItems="@(new List<CustomNavMenuItems.MenuItem>
+            {
+                new(new CustomNavMenuItems.Link("oi oi-list-rich", "Home", "home")),
+                new(new CustomNavMenuItems.Link("", "Spaces"), new List<CustomNavMenuItems.Link> {
+                    new("oi oi-list-rich", "Music Square", "musicsquare"),
+                    new("oi oi-list-rich", "Yx Talk", "yxtalk"),
+                    new("oi oi-list-rich", "Language Cottage", "languagecottage"),
+                    new("oi oi-list-rich", "Programming Life", "programminglife") }),
+                new(new CustomNavMenuItems.Link("", "About Me"), new List<CustomNavMenuItems.Link> {
+                    new("oi oi-list-rich", "About", "about")}),
+                new(new CustomNavMenuItems.Link("", "Settings"), new List<CustomNavMenuItems.Link> {
+                    new("oi oi-list-key", "Login", "", () => Login())})
+            })" />
+
+            <MudNavGroup Title="Settings">
+                <MudNavLink OnClick="Login">
+                    <span class="oi oi-list-key" aria-hidden="true" /> Login
+                </MudNavLink>
+                <!--Only for admin-->
+            </MudNavGroup>
+        </MudNavMenu>
     </MudDrawer>
 
     <MudMainContent>
@@ -37,9 +63,27 @@
 
 @code {
     bool _drawerOpen = false;
+    private bool collapseNavMenu = true;
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
     void DrawerToggle()
     {
         _drawerOpen = !_drawerOpen;
+    }
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+
+    private async Task Login()
+    {
+        DrawerToggle();
+        dynamic dialogResult = await DialogService.OpenAsync<LoginDialog>("Login", new Dictionary<string, object>() { { "IsSignUpMode", false } }, new Radzen.DialogOptions() { Height = "300px", Width = "500px" });
+        await Task.Delay(400);  // Buffer time for DialogService to close and reopen.
+        if (dialogResult == "SignUp")
+        {
+            await DialogService.OpenAsync<LoginDialog>("Sign Up", new Dictionary<string, object>() { { "IsSignUpMode", true } }, new Radzen.DialogOptions() { Height = "300px", Width = "500px" });
+        }
     }
 }
