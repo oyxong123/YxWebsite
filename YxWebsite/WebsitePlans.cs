@@ -3,6 +3,8 @@
 What I Did:
 - Look up on hosting Blazor Server Web App.
 - Added login model and dto mapping.
+- Debugged and fixed snackbar displaying full exception message in login dialog.
+- Styled login dialog. 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -10,6 +12,7 @@ Excited Achievements:
 - 
 
 Website Plans:
+- Debug sign up object set null set to reference.
 - Set up login dialog and db communication and flow. 
 - Remove the duplicated settings in nav menu. 
 - Add a login function so that if it is me that has logged in, I can utilize the add post delete post etc function.
@@ -26,7 +29,8 @@ Special Notes:
 - Resizing image reference: https://www.editorx.com/shaping-design/article/resize-image-css
  
 Thoughts:
-> 
+> 难怪我觉得哪里怪怪的，原来是因为要用RadzenTextBox不是RadzenText.
+>
 
 */
 

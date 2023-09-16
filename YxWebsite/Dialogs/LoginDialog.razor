@@ -11,7 +11,7 @@
                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Username<span class="text-danger">*</span></RadzenText>
                 <RadzenFormField>
                     <ChildContent>
-                        <RadzenTextArea Name="Username" @bind-Value="loginForm.Username" class="w-50" />
+                        <RadzenTextBox Name="Username" @bind-Value="loginForm.Username" class="w-50" />
                     </ChildContent>
                     <Helper>
                         <RadzenRequiredValidator Component="Username" Text="Username is required" Popup=true Style="position: absolute" />
@@ -22,7 +22,7 @@
                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Password<span class="text-danger">*</span></RadzenText>
                 <RadzenFormField>
                     <ChildContent>
-                        <RadzenTextArea Name="Password" @bind-Value="loginForm.Password" class="w-50" />
+                        <RadzenPassword Name="Password" @bind-Value="loginForm.Password"  class="w-50" />
                     </ChildContent>
                     <Helper>
                         <RadzenRequiredValidator Component="Password" Text="Password is required" Popup=true Style="position: absolute" />
@@ -35,7 +35,7 @@
                     <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Confirm Password<span class="text-danger">*</span></RadzenText>
                     <RadzenFormField>
                         <ChildContent>
-                            <RadzenTextArea Name="ConfirmPassword" @bind-Value="loginForm.ConfirmPassword" class="w-100" />
+                            <RadzenPassword Name="ConfirmPassword" @bind-Value="loginForm.ConfirmPassword" class="w-100" />
                         </ChildContent>
                         <Helper>
                             <RadzenRequiredValidator Component="ConfirmPassword" Text="Retype Password is required" Popup=true Style="position: absolute" />
@@ -105,7 +105,6 @@
 
     private void snackbarFailed(Exception ex)
     {
-        Snackbar.Add("Something went wrong.", Severity.Error);
-        Snackbar.Add(ex.ToString(), Severity.Error);
+        Snackbar.Add(ex.Message, Severity.Error);
     }
 }

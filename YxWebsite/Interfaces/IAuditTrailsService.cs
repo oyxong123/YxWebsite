@@ -4,6 +4,6 @@ namespace YxWebsite.Interfaces
 {
     public interface IAuditTrailsService
     {
-        Task AddAuditTrail(AuditTrailsDto auditTrailDto);
+        Task<bool> AddAuditTrail(AuditTrailsDto auditTrailDto);
     }
 }

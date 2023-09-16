@@ -18,7 +18,7 @@ namespace YxWebsite.Services
             _mapper = mapper;
         }
 
-        public async Task AddAuditTrail(AuditTrailsDto auditTrailDto)
+        public async Task<bool> AddAuditTrail(AuditTrailsDto auditTrailDto)
         {
             try
             {
@@ -32,6 +32,8 @@ namespace YxWebsite.Services
                     AuditTrailsModel auditTrailsModel = _mapper.Map<AuditTrailsModel>(auditTrailDto);
                     await _context.DbAuditTrails.AddAsync(auditTrailsModel);
                 }
+
+                return true;
             }
             catch (Exception ex)
             {
