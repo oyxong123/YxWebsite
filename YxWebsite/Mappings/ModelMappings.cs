@@ -6,13 +6,16 @@ namespace YxWebsite.Mappings
 {
     public class ModelMappings : AutoMapper.Profile
     {
-        public ModelMappings() 
+        public ModelMappings()
         {
+            // Audit Trails
+            CreateMap<AuditTrailsModel, AuditTrailsDto>().ReverseMap();
+
             // Language Cottage
             CreateMap<LcModel, LcDto>().ReverseMap();
 
-            // Audit Trails
-            CreateMap<AuditTrailsModel, AuditTrailsDto>().ReverseMap();
+            // Login
+            CreateMap<LoginModel, LoginDto>().ReverseMap();
         }
     }
 }
