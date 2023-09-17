@@ -1,10 +1,8 @@
 ﻿/*
 
 What I Did:
-- Look up on hosting Blazor Server Web App.
-- Added login model and dto mapping.
-- Debugged and fixed snackbar displaying full exception message in login dialog.
-- Styled login dialog. 
+- Halfway debugged audit trails service null reference error.
+- 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -13,7 +11,6 @@ Excited Achievements:
 
 Website Plans:
 - Debug sign up object set null set to reference.
-- Set up login dialog and db communication and flow. 
 - Increase size of login dialog.
 - Remove the duplicated settings in nav menu. 
 - Handle case of edit LC record where if they save back the record with the same record ID.(?) [because LcCategory foreign key needs to be set]
@@ -32,7 +29,6 @@ Special Notes:
 - Resizing image reference: https://www.editorx.com/shaping-design/article/resize-image-css
  
 Thoughts:
-> 难怪我觉得哪里怪怪的，原来是因为要用RadzenTextBox不是RadzenText.
 >
 
 */
@@ -42,6 +38,13 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_09_16
+- Look up on hosting Blazor Server Web App.
+- Added login model and dto mapping.
+- Debugged and fixed snackbar displaying full exception message in login dialog.
+- Styled login dialog. 
+> 难怪我觉得哪里怪怪的，原来是因为要用RadzenTextBox不是RadzenText.
 
 2023_09_15
 - Made nav menu close when login button is clicked.
