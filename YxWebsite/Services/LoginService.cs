@@ -13,12 +13,13 @@ namespace YxWebsite.Services
     {
         private readonly IDbContextFactory<ApplicationDbContext> _contextFactory;
         private readonly IMapper _mapper;
-        private readonly IAuditTrailsService AuditTrailsService;
+        private readonly IAuditTrailsService _auditTrailsService;
 
-        public LoginService(IDbContextFactory<ApplicationDbContext> contextFactory, IMapper mapper)
+        public LoginService(IDbContextFactory<ApplicationDbContext> contextFactory, IMapper mapper, IAuditTrailsService auditTrailsService)
         {
             _contextFactory = contextFactory;
             _mapper = mapper;
+            _auditTrailsService = auditTrailsService;
         }
 
         public async Task<bool> VerifyLogin(LoginDto loginDto)
@@ -43,7 +44,7 @@ namespace YxWebsite.Services
                         Description = _loginModel.Username + " has logged in.",
                         AddedDateTime = DateTime.UtcNow
                     };
-                    await AuditTrailsService.AddAuditTrail(_auditTrailsDto);
+                    await _auditTrailsService.AddAuditTrail(_auditTrailsDto);
                 }
 
                 return true;
@@ -87,7 +88,7 @@ namespace YxWebsite.Services
                         Description = _loginModel.Username + " has signed up.",
                         AddedDateTime = DateTime.UtcNow
                     };
-                    await AuditTrailsService.AddAuditTrail(_auditTrailsDto);
+                    await _auditTrailsService.AddAuditTrail(_auditTrailsDto);
                 }
 
                 return true;

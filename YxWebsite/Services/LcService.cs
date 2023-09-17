@@ -12,12 +12,13 @@ namespace YxWebsite.Services
     {
         private readonly IDbContextFactory<ApplicationDbContext> _contextFactory;
         private readonly IMapper _mapper;
-        private readonly IAuditTrailsService AuditTrailsService;
+        private readonly IAuditTrailsService _auditTrailsService;
 
-        public LcService(IDbContextFactory<ApplicationDbContext> contextFactory, IMapper mapper)
+        public LcService(IDbContextFactory<ApplicationDbContext> contextFactory, IMapper mapper, IAuditTrailsService auditTrailsService)
         {
             _contextFactory = contextFactory;
             _mapper = mapper;
+            _auditTrailsService = auditTrailsService;
         }
 
         public async Task<LcDto> UploadLcRecord(LcDto newLcDto)
@@ -63,7 +64,7 @@ namespace YxWebsite.Services
                         Description = "Inserted LC Record at Record ID #" + newLcDto.RecordId,
                         AddedDateTime = DateTime.UtcNow
                     };
-                    await AuditTrailsService.AddAuditTrail(_auditTrailsDto);
+                    await _auditTrailsService.AddAuditTrail(_auditTrailsDto);
                 }
 
                 return newLcDto;
@@ -126,7 +127,7 @@ namespace YxWebsite.Services
                         Description = "Inserted LC Record at Record ID #" + editLcDto.RecordId,
                         AddedDateTime = DateTime.UtcNow
                     };
-                    await AuditTrailsService.AddAuditTrail(_auditTrailsDto);
+                    await _auditTrailsService.AddAuditTrail(_auditTrailsDto);
                 }
 
                 return true;
@@ -160,7 +161,7 @@ namespace YxWebsite.Services
                         Description = "Inserted LC Record at Record ID #" + deleteLcDto.RecordId,
                         AddedDateTime = DateTime.UtcNow
                     };
-                    await AuditTrailsService.AddAuditTrail(_auditTrailsDto);
+                    await _auditTrailsService.AddAuditTrail(_auditTrailsDto);
 
                     return true;
                 }

@@ -39,17 +39,16 @@
                     new("oi oi-list-rich", "Language Cottage", "languagecottage"),
                     new("oi oi-list-rich", "Programming Life", "programminglife") }),
                 new(new CustomNavMenuItems.Link("", "About Me"), new List<CustomNavMenuItems.Link> {
-                    new("oi oi-list-rich", "About", "about")}),
+                    new("oi oi-list-rich", "About", "about")})
+            })" />
+
+            <CustomNavMenuItems MenuItems="@(new List<CustomNavMenuItems.MenuItem>
+            {
                 new(new CustomNavMenuItems.Link("", "Settings"), new List<CustomNavMenuItems.Link> {
                     new("oi oi-list-key", "Login", "", () => Login())})
             })" />
 
-            <MudNavGroup Title="Settings">
-                <MudNavLink OnClick="Login">
-                    <span class="oi oi-list-key" aria-hidden="true" /> Login
-                </MudNavLink>
-                <!--Only for admin-->
-            </MudNavGroup>
+            <!--only for admin-->
         </MudNavMenu>
     </MudDrawer>
 

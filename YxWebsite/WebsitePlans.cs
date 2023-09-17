@@ -2,7 +2,8 @@
 
 What I Did:
 - Halfway debugged audit trails service null reference error.
-- 
+- Adjusted dialog size of login and sign up.
+- Removed the duplicated settings in nav menu. 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -11,8 +12,7 @@ Excited Achievements:
 
 Website Plans:
 - Debug sign up object set null set to reference.
-- Increase size of login dialog.
-- Remove the duplicated settings in nav menu. 
+- Disable nav menu drawer toggle when any dialog is open. 
 - Handle case of edit LC record where if they save back the record with the same record ID.(?) [because LcCategory foreign key needs to be set]
 - Handle case of record ID where recordID doesn't need to be entered. (?) [because LcCategory foreign key needs to be set]
 - Add a login function so that if it is me that has logged in, I can utilize the add post delete post etc function.
@@ -29,7 +29,8 @@ Special Notes:
 - Resizing image reference: https://www.editorx.com/shaping-design/article/resize-image-css
  
 Thoughts:
->
+> Hmm, why did I concluded that I can't put the Audit Trails Service in public constructor again..?
+> 
 
 */
 
