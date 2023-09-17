@@ -32,18 +32,18 @@ namespace YxWebsite.Services
                 // Find username and verify password.
                 using (ApplicationDbContext _context = _contextFactory.CreateDbContext()) 
                 {
-                    LoginModel _loginModel =  await _context.DbLogin.SingleOrDefaultAsync(u => u.Username == loginDto.Username) ?? throw new Exception("I can't find you. Are you just typing random username in? :H");
+                    LoginModel _loginModel =  await _context.DbLogin.SingleOrDefaultAsync(u => u.Username == loginDto.Username) ?? throw new Exception("I can't find you. Are you just typing random username in?  :H");
                     if (_loginModel.Password != HashPassword(loginDto.Password, _loginModel.Salt))
                     {
-                        throw new Exception("I am very sorry but I must inform that you have amnesia cuz you can't remember your password $^$");
+                        throw new Exception("I am very sorry but I must inform that you have amnesia cuz you can't remember your password  $^$");
                     }
 
-                    AuditTrailsDto auditTrailsDto = new()
+                    AuditTrailsDto _auditTrailsDto = new()
                     {
                         Description = _loginModel.Username + " has logged in.",
                         AddedDateTime = DateTime.UtcNow
                     };
-                    await AuditTrailsService.AddAuditTrail(auditTrailsDto);
+                    await AuditTrailsService.AddAuditTrail(_auditTrailsDto);
                 }
 
                 return true;
@@ -65,11 +65,11 @@ namespace YxWebsite.Services
             {
                 if (await CheckHasUsernameDuplicated(signUpDto))
                 {
-                    throw new Exception("Too bad, someone has taken this username earlier than you :{");
+                    throw new Exception("Too bad, someone has taken this username earlier than you  :{");
                 }
                 if (!signUpDto.Password.Equals(signUpDto.ConfirmPassword))
                 {
-                    throw new Exception("Did you have a typo? Because the two passwords you provided are different :/");
+                    throw new Exception("Did you have a typo? Because the two passwords you provided are different  :/");
                 }
 
                 // Encrypt password with SHA256 + Salt.
@@ -82,12 +82,12 @@ namespace YxWebsite.Services
                     await _context.AddAsync(_loginModel);
                     await _context.SaveChangesAsync();
 
-                    AuditTrailsDto auditTrailsDto = new()
+                    AuditTrailsDto _auditTrailsDto = new()
                     {
                         Description = _loginModel.Username + " has signed up.",
                         AddedDateTime = DateTime.UtcNow
                     };
-                    await AuditTrailsService.AddAuditTrail(auditTrailsDto);
+                    await AuditTrailsService.AddAuditTrail(_auditTrailsDto);
                 }
 
                 return true;

@@ -14,7 +14,10 @@ Excited Achievements:
 Website Plans:
 - Debug sign up object set null set to reference.
 - Set up login dialog and db communication and flow. 
+- Increase size of login dialog.
 - Remove the duplicated settings in nav menu. 
+- Handle case of edit LC record where if they save back the record with the same record ID.(?) [because LcCategory foreign key needs to be set]
+- Handle case of record ID where recordID doesn't need to be entered. (?) [because LcCategory foreign key needs to be set]
 - Add a login function so that if it is me that has logged in, I can utilize the add post delete post etc function.
 - Seems like it's only when the page goes to the splash screen that the nav menu collapses to its header nav item closed. (see if there is a workaround around this, tho it has quite a low priority)
 - Fill validator stringin LC dialog. 
