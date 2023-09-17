@@ -99,6 +99,21 @@ namespace YxWebsite.Services
             }
         }
 
+        public async Task<int> GetLoginIdByUsername(string username)
+        {
+            try
+            {
+                using (ApplicationDbContext _context = _contextFactory.CreateDbContext())
+                {
+                    return await _context.DbLogin.Where(u => u.Username == username).Select(u => u.Id).FirstAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         private async Task<bool> CheckHasUsernameDuplicated(LoginDto loginNew)
         {
             try

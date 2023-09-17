@@ -6,5 +6,6 @@ namespace YxWebsite.Interfaces
     {
         Task<bool> VerifyLogin(LoginDto loginDto);
         Task<bool> SignUp(LoginDto signUpDto);
+        Task<int> GetLoginIdByUsername(string username);
     }
 }

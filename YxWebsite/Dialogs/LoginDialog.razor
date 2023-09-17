@@ -3,6 +3,7 @@
 @inject Radzen.DialogService DialogService
 @inject ILoginService LoginService
 @inject ISnackbar Snackbar
+@inject ProtectedSessionStorage SessionStorage
 
 <RadzenTemplateForm TItem="LoginDto" Data="loginForm" Submit="ProcessForm" class="modal-body">
     <RadzenStack Gap="0.5rem">
@@ -81,6 +82,9 @@
             {
                 Snackbar.Add("Ayo~~ You're finally back!~~", Severity.Success);
                 //add to session storage
+                await LoginService.
+                await SessionStorage.SetAsync("UserSessionId", 1);
+                DialogService.Close();
             }
         }
         catch (Exception ex)
@@ -95,7 +99,8 @@
         {
             await LoginService.SignUp(loginForm);
             Snackbar.Add("Idk who you are, but welcome to the club!~~", Severity.Success);
-            // Open this dialog again in login mode. 
+            //add to session storage
+            DialogService.Close();
         }
         catch (Exception ex)
         {
