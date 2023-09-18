@@ -247,6 +247,11 @@
         if (!IsEditForm)
         {
             int.TryParse(lcForm.RecordIdString, out recordId);
+
+            if (recordIdString == "")
+            {
+                return true;
+            }
         }
         else
         {
@@ -259,7 +264,7 @@
 
             int.TryParse(lcForm.RecordIdString, out recordId);
         }
-
+        
         if (recordId <= 0)
         {
             validatorTextRecordIdString = "Record ID must be a number that's > 0";

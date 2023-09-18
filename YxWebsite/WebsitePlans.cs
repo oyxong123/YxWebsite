@@ -5,6 +5,7 @@ What I Did:
 - Fixed components displayed in sign up dialog
 - Made top app bar unclickable when any dialog is opened. (by reducing its z-index to below the dialog wrapper mask's z-index)
 - Set temporary LcCategory foreign key in LcDialog.
+- Debugged and fixed wrong validator for record ID in new LC record with no record ID input. 
 - 
 
 Excited Achievements:
@@ -13,6 +14,7 @@ Excited Achievements:
 - 
 
 Website Plans:
+- Handle case of wrong validator record ID where recordID doesn't need to be entered during LC upload. 
 - Add a login function so that if it is me that has logged in, I can utilize the add post delete post etc function.
 - Seems like it's only when the page goes to the splash screen that the nav menu collapses to its header nav item closed. (see if there is a workaround around this, tho it has quite a low priority)
 - Fill validator stringin LC dialog. 
