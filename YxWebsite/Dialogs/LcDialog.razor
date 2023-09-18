@@ -99,22 +99,20 @@
  @code {
     [Parameter] public bool IsEditForm { get; set; }
     [Parameter] public int PassedLcId { get; set; }
-
+    private bool imageUploaded = false;
+    private IBrowserFile? imageFile;
     private LcDto lcForm = new()
         {
             AddedDateTime = DateTime.UtcNow,
             LastModifiedDateTime = DateTime.UtcNow
         };
 
-    private IBrowserFile? imageFile;
-    private bool imageUploaded = false;
-
     // Css variables
     private static string DefaultDragClass = "relative rounded-lg border-2 border-dashed pa-4 mud-width-full mud-height-full z-10 yx-center";
     private string DragClass = DefaultDragClass;
 
     // Validator text variables.
-    private string validatorTextRecordIdString = "F"; //fill this validator string?
+    private string validatorTextRecordIdString = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {

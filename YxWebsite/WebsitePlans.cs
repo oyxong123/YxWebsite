@@ -1,11 +1,6 @@
 ﻿/*
 
 What I Did:
-- Finished coded login protected storage flow. 
-- Fixed components displayed in sign up dialog
-- Made top app bar unclickable when any dialog is opened. (by reducing its z-index to below the dialog wrapper mask's z-index)
-- Set temporary LcCategory foreign key in LcDialog.
-- Debugged and fixed wrong validator for record ID in new LC record with no record ID input. 
 - 
 
 Excited Achievements:
@@ -14,14 +9,13 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Handle case of wrong validator record ID where recordID doesn't need to be entered during LC upload. 
 - Add a login function so that if it is me that has logged in, I can utilize the add post delete post etc function.
-- Seems like it's only when the page goes to the splash screen that the nav menu collapses to its header nav item closed. (see if there is a workaround around this, tho it has quite a low priority)
 - Fill validator stringin LC dialog. 
 - Create sign up page. 
 - When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
 - Implement LC category selection. (Have another nav menu of sorts at right or left side to show what category the user is viewing, they can switch to other categories at any time)
 - Add search feature to search for the record based on record ID in top right side of the page.
+- Seems like it's only when the page goes to the splash screen that the nav menu collapses to its header nav item closed. (see if there is a workaround around this, tho it has quite a low priority)
 
 Special Notes:
 - The dialogs of Radzen look better. Use Radzen for dialogs. 
@@ -29,7 +23,6 @@ Special Notes:
 - Resizing image reference: https://www.editorx.com/shaping-design/article/resize-image-css
  
 Thoughts:
-> 嗯嗯, proudie.
 > 
 
 */
@@ -39,6 +32,14 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_09_18
+- Finished coded login protected storage flow. 
+- Fixed components displayed in sign up dialog
+- Made top app bar unclickable when any dialog is opened. (by reducing its z-index to below the dialog wrapper mask's z-index)
+- Set temporary LcCategory foreign key in LcDialog.
+- Debugged and fixed wrong validator for record ID in new LC record with no record ID input.
+> 嗯嗯, proudie. 
 
 2023_09_17
 - Halfway debugged audit trails service null reference error.
