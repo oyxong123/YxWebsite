@@ -81,9 +81,9 @@
             if (await LoginService.VerifyLogin(loginForm))
             {
                 Snackbar.Add("Ayo~~ You're finally back!~~", Severity.Success);
-                //add to session storage
-                await LoginService.
-                await SessionStorage.SetAsync("UserSessionId", 1);
+
+                int loginId = await LoginService.GetLoginIdByUsername(loginForm.Username);
+                await SessionStorage.SetAsync("UserSessionId", loginId);
                 DialogService.Close();
             }
         }
@@ -99,7 +99,9 @@
         {
             await LoginService.SignUp(loginForm);
             Snackbar.Add("Idk who you are, but welcome to the club!~~", Severity.Success);
-            //add to session storage
+
+            int loginId = await LoginService.GetLoginIdByUsername(loginForm.Username);
+            await SessionStorage.SetAsync("UserSessionId", loginId);
             DialogService.Close();
         }
         catch (Exception ex)
