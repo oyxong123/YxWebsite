@@ -1,7 +1,7 @@
 ﻿/*
 
 What I Did:
-- Finish coded login protected storage flow. 
+- Finished coded login protected storage flow. 
 - 
 
 Excited Achievements:

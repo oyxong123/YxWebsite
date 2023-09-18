@@ -48,9 +48,12 @@
                 <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="@(IsSignUpMode ? "Sign me in!" : "Hack into my acc ;]")" />
                 <RadzenButton Text="Cancel" Click="@(() => DialogService.Close())" ButtonStyle="ButtonStyle.Light" />
             </RadzenStack>
-            <RadzenStack>
-                <RadzenLink Text="Sign up for account (it's free btw,tho I know storing passwords on other people's server are always never safe" onclick="@(() => DialogService.Close("SignUp"))" />
-            </RadzenStack>
+            @if (!IsSignUpMode)
+            {
+                <RadzenStack>
+                    <RadzenLink Text="Sign up for account (it's free btw,tho I know storing passwords on other people's server are always never safe" onclick="@(() => DialogService.Close("SignUp"))" />
+                </RadzenStack>
+            }
         </RadzenStack>
     </RadzenStack>
  </RadzenTemplateForm>
