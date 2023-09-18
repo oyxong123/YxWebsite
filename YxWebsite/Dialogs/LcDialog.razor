@@ -96,7 +96,7 @@
      </RadzenStack>
  </RadzenTemplateForm>
 
-@code {
+ @code {
     [Parameter] public bool IsEditForm { get; set; }
     [Parameter] public int PassedLcId { get; set; }
 
@@ -118,11 +118,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        if (!IsEditForm)
-        {
-
-        }
-        else
+        if (IsEditForm)
         {
             LcDto lcDto = await ILcService.GetLcRecordById(PassedLcId);
             lcForm = lcDto.ShallowCopy();
@@ -172,7 +168,8 @@
                     Commentary = lcForm.Commentary?.Trim(),
                     Image = lcForm.Image,
                     AddedDateTime = DateTime.UtcNow,
-                    LastModifiedDateTime = DateTime.UtcNow
+                    LastModifiedDateTime = DateTime.UtcNow,
+                    LcCategoryId = 1 //temporary placeholder
                 };
 
             lcUploadDto = await ILcService.UploadLcRecord(lcUploadDto);
@@ -200,7 +197,8 @@
                     EnglishTranslation = lcForm.EnglishTranslation.Trim(),
                     Commentary = lcForm.Commentary?.Trim(),
                     Image = lcForm.Image,
-                    LastModifiedDateTime = DateTime.UtcNow
+                    LastModifiedDateTime = DateTime.UtcNow,
+                    LcCategoryId = 1 //temporary placeholder
                 };
 
             await ILcService.EditLcRecord(lcEditDto, PassedLcId);

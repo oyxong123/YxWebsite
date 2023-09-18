@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
+using YxWebsite.Models;
 
 namespace YxWebsite.Dtos
 {
@@ -18,6 +19,9 @@ namespace YxWebsite.Dtos
         public required byte[] Image { get; set; } = Array.Empty<byte>();
         public DateTime AddedDateTime { get; set; }
         public DateTime LastModifiedDateTime { get; set; }
+        public required int LcCategoryId { get; set; }
+        [ForeignKey("LcCategoryId")]
+        public LcCategoryModel? LcCategory { get; set; }
         public LcDto ShallowCopy()
         {
             return (LcDto)this.MemberwiseClone();
