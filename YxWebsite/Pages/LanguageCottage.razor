@@ -16,9 +16,19 @@
         margin:20px;
     }
 
+    .mud-card-content{
+        padding: 38px;
+    }
+
     .mud-card-content > div{
         margin-top: 15px;
         margin-bottom: 15px;
+    }
+
+    .yx-upload-fab{
+        position: fixed;
+        bottom: 16px;
+        left: 16px;
     }
 </style>
 
@@ -48,19 +58,19 @@
                 <MudCardMedia Image="@lc.ImageUrl" Height="250" Class="ml-4 mr-4" Style="background-size:contain"/>
                 <MudCardContent>
                     <div>
-                        <MudText Typo="Typo.body2">Original Text:</MudText>
+                        <MudText Typo="Typo.body2" Class="font-italic">Original Text:</MudText>
                         <MudText Typo="Typo.body2">@lc.OriginalText</MudText>
                     </div>
                     <div>
-                        <MudText Typo="Typo.body2">Romaji:</MudText>
+                        <MudText Typo="Typo.body2" Class="font-italic">Romaji:</MudText>
                         <MudText Typo="Typo.body2">@lc.Romaji</MudText>
                     </div>
                     <div>
-                        <MudText Typo="Typo.body2">Translation:</MudText>
+                        <MudText Typo="Typo.body2" Class="font-italic">Translation:</MudText>
                         <MudText Typo="Typo.body2">@lc.EnglishTranslation</MudText>
                     </div>
                     <div>
-                        <MudText Typo="Typo.body2">Commentary:</MudText>
+                        <MudText Typo="Typo.body2" Class="font-italic">Commentary:</MudText>
                         <MudText Typo="Typo.body2">@lc.Commentary</MudText>
                     </div>
                 </MudCardContent>
@@ -70,9 +80,9 @@
 
     <div>
         <MudScrollToTop>
-            <MudFab Color="Color.Tertiary" StartIcon="@Icons.Material.Filled.ArrowCircleUp" />
+            <MudFab StartIcon="@Icons.Material.Filled.ArrowCircleUp" Color="Color.Tertiary" />
         </MudScrollToTop>
-        <MudFab StartIcon="@Icons.Material.Filled.Add" Color="Color.Success" aria-label="Upload" OnClick="lcUpload"></MudFab>
+        <MudFab OnClick="lcUpload" StartIcon="@Icons.Material.Filled.Add" Color="Color.Success" Class="yx-upload-fab" aria-label="Upload"></MudFab>
     </div>
 }
 
