@@ -58,19 +58,19 @@
                 <MudCardMedia Image="@lc.ImageUrl" Height="250" Class="ml-4 mr-4" Style="background-size:contain"/>
                 <MudCardContent>
                     <div>
-                        <MudText Typo="Typo.body2" Class="font-italic">Original Text:</MudText>
+                        <MudText Typo="Typo.body2" Class="font-italic font-weight-bold">Original Text:</MudText>
                         <MudText Typo="Typo.body2">@lc.OriginalText</MudText>
                     </div>
                     <div>
-                        <MudText Typo="Typo.body2" Class="font-italic">Romaji:</MudText>
+                        <MudText Typo="Typo.body2" Class="font-italic font-weight-bold">Romaji:</MudText>
                         <MudText Typo="Typo.body2">@lc.Romaji</MudText>
                     </div>
                     <div>
-                        <MudText Typo="Typo.body2" Class="font-italic">Translation:</MudText>
+                        <MudText Typo="Typo.body2" Class="font-italic font-weight-bold">Translation:</MudText>
                         <MudText Typo="Typo.body2">@lc.EnglishTranslation</MudText>
                     </div>
                     <div>
-                        <MudText Typo="Typo.body2" Class="font-italic">Commentary:</MudText>
+                        <MudText Typo="Typo.body2" Class="font-italic font-weight-bold">Commentary:</MudText>
                         <MudText Typo="Typo.body2">@lc.Commentary</MudText>
                     </div>
                 </MudCardContent>
@@ -89,6 +89,14 @@
 @code {
     List<LcDto> lcDtoDisplayList = new();
     private bool IsInitialized = false;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            
+        }
+    }
 
     protected override async Task OnParametersSetAsync()
     {

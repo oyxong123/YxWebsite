@@ -20,18 +20,14 @@
         background-repeat: no-repeat;
         background-position: 50% 50%;
     }
-
-    .rz-stack{
-        gap: 0px;
-    }
 </style>
 
 <RadzenTemplateForm TItem="LcDto" Data="lcForm" Submit="ProcessLcRecord" class="modal-body">
     <RadzenStack Gap="1.5rem">
-        <RadzenStack width="100%">
-            <RadzenStack>
+        <RadzenStack>
+            <RadzenColumn>
                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Image (16:9)<span class="text-danger">*</span></RadzenText>
-                <MudFileUpload T="IBrowserFile" @bind-Files="imageFile" OnFilesChanged="OnInputFileChanged" Hidden="false" Class="flex-1" InputClass="absolute mud-width-full mud-height-full overflow-hidden z-20" InputStyle="opacity:0" @ondragenter="@SetDragClass" @ondragleave="@ClearDragClass" @ondragend="@ClearDragClass">
+                <MudFileUpload T="IBrowserFile" @bind-Files="imageFile" OnFilesChanged="OnInputFileChanged" Hidden="false" Class="flex-1 py-3" InputClass="absolute mud-width-full mud-height-full overflow-hidden z-20" InputStyle="opacity:0" @ondragenter="@SetDragClass" @ondragleave="@ClearDragClass" @ondragend="@ClearDragClass">
                     <ButtonTemplate Context="Image">
                         @if (imageUploaded)
                         {
@@ -47,35 +43,12 @@
                         }
                     </ButtonTemplate>
                 </MudFileUpload>
-            </RadzenStack>
-            <RadzenStack>
-                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">
-                    Record ID 
-                    @if (IsEditForm)
-                    {
-                        <span class="text-danger">*</span>
-                    }
-                </RadzenText>
-                <RadzenFormField>
-                    <ChildContent>
-                        <RadzenTextArea Name="RecordIdString" @bind-Value="lcForm.RecordIdString" class="w-100" />
-                    </ChildContent>
-                    <Helper>
-                        <RadzenCustomValidator Component="RecordIdString" Validator="@(() => ValidateRecordIdString(lcForm.RecordIdString))" Text="@validatorTextRecordIdString" Popup />
-                    </Helper>
-                </RadzenFormField>
-            </RadzenStack>
-            <RadzenStack>
-                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Original Text</RadzenText>
-                <RadzenTextArea @bind-Value="lcForm.OriginalText" class="w-100" />
-            </RadzenStack>
-            <RadzenStack>
-                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Romaji</RadzenText>
-                <RadzenTextArea @bind-Value="lcForm.Romaji" class="w-100" />
-            </RadzenStack>
-            <RadzenStack>
+            </RadzenColumn>
+        </RadzenStack>
+        <RadzenStack>
+            <RadzenColumn>
                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Englsih Translation<span class="text-danger">*</span></RadzenText>
-                <RadzenFormField>
+                <RadzenFormField class="w-100">
                     <ChildContent>
                         <RadzenTextArea Name="EnglishTranslation" @bind-Value="lcForm.EnglishTranslation" class="w-100" />
                     </ChildContent>
@@ -83,17 +56,50 @@
                         <RadzenRequiredValidator Component="EnglishTranslation" Text="English Translation is required" Popup=true Style="position: absolute" />
                     </Helper>
                 </RadzenFormField>
-            </RadzenStack>
-            <RadzenStack>
+            </RadzenColumn>
+        </RadzenStack>
+        <RadzenStack>
+            <RadzenColumn>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Original Text</RadzenText>
+                <RadzenTextArea @bind-Value="lcForm.OriginalText" class="w-100" />
+            </RadzenColumn>
+        </RadzenStack>
+        <RadzenStack>
+            <RadzenColumn>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Romaji</RadzenText>
+                <RadzenTextArea @bind-Value="lcForm.Romaji" class="w-100" />
+            </RadzenColumn>
+        </RadzenStack>
+        <RadzenStack>
+            <RadzenColumn>
                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Commentary</RadzenText>
                 <RadzenTextArea @bind-Value="lcForm.Commentary" class="w-100" />
-            </RadzenStack>
+            </RadzenColumn>
         </RadzenStack>
-        <RadzenStack Orientation="Radzen.Orientation.Horizontal" Gap="0.5rem" JustifyContent="JustifyContent.End">
-            <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="Shine!!" Style="width: 80px;" />
+        <RadzenStack>
+            <RadzenColumn>
+                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">
+                    Record ID
+                    @if (IsEditForm)
+                    {
+                        <span class="text-danger">*</span>
+                    }
+                </RadzenText>
+                <RadzenFormField>
+                    <ChildContent>
+                        <RadzenTextBox Name="RecordIdString" @bind-Value="lcForm.RecordIdString" class="w-100" />
+                    </ChildContent>
+                    <Helper>
+                        <RadzenCustomValidator Component="RecordIdString" Validator="@(() => ValidateRecordIdString(lcForm.RecordIdString))" Text="@validatorTextRecordIdString" Popup />
+                     </Helper>
+                 </RadzenFormField>
+            </RadzenColumn>
+        </RadzenStack>
+        <RadzenStack Orientation="Radzen.Orientation.Horizontal" JustifyContent="JustifyContent.End">
             <RadzenButton Text="Cancel" Click="closeDialog" ButtonStyle="ButtonStyle.Light" />
+            <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="Shine!!" Style="width: 80px;" />
         </RadzenStack>
-     </RadzenStack>
+    </RadzenStack>
  </RadzenTemplateForm>
 
  @code {

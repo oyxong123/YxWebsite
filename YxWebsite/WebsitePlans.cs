@@ -1,9 +1,7 @@
 ﻿/*
 
 What I Did:
-- Fixed login nav menu item not collapsing again bug.
-- Clean code. 
-- Styled LC page. 
+- 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -12,6 +10,7 @@ Excited Achievements:
 
 Website Plans:
 - Style LC page. 
+- Write afterasync method. 
 - Add a login function so that if it is me that has logged in, I can utilize the add post delete post etc function.
 - When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
 - Implement LC category selection. (Have another nav menu of sorts at right or left side to show what category the user is viewing, they can switch to other categories at any time)
@@ -33,6 +32,20 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_09_21
+- Styled LC page and dialog. 
+> Bruh, 我就觉得哪里怪怪的。我几时set了一个rz-stack gap:0在LC dialog那边。
+> Wait, what. 我才刚跟自己讲一定不是column吧了。到底什么逻辑。
+> 太专心了啦，导致我忘记拿了电话把他留在巴士上。幸好巴士司机把他收了起来。还告诉了我要如何去取回。真的非常非常地感谢他。>n <
+
+2023_09_20
+- Styled LC page and dialog. 
+
+2023_09_19
+- Fixed login nav menu item not collapsing again bug.
+- Clean code. 
+- Styled LC page. 
 
 2023_09_18
 - Finished coded login protected storage flow. 
