@@ -14,6 +14,7 @@ namespace YxWebsite.Services
         private readonly IDbContextFactory<ApplicationDbContext> _contextFactory;
         private readonly IMapper _mapper;
         private readonly IAuditTrailsService _auditTrailsService;
+        private readonly string __tableNotInitialized = " Table is not initialized.";
 
         public LoginService(IDbContextFactory<ApplicationDbContext> contextFactory, IMapper mapper, IAuditTrailsService auditTrailsService)
         {
@@ -31,7 +32,7 @@ namespace YxWebsite.Services
             try
             {
                 // Find username and verify password.
-                using (ApplicationDbContext _context = _contextFactory.CreateDbContext()) 
+                using (ApplicationDbContext _context = await _contextFactory.CreateDbContextAsync()) 
                 {
                     LoginModel _loginModel =  await _context.DbLogin.SingleOrDefaultAsync(u => u.Username == loginDto.Username) ?? throw new Exception("I can't find you. Are you just typing random username in?  :H");
                     if (_loginModel.Password != HashPassword(loginDto.Password, _loginModel.Salt))
@@ -78,8 +79,13 @@ namespace YxWebsite.Services
                 _loginModel.Salt = GenerateString(4);
                 _loginModel.Password = HashPassword(_loginModel.Password, _loginModel.Salt);
 
-                using (ApplicationDbContext _context = _contextFactory.CreateDbContext())
+                using (ApplicationDbContext _context = await _contextFactory.CreateDbContextAsync())
                 {
+                    if (_context.DbLogin == null)
+                    {
+                        throw new Exception("Login" + __tableNotInitialized);
+                    }
+
                     await _context.AddAsync(_loginModel);
                     await _context.SaveChangesAsync();
 
@@ -103,9 +109,34 @@ namespace YxWebsite.Services
         {
             try
             {
-                using (ApplicationDbContext _context = _contextFactory.CreateDbContext())
+                using (ApplicationDbContext _context = await _contextFactory.CreateDbContextAsync())
                 {
+                    if (_context.DbLogin == null)
+                    {
+                        throw new Exception("Login" + __tableNotInitialized);
+                    }
+
                     return await _context.DbLogin.Where(u => u.Username == username).Select(u => u.Id).FirstAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public async Task<LoginDto> GetLogin(int loginId)
+        {
+            try
+            {
+                using (ApplicationDbContext _context = await _contextFactory.CreateDbContextAsync())
+                {
+                    if (_context.DbLogin == null)
+                    {
+                        throw new Exception("Login" + __tableNotInitialized);
+                    }
+
+                    return _mapper.Map<LoginDto>(await _context.DbLogin.SingleOrDefaultAsync(u => u.Id == loginId));
                 }
             }
             catch (Exception ex)
@@ -122,7 +153,7 @@ namespace YxWebsite.Services
                 {
                     if (_context.DbLogin == null)
                     {
-                        throw new Exception("Login Table not initialized.");
+                        throw new Exception("Login" + __tableNotInitialized);
                     }
 
                     // Case insensitive

@@ -4,8 +4,10 @@
 @using Dtos;
 @using Dialogs;
 @inject Radzen.DialogService DialogService
+@inject ProtectedSessionStorage SessionStorage
 @inject ISnackbar Snackbar
-@inject ILcService ILcService
+@inject ILcService LcService
+@inject ILoginService LoginService
 
 <style>
     .dialog{
@@ -87,20 +89,25 @@
 }
 
 @code {
-    List<LcDto> lcDtoDisplayList = new();
+    private List<LcDto> lcDtoDisplayList = new();
+    private LoginDto loginUser = new();
     private bool IsInitialized = false;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            
+            var sessionData = await SessionStorage.GetAsync<int>("UserSessionId");
+            if (sessionData.Success)
+            {
+                loginUser = LoginService.
+            }
         }
     }
 
     protected override async Task OnParametersSetAsync()
     {
-        lcDtoDisplayList = await ILcService.GetAllLcRecord();
+        lcDtoDisplayList = await LcService.GetAllLcRecord();
 
         foreach (LcDto lc in lcDtoDisplayList)
         {
@@ -132,7 +139,7 @@
         bool? dialogResult = await DialogService.Confirm("Delete LcRecord [Record ID: #" + lcDeleteDto.RecordId + "]?", "Language Cottage", new ConfirmOptions() { OkButtonText = "Yes", CancelButtonText = "No" });
         if (dialogResult == true)
         {
-            await ILcService.DeleteLcRecord(lcDeleteDto);
+            await LcService.DeleteLcRecord(lcDeleteDto);
             await OnParametersSetAsync();
             StateHasChanged();
             Snackbar.Add("Deleted LC record.", Severity.Success);

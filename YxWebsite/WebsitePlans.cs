@@ -1,7 +1,7 @@
 ﻿/*
 
 What I Did:
-- 
+- Added login service method and cleaned service code. 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -9,8 +9,7 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Style LC page. 
-- Write afterasync method. 
+- Write afterasync method. Code out service methods. 
 - Add a login function so that if it is me that has logged in, I can utilize the add post delete post etc function.
 - When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
 - Implement LC category selection. (Have another nav menu of sorts at right or left side to show what category the user is viewing, they can switch to other categories at any time)
@@ -32,6 +31,11 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_09_22
+- Styled LC dialog and added cool comment on host html.
+- Halfway set up retrieve login user.
+> 原来写在_Host.cshtml file的code全部都会被display出来在webpage inspection view的。
 
 2023_09_21
 - Styled LC page and dialog. 
