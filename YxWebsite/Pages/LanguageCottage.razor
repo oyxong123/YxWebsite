@@ -50,11 +50,13 @@
                         <MudText Typo="Typo.overline">英雄伝説 空の軌跡 The 3rd</MudText> <!--Change this so that it displays whatever game or media these records are from-->
                         <MudText Typo="Typo.body1">@lc.RecordIdString</MudText>
                     </CardHeaderContent>
-                    <!--Only show this control if current login mode is admin-->
                     <!--or maybe make it check a boolean from a button on page that triggers the edit mode?-->
                     <CardHeaderActions>
-                        <MudIconButton Icon="@Icons.Material.Filled.Edit" Color="Color.Success" OnClick="lcEditDto => lcEdit(lc)" />
-                        <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error" OnClick="lcDeleteDto => lcDelete(lc)" />
+                        @if (loginUser.IsAdmin)
+                        {
+                            <MudIconButton Icon="@Icons.Material.Filled.Edit" Color="Color.Success" OnClick="lcEditDto => lcEdit(lc)" />
+                            <MudIconButton Icon="@Icons.Material.Filled.Delete" Color="Color.Error" OnClick="lcDeleteDto => lcDelete(lc)" />
+                        }
                     </CardHeaderActions>
                 </MudCardHeader>
                 <MudCardMedia Image="@lc.ImageUrl" Height="250" Class="ml-4 mr-4" Style="background-size:contain"/>
@@ -84,7 +86,10 @@
         <MudScrollToTop>
             <MudFab StartIcon="@Icons.Material.Filled.ArrowCircleUp" Color="Color.Tertiary" />
         </MudScrollToTop>
-        <MudFab OnClick="lcUpload" StartIcon="@Icons.Material.Filled.Add" Color="Color.Success" Class="yx-upload-fab" aria-label="Upload"></MudFab>
+        @if (loginUser.IsAdmin)
+        {
+            <MudFab OnClick="lcUpload" StartIcon="@Icons.Material.Filled.Add" Color="Color.Success" Class="yx-upload-fab" aria-label="Upload"></MudFab>
+        }
     </div>
 }
 
@@ -100,7 +105,8 @@
             var sessionData = await SessionStorage.GetAsync<int>("UserSessionId");
             if (sessionData.Success)
             {
-                loginUser = LoginService.
+                int loginId = sessionData.Value;
+                loginUser = await LoginService.GetLogin(loginId);
             }
         }
     }

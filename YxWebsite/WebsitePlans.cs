@@ -2,6 +2,8 @@
 
 What I Did:
 - Added login service method and cleaned service code. 
+- Updated and corrected Login model and dto.
+- Set up IsAdmin check in LC page.
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -9,7 +11,7 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Write afterasync method. Code out service methods. 
+- Write afterasync method
 - Add a login function so that if it is me that has logged in, I can utilize the add post delete post etc function.
 - When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
 - Implement LC category selection. (Have another nav menu of sorts at right or left side to show what category the user is viewing, they can switch to other categories at any time)
@@ -22,6 +24,8 @@ Special Notes:
 - Resizing image reference: https://www.editorx.com/shaping-design/article/resize-image-css
  
 Thoughts:
+> I'm slowly learning all these small code conventions that helps improve the readibility and stucture of my code. Some I learned from forums, some through experience, and some through the teachings and enlightment of others.
+> Hmm, what's a time dimension table? Seems like it is to solve the problem of all tables having a datetime stored.
 > 
 
 */
@@ -31,6 +35,9 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_09_23
+
 
 2023_09_22
 - Styled LC dialog and added cool comment on host html.

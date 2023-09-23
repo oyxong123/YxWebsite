@@ -12,6 +12,6 @@ namespace YxWebsite.Dtos
         public required string Password { get; set; } = string.Empty;
         public string ConfirmPassword { get; set; } = string.Empty;
         public required string Salt { get; set; } = string.Empty;
-        public int IsAdmin { get; set; }
+        public bool IsAdmin { get; set; }
     }
 }
