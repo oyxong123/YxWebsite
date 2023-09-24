@@ -1,5 +1,6 @@
 ﻿@inherits LayoutComponentBase
 @using Dialogs;
+@inject NavigationManager Nav
 @inject Radzen.DialogService DialogService
 
 <!--Overrides default blazor theme with mudblazor theme-->
@@ -85,11 +86,14 @@
     private async Task Login()
     {
         DrawerToggle();
+
         dynamic dialogResult = await DialogService.OpenAsync<LoginDialog>("Login", new Dictionary<string, object>() { { "IsSignUpMode", false } }, new Radzen.DialogOptions() { Height = "420px", Width = "500px" });
-        await Task.Delay(400);  // Buffer time for DialogService to close and reopen.
         if (dialogResult == "SignUp")
         {
+            await Task.Delay(400);  // Buffer time for DialogService to close and reopen.
             await DialogService.OpenAsync<LoginDialog>("Sign Up", new Dictionary<string, object>() { { "IsSignUpMode", true } }, new Radzen.DialogOptions() { Height = "550px", Width = "500px" });
         }
+
+        Nav.NavigateTo("", true);
     }
 }

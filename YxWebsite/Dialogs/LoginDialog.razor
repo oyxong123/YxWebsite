@@ -75,6 +75,8 @@
         {
             await Login();
         }
+
+        StateHasChanged();
     }
 
     private async Task Login()
@@ -83,10 +85,10 @@
         {
             if (await LoginService.VerifyLogin(loginForm))
             {
-                Snackbar.Add("Ayo~~ You're finally back!~~", Severity.Success);
-
                 int loginId = await LoginService.GetLoginIdByUsername(loginForm.Username);
                 await SessionStorage.SetAsync("UserSessionId", loginId);
+                Snackbar.Add("Ayo~~ You're finally back!~~", Severity.Success);
+
                 DialogService.Close();
             }
         }
@@ -100,19 +102,19 @@
     {
         try
         {
+            int loginId = await LoginService.GetLoginIdByUsername(loginForm.Username);
+            await SessionStorage.SetAsync("UserSessionId", loginId);
             await LoginService.SignUp(loginForm);
             Snackbar.Add("Idk who you are, but welcome to the club!~~", Severity.Success);
 
-            int loginId = await LoginService.GetLoginIdByUsername(loginForm.Username);
-            await SessionStorage.SetAsync("UserSessionId", loginId);
             DialogService.Close();
         }
         catch (Exception ex)
         {
             snackbarFailed(ex);
         }
-    }
 
+    }
     private void snackbarFailed(Exception ex)
     {
         Snackbar.Add(ex.Message, Severity.Error);

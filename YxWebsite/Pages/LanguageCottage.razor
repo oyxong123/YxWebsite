@@ -108,6 +108,7 @@
                 int loginId = sessionData.Value;
                 loginUser = await LoginService.GetLogin(loginId);
             }
+            StateHasChanged();
         }
     }
 

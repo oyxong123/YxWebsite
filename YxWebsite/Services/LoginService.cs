@@ -136,7 +136,8 @@ namespace YxWebsite.Services
                         throw new Exception("Login" + __tableNotInitialized);
                     }
 
-                    return _mapper.Map<LoginDto>(await _context.DbLogin.SingleOrDefaultAsync(u => u.Id == loginId));
+                    LoginDto loginDto = _mapper.Map<LoginDto>(await _context.DbLogin.SingleOrDefaultAsync(u => u.Id == loginId));
+                    return loginDto;
                 }
             }
             catch (Exception ex)
