@@ -1,7 +1,6 @@
 ﻿/*
 
 What I Did:
-- Debugged and fixed login user not detected bug.
 - 
 
 Excited Achievements:
@@ -10,8 +9,10 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Fix image aspect ratio in lc dialog. 
+- Write out the lccategory right-side nav menu dropdown. (including service, models, and pages.)
+- In the Lc Category nav menu dropdown. Under the drop down itself. There will be a mudpaper column of sorts that displays the basic info of the category selected. 
 - When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
+- Fix image aspect ratio in lc dialog. (aspect ratio)
 - Implement LC category selection. (Have another nav menu of sorts at right or left side to show what category the user is viewing, they can switch to other categories at any time)
 - Add search feature to search for the record based on record ID in top right side of the page.
 - Seems like it's only when the page goes to the splash screen that the nav menu collapses to its header nav item closed. (see if there is a workaround around this, tho it has quite a low priority)
@@ -22,6 +23,7 @@ Special Notes:
 - Resizing image reference: https://www.editorx.com/shaping-design/article/resize-image-css
  
 Thoughts:
+> HUH. So it IS necessary to put MudDrawer component above anything else within a page.
 > 
 
 */
@@ -31,6 +33,13 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_09_24
+- Debugged and fixed login user not detected bug.
+- Halfway coded LC Category dropdown selection. 
+> Sweet. The texts under language cottage image actually looks pretty good and clean. Just need a slightly bit tweeking only.
+> Seems like I need to use aspect ratio property to keep the LC dialog image size consistent.
+> Idk why. But looking at this website's data-filled version. Just makes me smile sometimes.
 
 2023_09_23
 - Added login service method and cleaned service code. 

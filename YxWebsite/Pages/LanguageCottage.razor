@@ -8,6 +8,7 @@
 @inject ISnackbar Snackbar
 @inject ILcService LcService
 @inject ILoginService LoginService
+@inject ILcCategoryService LcCategoryService
 
 <style>
     .dialog{
@@ -37,6 +38,16 @@
 @if (IsInitialized)
 {
     <h3>Language Cottage</h3>
+
+    <MudDrawer Open Width="300px" Anchor="Anchor.End" Elevation="2" Variant="@DrawerVariant.Responsive">
+         <MudDrawerHeader>
+             <MudText Typo="Typo.body2">Tools</MudText>
+         </MudDrawerHeader>
+         <MudNavMenu>
+             <!--Refer to radzen dropdown documentation on how to bind object-->
+             <RadzenDropDown TValue="LcCategoryDto" Data="lcCategoryList" valu/>
+         </MudNavMenu>
+     </MudDrawer>
 
     <MudContainer MaxWidth="MaxWidth.Small">
         @foreach (LcDto lc in lcDtoDisplayList)
@@ -82,6 +93,7 @@
         }
     </MudContainer>
 
+
     <div>
         <MudScrollToTop>
             <MudFab StartIcon="@Icons.Material.Filled.ArrowCircleUp" Color="Color.Tertiary" />
@@ -95,6 +107,7 @@
 
 @code {
     private List<LcDto> lcDtoDisplayList = new();
+    private IEnumerable<LcCategoryDto> lcCategoryList = Enumerable.Empty<LcCategoryDto>();
     private LoginDto loginUser = new();
     private bool IsInitialized = false;
 
@@ -115,12 +128,13 @@
     protected override async Task OnParametersSetAsync()
     {
         lcDtoDisplayList = await LcService.GetAllLcRecord();
-
         foreach (LcDto lc in lcDtoDisplayList)
         {
             lc.RecordIdString = "#" + lc.RecordId.ToString();
             lc.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(lc.Image);
         }
+
+        lcCategoryList = await LcCategoryService.GetAllLcCategories();
 
         IsInitialized = true;
 
