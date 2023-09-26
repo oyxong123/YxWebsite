@@ -17,8 +17,8 @@ namespace YxWebsite.Dtos
         public required string EnglishTranslation { get; set; } = string.Empty;
         public string? Commentary { get; set; }
         public required byte[] Image { get; set; } = Array.Empty<byte>();
-        public DateTime AddedDateTime { get; set; }
-        public DateTime LastModifiedDateTime { get; set; }
+        public required DateTime AddedDateTime { get; set; } = DateTime.UtcNow;
+        public required DateTime LastModifiedDateTime { get; set; } = DateTime.UtcNow;
         public required int LcCategoryId { get; set; }
         [ForeignKey("LcCategoryId")]
         public LcCategoryModel? LcCategory { get; set; }

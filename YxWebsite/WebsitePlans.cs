@@ -9,7 +9,7 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Write out the lccategory right-side nav menu dropdown. (including service, models, and pages.)
+- Write out the lccategory right-side nav menu dropdown. 
 - In the Lc Category nav menu dropdown. Under the drop down itself. There will be a mudpaper column of sorts that displays the basic info of the category selected. 
 - When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
 - Fix image aspect ratio in lc dialog. (aspect ratio)
@@ -23,7 +23,7 @@ Special Notes:
 - Resizing image reference: https://www.editorx.com/shaping-design/article/resize-image-css
  
 Thoughts:
-> HUH. So it IS necessary to put MudDrawer component above anything else within a page.
+> Huh, how did me and lau usually do with radzen dropdown again?
 > 
 
 */
@@ -33,6 +33,10 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_09_25
+- Coded out the secondary nav menu for LC category in LC page.
+> HUH. So it IS necessary to put MudDrawer component above anything else within a page.
 
 2023_09_24
 - Debugged and fixed login user not detected bug.

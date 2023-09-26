@@ -35,19 +35,22 @@
     }
 </style>
 
+<MudDrawer Open Width="300px" Anchor="Anchor.End" Elevation="2" Variant="@DrawerVariant.Responsive">
+     <MudDrawerHeader>
+         <MudText Typo="Typo.body2">Tools</MudText>
+     </MudDrawerHeader>
+     <MudNavMenu>
+         <!--Refer to radzen dropdown documentation on how to bind object-->
+         <RadzenDropDown TValue="string" Data="lcCategoryNameList" Value="lcCategoryNameList.FirstOrDefault()" ValueChanged="lcCategoryChanged" Style="padding:5px; margin:5px;" />
+         <MudCard>
+
+         </MudCard>
+     </MudNavMenu>
+ </MudDrawer>
+
 @if (IsInitialized)
 {
     <h3>Language Cottage</h3>
-
-    <MudDrawer Open Width="300px" Anchor="Anchor.End" Elevation="2" Variant="@DrawerVariant.Responsive">
-         <MudDrawerHeader>
-             <MudText Typo="Typo.body2">Tools</MudText>
-         </MudDrawerHeader>
-         <MudNavMenu>
-             <!--Refer to radzen dropdown documentation on how to bind object-->
-             <RadzenDropDown TValue="LcCategoryDto" Data="lcCategoryList" valu/>
-         </MudNavMenu>
-     </MudDrawer>
 
     <MudContainer MaxWidth="MaxWidth.Small">
         @foreach (LcDto lc in lcDtoDisplayList)
@@ -104,10 +107,15 @@
         }
     </div>
 }
+else
+{
+    <!--Do the wait icon like in project triangle. -->
+}
 
 @code {
     private List<LcDto> lcDtoDisplayList = new();
     private IEnumerable<LcCategoryDto> lcCategoryList = Enumerable.Empty<LcCategoryDto>();
+    private IEnumerable<string> lcCategoryNameList = Enumerable.Empty<string>();
     private LoginDto loginUser = new();
     private bool IsInitialized = false;
 
@@ -135,6 +143,7 @@
         }
 
         lcCategoryList = await LcCategoryService.GetAllLcCategories();
+        lcCategoryNameList = lcCategoryList.Select(u => u.Name).ToList();
 
         IsInitialized = true;
 
@@ -165,5 +174,10 @@
             StateHasChanged();
             Snackbar.Add("Deleted LC record.", Severity.Success);
         }
+    }
+
+    private async Task lcCategoryChanged()
+    {
+        
     }
 }
