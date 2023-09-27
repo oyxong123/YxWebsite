@@ -9,7 +9,8 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Write out the lccategory right-side nav menu dropdown. 
+- Find a way to make the right-side LC Category Nav Bar not push the entire screen to the left.
+- Style login dialog.
 - In the Lc Category nav menu dropdown. Under the drop down itself. There will be a mudpaper column of sorts that displays the basic info of the category selected. 
 - When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
 - Fix image aspect ratio in lc dialog. (aspect ratio)
@@ -23,7 +24,6 @@ Special Notes:
 - Resizing image reference: https://www.editorx.com/shaping-design/article/resize-image-css
  
 Thoughts:
-> Huh, how did me and lau usually do with radzen dropdown again?
 > 
 
 */
@@ -33,6 +33,15 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_09_27
+- Set up styling of right-side LC Category Nav Menu. 
+- Added button to toggle LC Category Nav Menu. 
+> Ahhs, so there's a special attribute for MudDrawer that is specifically designed to determine the interaction between it and the MudAppBar.
+
+2023_09_26
+- Set up the dropdown of LcCategory selection.
+> Huh, how did me and lau usually do with radzen dropdown again?
 
 2023_09_25
 - Coded out the secondary nav menu for LC category in LC page.
