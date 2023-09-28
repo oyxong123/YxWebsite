@@ -9,7 +9,8 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Find a way to make the right-side LC Category Nav Bar not push the entire screen to the left.
+- Find a way to make the right-side LC Category Nav Menu not push the entire screen to the left.
+- Style right side LC Category Nav Menu
 - Style login dialog.
 - In the Lc Category nav menu dropdown. Under the drop down itself. There will be a mudpaper column of sorts that displays the basic info of the category selected. 
 - When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
@@ -33,6 +34,11 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_09_28
+- Set up display of LC Category details on the right-side nav menu.
+> I decided not to use the Alertnotification global method like in Project Triangle. This is because the Snackbar method alone is already quite short. And I have no value to add. So it's a matter of there's no need for me to write another method.
+> I think because I technically didn't sleep the entire yesteday night. The drowsiness is sttarting to come and hunt me. 
 
 2023_09_27
 - Set up styling of right-side LC Category Nav Menu. 

@@ -46,11 +46,17 @@
          <MudText Typo="Typo.body1"><strong><u>Tools</u></strong></MudText>
      </MudDrawerHeader>
      <MudNavMenu Class="d-flex justify-content-center">
-         <!--Refer to radzen dropdown documentation on how to bind object-->
-         <RadzenDropDown TValue="string" Data="lcCategoryNameList" Value="lcCategoryNameList.FirstOrDefault()" ValueChanged="lcCategoryChanged" Style="padding:5px; margin:5px;" />
-         <MudCard>
-
-         </MudCard>
+        <MudStack>
+            <RadzenDropDown TValue="string" Data="lcCategoryNameList" Value="selectedLcCategoryString" ValueChanged="lcCategoryChanged" Style="padding:5px; margin:5px;" />
+            <MudCard>
+                <MudText Typo="Typo.body1"><strong>Name:</strong></MudText>
+                <MudText Typo="Typo.body1">@selectedLcCategory.Name</MudText>
+                <MudText Typo="Typo.body1"><strong>Category:</strong></MudText>
+                <MudText Typo="Typo.body1">@selectedLcCategory.Category</MudText>
+                <MudText Typo="Typo.body1"><strong>Description:</strong></MudText>
+                <MudText Typo="Typo.body1">@selectedLcCategory.Description</MudText>
+            </MudCard>
+        </MudStack>
      </MudNavMenu>
  </MudDrawer>
 
@@ -126,6 +132,8 @@ else
     private LoginDto loginUser = new();
     private bool IsInitialized = false;
     private bool OpenToolsDrawer = true;
+    private string selectedLcCategoryString = "";
+    private LcCategoryDto selectedLcCategory = new();
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -152,6 +160,11 @@ else
 
         lcCategoryList = await LcCategoryService.GetAllLcCategories();
         lcCategoryNameList = lcCategoryList.Select(u => u.Name).ToList();
+        if (lcCategoryNameList.Any())
+        {
+            selectedLcCategoryString = lcCategoryNameList.FirstOrDefault();
+            lcCategoryChanged();
+        }
 
         IsInitialized = true;
 
@@ -174,19 +187,34 @@ else
 
     private async Task lcDelete(LcDto lcDeleteDto)
     {
-        bool? dialogResult = await DialogService.Confirm("Delete LcRecord [Record ID: #" + lcDeleteDto.RecordId + "]?", "Language Cottage", new ConfirmOptions() { OkButtonText = "Yes", CancelButtonText = "No" });
-        if (dialogResult == true)
+        try
         {
-            await LcService.DeleteLcRecord(lcDeleteDto);
-            await OnParametersSetAsync();
-            StateHasChanged();
-            Snackbar.Add("Deleted LC record.", Severity.Success);
+            bool? dialogResult = await DialogService.Confirm("Delete LcRecord [Record ID: #" + lcDeleteDto.RecordId + "]?", "Language Cottage", new ConfirmOptions() { OkButtonText = "Yes", CancelButtonText = "No" });
+            if (dialogResult == true)
+            {
+                await LcService.DeleteLcRecord(lcDeleteDto);
+                await OnParametersSetAsync();
+                StateHasChanged();
+                Snackbar.Add("Deleted LC record.", Severity.Success);
+            }
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.ToString(), Severity.Error);
         }
     }
 
-    private async Task lcCategoryChanged()
+    private void lcCategoryChanged()
     {
-
+        try
+        {
+            LcCategoryDto lcCategoryDto = lcCategoryList.Single(u => u.Name == selectedLcCategoryString);
+            selectedLcCategory = lcCategoryDto;
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.ToString(), Severity.Error);
+        }
     }
 
     private void ToggleToolsDrawer()
