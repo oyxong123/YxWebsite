@@ -41,20 +41,22 @@
     }
 </style>
 
-<MudDrawer @bind-Open="OpenToolsDrawer" ClipMode="DrawerClipMode.Docked" Width="300px" Anchor="Anchor.End" Elevation="0" Variant="@DrawerVariant.Responsive">
+<MudDrawer @bind-Open="OpenToolsDrawer" ClipMode="DrawerClipMode.Docked" Width="300px" Anchor="Anchor.End" Elevation="0" Variant="@DrawerVariant.Responsive" Style="top: calc(var(--mud-appbar-height) - var(--mud-appbar-height)/4 + 1px);">
      <MudDrawerHeader Class="d-flex justify-content-center" Style="height:40px; min-height:40px;">
          <MudText Typo="Typo.body1"><strong><u>Tools</u></strong></MudText>
+        <MudIconButton OnClick="ReloadLcCategory" Icon="@Icons.Material.Filled.ArrowCircleUp" />
      </MudDrawerHeader>
      <MudNavMenu Class="d-flex justify-content-center">
-        <MudStack>
-            <RadzenDropDown TValue="string" Data="lcCategoryNameList" Value="selectedLcCategoryString" ValueChanged="lcCategoryChanged" Style="padding:5px; margin:5px;" />
-            <MudCard>
-                <MudText Typo="Typo.body1"><strong>Name:</strong></MudText>
-                <MudText Typo="Typo.body1">@selectedLcCategory.Name</MudText>
-                <MudText Typo="Typo.body1"><strong>Category:</strong></MudText>
-                <MudText Typo="Typo.body1">@selectedLcCategory.Category</MudText>
-                <MudText Typo="Typo.body1"><strong>Description:</strong></MudText>
-                <MudText Typo="Typo.body1">@selectedLcCategory.Description</MudText>
+        <MudStack Spacing="1">
+            <RadzenLabel Component="LcCategoryDropdown" Text="LC Category" />
+            <RadzenDropDown Data="lcCategoryNameList" Value="selectedLcCategoryString" ValueChanged="lcCategoryChanged" TValue="string" Name="LcCategoryDropdown" class="mx-3 mt-3 p-2" />
+            <MudCard Elevation="2" Class="m-3 p-2">
+                <MudText Typo="Typo.body2"><strong>Name:</strong></MudText>
+                <MudText Typo="Typo.body2">@selectedLcCategory.Name</MudText>
+                <MudText Typo="Typo.body2"><strong>Category:</strong></MudText>
+                <MudText Typo="Typo.body2">@selectedLcCategory.Type</MudText>
+                <MudText Typo="Typo.body2"><strong>Description:</strong></MudText>
+                <MudText Typo="Typo.body2">@selectedLcCategory.Description</MudText>
             </MudCard>
         </MudStack>
      </MudNavMenu>
@@ -73,7 +75,7 @@
                         <!--placeholder-->
                     </CardHeaderAvatar>
                     <CardHeaderContent>
-                        <MudText Typo="Typo.overline">英雄伝説 空の軌跡 The 3rd</MudText> <!--Change this so that it displays whatever game or media these records are from-->
+                        <MudText Typo="Typo.overline">@selectedLcCategory.Name</MudText> <!--Change this so that it displays whatever game or media these records are from-->
                         <MudText Typo="Typo.body1">@lc.RecordIdString</MudText>
                     </CardHeaderContent>
                     <!--or maybe make it check a boolean from a button on page that triggers the edit mode?-->
@@ -162,7 +164,7 @@ else
         lcCategoryNameList = lcCategoryList.Select(u => u.Name).ToList();
         if (lcCategoryNameList.Any())
         {
-            selectedLcCategoryString = lcCategoryNameList.FirstOrDefault();
+            selectedLcCategoryString = lcCategoryNameList.First();
             lcCategoryChanged();
         }
 
@@ -210,6 +212,18 @@ else
         {
             LcCategoryDto lcCategoryDto = lcCategoryList.Single(u => u.Name == selectedLcCategoryString);
             selectedLcCategory = lcCategoryDto;
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.ToString(), Severity.Error);
+        }
+    }
+
+    private async Task ReloadLcCategory()
+    {
+        try
+        {
+            //await OnParametersSetAsync(); no, cuz we need to load based on category selection
         }
         catch (Exception ex)
         {
