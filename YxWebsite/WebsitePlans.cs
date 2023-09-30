@@ -1,6 +1,7 @@
 ﻿/*
 
 What I Did:
+- Styled Login dialog.
 - 
 
 Excited Achievements:
@@ -10,7 +11,6 @@ Excited Achievements:
 
 Website Plans:
 - Find a way to make the right-side LC Category Nav Menu not push the entire screen to the left.
-- Style login dialog.
 - In the Lc Category nav menu dropdown. Under the drop down itself. There will be a mudpaper column of sorts that displays the basic info of the category selected. 
 - When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
 - Fix image aspect ratio in lc dialog. (aspect ratio)

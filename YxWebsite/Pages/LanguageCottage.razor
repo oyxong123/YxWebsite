@@ -48,15 +48,23 @@
      </MudDrawerHeader>
      <MudNavMenu Class="d-flex justify-content-center">
         <MudStack Spacing="1">
-            <RadzenLabel Component="LcCategoryDropdown" Text="LC Category" />
-            <RadzenDropDown Data="lcCategoryNameList" Value="selectedLcCategoryString" ValueChanged="lcCategoryChanged" TValue="string" Name="LcCategoryDropdown" class="mx-3 mt-3 p-2" />
+            <RadzenLabel Component="LcCategoryDropdown" class="mx-3 mt-3 p-1"><strong>LC Category</strong></RadzenLabel>
+            <RadzenDropDown Data="lcCategoryNameList" Value="selectedLcCategoryString" ValueChanged="lcCategoryChanged" TValue="string" Name="LcCategoryDropdown" class="mx-3 p-2" />
             <MudCard Elevation="2" Class="m-3 p-2">
-                <MudText Typo="Typo.body2"><strong>Name:</strong></MudText>
-                <MudText Typo="Typo.body2">@selectedLcCategory.Name</MudText>
-                <MudText Typo="Typo.body2"><strong>Category:</strong></MudText>
-                <MudText Typo="Typo.body2">@selectedLcCategory.Type</MudText>
-                <MudText Typo="Typo.body2"><strong>Description:</strong></MudText>
-                <MudText Typo="Typo.body2">@selectedLcCategory.Description</MudText>
+                <RadzenStack Orientation="Radzen.Orientation.Vertical" Gap="2rem">
+                    <RadzenColumn>
+                        <MudText Typo="Typo.body2"><strong>Name:</strong></MudText>
+                        <MudText Typo="Typo.body2">@selectedLcCategory.Name</MudText>
+                    </RadzenColumn>
+                    <RadzenColumn>
+                        <MudText Typo="Typo.body2"><strong>Category:</strong></MudText>
+                        <MudText Typo="Typo.body2">@selectedLcCategory.Type</MudText>
+                    </RadzenColumn>
+                    <RadzenColumn>
+                        <MudText Typo="Typo.body2"><strong>Description:</strong></MudText>
+                        <MudText Typo="Typo.body2">@selectedLcCategory.Description</MudText>
+                    </RadzenColumn>
+                </RadzenStack>
             </MudCard>
         </MudStack>
      </MudNavMenu>
