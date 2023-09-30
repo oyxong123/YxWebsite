@@ -5,34 +5,40 @@
 @inject ISnackbar Snackbar
 @inject ProtectedSessionStorage SessionStorage
 
+<style>
+    .rz-form-field{
+        width: 100%;
+    }
+</style>
+
 <RadzenTemplateForm TItem="LoginDto" Data="loginForm" Submit="ProcessForm" class="modal-body">
     <RadzenStack Gap="0.5rem">
         <RadzenStack Gap="1rem" width="100%">
-            <RadzenStack Gap="0">
+            <RadzenColumn>
                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Username<span class="text-danger">*</span></RadzenText>
                 <RadzenFormField>
                     <ChildContent>
-                        <RadzenTextBox Name="Username" @bind-Value="loginForm.Username" class="w-50" />
+                        <RadzenTextBox Name="Username" @bind-Value="loginForm.Username" class="w-100" />
                     </ChildContent>
                     <Helper>
                         <RadzenRequiredValidator Component="Username" Text="Username is required" Popup=true Style="position: absolute" />
                     </Helper>
                 </RadzenFormField>
-            </RadzenStack>
-            <RadzenStack>
+            </RadzenColumn>
+            <RadzenColumn>
                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Password<span class="text-danger">*</span></RadzenText>
                 <RadzenFormField>
                     <ChildContent>
-                        <RadzenPassword Name="Password" @bind-Value="loginForm.Password"  class="w-50" />
+                        <RadzenPassword Name="Password" @bind-Value="loginForm.Password"  class="w-100" />
                     </ChildContent>
                     <Helper>
                         <RadzenRequiredValidator Component="Password" Text="Password is required" Popup=true Style="position: absolute" />
                     </Helper>
                 </RadzenFormField>
-            </RadzenStack>
+            </RadzenColumn>
             @if (IsSignUpMode)
             {
-                <RadzenStack>
+                <RadzenColumn>
                     <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Confirm Password<span class="text-danger">*</span></RadzenText>
                     <RadzenFormField>
                         <ChildContent>
@@ -42,18 +48,22 @@
                             <RadzenRequiredValidator Component="ConfirmPassword" Text="Retype Password is required" Popup=true Style="position: absolute" />
                         </Helper>
                     </RadzenFormField>
-                </RadzenStack>
+                </RadzenColumn>
             }
-            <RadzenStack Orientation="Radzen.Orientation.Horizontal" Gap="0.5rem" JustifyContent="JustifyContent.SpaceEvenly">
-                <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="@(IsSignUpMode ? "Sign me in!" : "Hack into my acc ;]")" />
-                <RadzenButton Text="Cancel" Click="@(() => DialogService.Close())" ButtonStyle="ButtonStyle.Light" />
-            </RadzenStack>
-            @if (!IsSignUpMode)
-            {
-                <RadzenStack>
-                    <RadzenLink Text="Sign up for account (it's free btw,tho I know storing passwords on other people's server are always never safe" onclick="@(() => DialogService.Close("SignUp"))" />
-                </RadzenStack>
-            }
+            <div>
+                <RadzenColumn class="my-4">
+                    <RadzenStack Orientation="Radzen.Orientation.Horizontal" Gap="0.5rem" JustifyContent="JustifyContent.End">
+                        <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="@(IsSignUpMode ? "Sign me in!" : "Hack into my acc ;]")" />
+                        <RadzenButton Text="Cancel" Click="@(() => DialogService.Close())" ButtonStyle="ButtonStyle.Light" />
+                    </RadzenStack>
+                </RadzenColumn>
+                @if (!IsSignUpMode)
+                {
+                    <RadzenColumn class="my-3">
+                        <RadzenLink Text="Sign up for account (it's free btw,tho I know storing passwords on other people's server are always never safe" onclick="@(() => DialogService.Close("SignUp"))" />
+                    </RadzenColumn>
+                }
+            </div>
         </RadzenStack>
     </RadzenStack>
  </RadzenTemplateForm>
