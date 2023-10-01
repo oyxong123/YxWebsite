@@ -30,21 +30,21 @@
 
     .yx-upload-fab{
         position: fixed;
-        bottom: 16px;
+        bottom: 86px;
         left: 16px;
     }
 
     .yx-tools-fab {
         position: fixed;
         bottom: 16px;
-        left: 80px;
+        left: 16px;
     }
 </style>
 
 <MudDrawer @bind-Open="OpenToolsDrawer" ClipMode="DrawerClipMode.Docked" Width="300px" Anchor="Anchor.End" Elevation="0" Variant="@DrawerVariant.Responsive" Style="top: calc(var(--mud-appbar-height) - var(--mud-appbar-height)/4 + 1px);">
      <MudDrawerHeader Class="d-flex justify-content-center" Style="height:40px; min-height:40px;">
-         <MudText Typo="Typo.body1"><strong><u>Tools</u></strong></MudText>
-        <MudIconButton OnClick="ReloadLcCategory" Icon="@Icons.Material.Filled.ArrowCircleUp" />
+        <MudText Typo="Typo.body1"><strong><u>Tools</u></strong></MudText>
+        <MudIconButton OnClick="ConfirmLcCategorySwitch" Icon="@Icons.Material.Filled.ArrowCircleUp" />
      </MudDrawerHeader>
      <MudNavMenu Class="d-flex justify-content-center">
         <MudStack Spacing="1">
@@ -145,6 +145,26 @@ else
     private string selectedLcCategoryString = "";
     private LcCategoryDto selectedLcCategory = new();
 
+    protected override async Task OnInitializedAsync()
+    {
+        lcCategoryList = await LcCategoryService.GetAllLcCategories();
+        lcCategoryNameList = lcCategoryList.Select(u => u.Name).ToList();
+        if (lcCategoryNameList.Any())
+        {
+            selectedLcCategoryString = lcCategoryNameList.First();
+            lcCategoryChanged();
+        }
+
+        lcDtoDisplayList = await LcService.GetAllLcRecordByLcCategory();
+        foreach (LcDto lc in lcDtoDisplayList)
+        {
+            lc.RecordIdString = "#" + lc.RecordId.ToString();
+            lc.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(lc.Image);
+        }
+
+        IsInitialized = true;
+    }
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -155,30 +175,9 @@ else
                 int loginId = sessionData.Value;
                 loginUser = await LoginService.GetLogin(loginId);
             }
-            StateHasChanged();
-        }
-    }
-
-    protected override async Task OnParametersSetAsync()
-    {
-        lcDtoDisplayList = await LcService.GetAllLcRecord();
-        foreach (LcDto lc in lcDtoDisplayList)
-        {
-            lc.RecordIdString = "#" + lc.RecordId.ToString();
-            lc.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(lc.Image);
         }
 
-        lcCategoryList = await LcCategoryService.GetAllLcCategories();
-        lcCategoryNameList = lcCategoryList.Select(u => u.Name).ToList();
-        if (lcCategoryNameList.Any())
-        {
-            selectedLcCategoryString = lcCategoryNameList.First();
-            lcCategoryChanged();
-        }
 
-        IsInitialized = true;
-
-        await base.OnParametersSetAsync();
     }
 
     private async Task lcUpload()
@@ -227,7 +226,7 @@ else
         }
     }
 
-    private async Task ReloadLcCategory()
+    private async Task ConfirmLcCategorySwitch()
     {
         try
         {

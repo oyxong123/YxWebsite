@@ -1,7 +1,6 @@
 ﻿/*
 
 What I Did:
-- Styled Login dialog.
 - 
 
 Excited Achievements:
@@ -10,6 +9,8 @@ Excited Achievements:
 - 
 
 Website Plans:
+- Make LC Category dropdown's text unhighlightable. (https://linuxhint.com/make-text-unselectable-css/)
+- Set up the new LC records records call now based on LcCategory selected.
 - Find a way to make the right-side LC Category Nav Menu not push the entire screen to the left.
 - In the Lc Category nav menu dropdown. Under the drop down itself. There will be a mudpaper column of sorts that displays the basic info of the category selected. 
 - When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
@@ -22,7 +23,8 @@ Special Notes:
 - The dialogs of Radzen look better. Use Radzen for dialogs. 
 - New and edit pages/dialog should reuse the same component/code to reduce duplicated code.
 - Resizing image reference: https://www.editorx.com/shaping-design/article/resize-image-css
- 
+- Blazor component lifecycle reference: https://blazor-university.com/components/component-lifecycles/ 
+
 Thoughts:
 > 
 
@@ -33,6 +35,19 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_10_01
+- Progress set up LC records retrieval based on LcCategory selected.
+- Learn about blazor lifecycle.
+> Learned about blazor lifecycle which is those oninitializedasync, onparametersetasync, onafterrenderasync, statehaschanged those etc.
+> 原来blazor lifecycle有那么深奥的inner workings to understand啊..
+> 哦哦哦哦，原来OnParametersSetAsync就是一个会去react那些其他page pass过来的values的method。所以讲如果page已经load了。然后突然有新的parameter value从其他page pass过来，这个method就会自动被叫了。~~~
+> Blazor University has the best Blazor Component Lifecycle diagram I ever saw so far.
+> 啊啊啊啊，现在明白了blazor component lifecycle过后我才发现，原来我之前在onafterrenderasync里面call statehaschanged是多么多余的method call呀啊~~
+
+2023_09_30
+- Styled Login dialog.
+- Styled LC Category nav menu.
 
 2023_09_29
 - Styled LC Category Nav Menu.
