@@ -41,37 +41,37 @@
     }
 </style>
 
-<MudDrawer @bind-Open="OpenToolsDrawer" ClipMode="DrawerClipMode.Docked" Width="300px" Anchor="Anchor.End" Elevation="0" Variant="@DrawerVariant.Responsive" Style="top: calc(var(--mud-appbar-height) - var(--mud-appbar-height)/4 + 1px);">
-     <MudDrawerHeader Class="d-flex justify-content-center" Style="height:40px; min-height:40px;">
-        <MudText Typo="Typo.body1"><strong><u>Tools</u></strong></MudText>
-        <MudIconButton OnClick="ConfirmLcCategorySwitch" Icon="@Icons.Material.Filled.ArrowCircleUp" />
-     </MudDrawerHeader>
-     <MudNavMenu Class="d-flex justify-content-center">
-        <MudStack Spacing="1">
-            <RadzenLabel Component="LcCategoryDropdown" class="mx-3 mt-3 p-1"><strong>LC Category</strong></RadzenLabel>
-            <RadzenDropDown Data="lcCategoryNameList" Value="selectedLcCategoryString" ValueChanged="lcCategoryChanged" TValue="string" Name="LcCategoryDropdown" class="mx-3 p-2" />
-            <MudCard Elevation="2" Class="m-3 p-2">
-                <RadzenStack Orientation="Radzen.Orientation.Vertical" Gap="2rem">
-                    <RadzenColumn>
-                        <MudText Typo="Typo.body2"><strong>Name:</strong></MudText>
-                        <MudText Typo="Typo.body2">@selectedLcCategory.Name</MudText>
-                    </RadzenColumn>
-                    <RadzenColumn>
-                        <MudText Typo="Typo.body2"><strong>Category:</strong></MudText>
-                        <MudText Typo="Typo.body2">@selectedLcCategory.Type</MudText>
-                    </RadzenColumn>
-                    <RadzenColumn>
-                        <MudText Typo="Typo.body2"><strong>Description:</strong></MudText>
-                        <MudText Typo="Typo.body2">@selectedLcCategory.Description</MudText>
-                    </RadzenColumn>
-                </RadzenStack>
-            </MudCard>
-        </MudStack>
-     </MudNavMenu>
- </MudDrawer>
-
 @if (IsInitialized)
 {
+    <MudDrawer @bind-Open="OpenToolsDrawer" ClipMode="DrawerClipMode.Docked" Width="300px" Anchor="Anchor.End" Elevation="0" Variant="@DrawerVariant.Responsive" Style="top: calc(var(--mud-appbar-height) - var(--mud-appbar-height)/4 + 1px);">
+        <MudDrawerHeader Class="d-flex justify-content-center" Style="height:40px; min-height:40px;">
+            <MudText Typo="Typo.body1"><strong><u>Tools</u></strong></MudText>
+            <MudIconButton OnClick="ConfirmLcCategorySwitch" Icon="@Icons.Material.Filled.ArrowCircleUp" />
+        </MudDrawerHeader>
+        <MudNavMenu Class="d-flex justify-content-center">
+            <MudStack Spacing="1">
+                <RadzenLabel Component="LcCategoryDropdown" class="mx-3 mt-3 p-1"><strong>LC Category</strong></RadzenLabel>
+                <RadzenDropDown Data="lcCategoryNameList" @bind-Value="selectedLcCategoryString" @bind-Value:after="lcCategoryChanged" TValue="string" Name="LcCategoryDropdown" class="mx-3 p-2" />
+                <MudCard Elevation="2" Class="m-3 p-2">
+                    <RadzenStack Orientation="Radzen.Orientation.Vertical" Gap="2rem">
+                        <RadzenColumn>
+                            <MudText Typo="Typo.body2"><strong>Name:</strong></MudText>
+                            <MudText Typo="Typo.body2">@selectedLcCategory.Name</MudText>
+                        </RadzenColumn>
+                        <RadzenColumn>
+                            <MudText Typo="Typo.body2"><strong>Category:</strong></MudText>
+                            <MudText Typo="Typo.body2">@selectedLcCategory.Type</MudText>
+                        </RadzenColumn>
+                        <RadzenColumn>
+                            <MudText Typo="Typo.body2"><strong>Description:</strong></MudText>
+                            <MudText Typo="Typo.body2">@selectedLcCategory.Description</MudText>
+                        </RadzenColumn>
+                    </RadzenStack>
+                </MudCard>
+            </MudStack>
+        </MudNavMenu>
+    </MudDrawer>
+
     <h3>Language Cottage</h3>
 
     <MudContainer MaxWidth="MaxWidth.Small">
@@ -137,7 +137,7 @@ else
 
 @code {
     private List<LcDto> lcDtoDisplayList = new();
-    private IEnumerable<LcCategoryDto> lcCategoryList = Enumerable.Empty<LcCategoryDto>();
+    private List<LcCategoryDto> lcCategoryList = new();
     private IEnumerable<string> lcCategoryNameList = Enumerable.Empty<string>();
     private LoginDto loginUser = new();
     private bool IsInitialized = false;
@@ -153,13 +153,7 @@ else
         {
             selectedLcCategoryString = lcCategoryNameList.First();
             lcCategoryChanged();
-        }
-
-        lcDtoDisplayList = await LcService.GetAllLcRecordByLcCategory();
-        foreach (LcDto lc in lcDtoDisplayList)
-        {
-            lc.RecordIdString = "#" + lc.RecordId.ToString();
-            lc.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(lc.Image);
+            ConfirmLcCategorySwitch();
         }
 
         IsInitialized = true;
@@ -176,8 +170,6 @@ else
                 loginUser = await LoginService.GetLogin(loginId);
             }
         }
-
-
     }
 
     private async Task lcUpload()
@@ -217,8 +209,7 @@ else
     {
         try
         {
-            LcCategoryDto lcCategoryDto = lcCategoryList.Single(u => u.Name == selectedLcCategoryString);
-            selectedLcCategory = lcCategoryDto;
+            selectedLcCategory = lcCategoryList.Single(u => u.Name == selectedLcCategoryString);
         }
         catch (Exception ex)
         {
@@ -230,7 +221,14 @@ else
     {
         try
         {
-            //await OnParametersSetAsync(); no, cuz we need to load based on category selection
+            lcCategoryChanged();
+            lcDtoDisplayList = await LcService.GetAllLcRecordByLcCategory(selectedLcCategory.Id);
+            foreach (LcDto lc in lcDtoDisplayList)
+            {
+                lc.RecordIdString = "#" + lc.RecordId.ToString();
+                lc.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(lc.Image);
+            }
+            StateHasChanged();
         }
         catch (Exception ex)
         {

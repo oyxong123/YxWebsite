@@ -172,7 +172,7 @@ namespace YxWebsite.Services
             }
         }
 
-        public async Task<List<LcDto>> GetAllLcRecord()
+        public async Task<List<LcDto>> GetAllLcRecordByLcCategory(int lcCategoryId)
         {
             try
             {
@@ -184,7 +184,7 @@ namespace YxWebsite.Services
                     }
 
                     List<LcDto> lcDtoList = new();
-                    List<LcModel> _lcList = await _context.DbLanguageCottage.OrderBy(lc => lc.RecordId).ToListAsync();
+                    List<LcModel> _lcList = await _context.DbLanguageCottage.Where(u => u.LcCategoryId == lcCategoryId).OrderBy(lc => lc.RecordId).ToListAsync();
                     foreach (LcModel _lc in _lcList)
                     {
                         LcDto _lcModel = _mapper.Map<LcDto>(_lc);
@@ -211,11 +211,7 @@ namespace YxWebsite.Services
                         throw new Exception("DbLanguageCottage is not initialized.");
                     }
 
-                    LcModel? _lcModel = await _context.DbLanguageCottage.SingleOrDefaultAsync(lc => lc.Id == lcId);
-                    if (_lcModel == null)
-                    {
-                        throw new Exception("Lc record not found.");
-                    }
+                    LcModel? _lcModel = await _context.DbLanguageCottage.SingleOrDefaultAsync(lc => lc.Id == lcId) ?? throw new Exception("Lc record not found.");
                     LcDto lcDto = _mapper.Map<LcDto>(_lcModel);
 
                     return lcDto;

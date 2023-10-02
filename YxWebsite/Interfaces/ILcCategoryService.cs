@@ -4,6 +4,6 @@ namespace YxWebsite.Interfaces
 {
     public interface ILcCategoryService
     {
-        Task<IEnumerable<LcCategoryDto>> GetAllLcCategories();
+        Task<List<LcCategoryDto>> GetAllLcCategories();
     }
 }

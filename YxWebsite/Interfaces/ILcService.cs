@@ -7,7 +7,7 @@ namespace YxWebsite.Interfaces
         Task<LcDto> UploadLcRecord(LcDto lcDto);
         Task<bool> EditLcRecord(LcDto lcDto, int lcId);
         Task<bool> DeleteLcRecord(LcDto deleteLcDto);
-        Task<List<LcDto>> GetAllLcRecord();
+        Task<List<LcDto>> GetAllLcRecordByLcCategory(int lcCategoryId);
         Task<LcDto> GetLcRecordById(int lcId);
     }
 }

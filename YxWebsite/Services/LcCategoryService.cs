@@ -21,7 +21,7 @@ namespace YxWebsite.Services
             _auditTrailsService = auditTrailsService;
         }
 
-        public async Task<IEnumerable<LcCategoryDto>> GetAllLcCategories()
+        public async Task<List<LcCategoryDto>> GetAllLcCategories()
         {
             try
             {
@@ -32,8 +32,8 @@ namespace YxWebsite.Services
                         throw new Exception("LC Category" + __tableNotInitialized);
                     }
 
-                    IEnumerable<LcCategoryModel> lcCategoryModelList = await _context.DbLanguageCottageCategory.ToListAsync();
-                    IEnumerable<LcCategoryDto> lcCategoryDtoList = lcCategoryModelList.Select(u => _mapper.Map<LcCategoryDto>(u)).ToList();
+                    List<LcCategoryModel> lcCategoryModelList = await _context.DbLanguageCottageCategory.ToListAsync();
+                    List<LcCategoryDto> lcCategoryDtoList = lcCategoryModelList.Select(_mapper.Map<LcCategoryDto>).ToList();
                     return lcCategoryDtoList;
                 }
             }

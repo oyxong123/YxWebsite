@@ -1,7 +1,7 @@
 ﻿/*
 
 What I Did:
-- 
+- Successfully coded out logic for switching LC category in LC page. 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -26,6 +26,7 @@ Special Notes:
 - Blazor component lifecycle reference: https://blazor-university.com/components/component-lifecycles/ 
 
 Thoughts:
+> Understanding this blazr lifecycle is so challenging.
 > 
 
 */
@@ -39,6 +40,7 @@ Development Log:
 2023_10_01
 - Progress set up LC records retrieval based on LcCategory selected.
 - Learn about blazor lifecycle.
+- Adjust LC page FAB icons.
 > Learned about blazor lifecycle which is those oninitializedasync, onparametersetasync, onafterrenderasync, statehaschanged those etc.
 > 原来blazor lifecycle有那么深奥的inner workings to understand啊..
 > 哦哦哦哦，原来OnParametersSetAsync就是一个会去react那些其他page pass过来的values的method。所以讲如果page已经load了。然后突然有新的parameter value从其他page pass过来，这个method就会自动被叫了。~~~
