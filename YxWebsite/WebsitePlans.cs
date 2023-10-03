@@ -1,7 +1,8 @@
 ﻿/*
 
 What I Did:
-- Successfully coded out logic for switching LC category in LC page. 
+- Fixed bugs and add QoL stuff to LC page.
+- 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -26,7 +27,8 @@ Special Notes:
 - Blazor component lifecycle reference: https://blazor-university.com/components/component-lifecycles/ 
 
 Thoughts:
-> Understanding this blazr lifecycle is so challenging.
+> It's time to steal code from project triangle again # v#
+> I think the website has already become stable enough for me to insert all my records now.
 > 
 
 */
@@ -36,6 +38,10 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_10_02
+- Successfully coded out logic for switching LC category in LC page. 
+> Understanding this blazr lifecycle is so challenging.
 
 2023_10_01
 - Progress set up LC records retrieval based on LcCategory selected.

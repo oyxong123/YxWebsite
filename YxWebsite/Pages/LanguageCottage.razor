@@ -20,7 +20,10 @@
     }
 
     .mud-card-content{
-        padding: 38px;
+        padding-top:20px;
+        padding-bottom: 30px;
+        padding-left: 38px;
+        padding-right: 38px;
     }
 
     .mud-card-content > div{
@@ -46,12 +49,12 @@
     <MudDrawer @bind-Open="OpenToolsDrawer" ClipMode="DrawerClipMode.Docked" Width="300px" Anchor="Anchor.End" Elevation="0" Variant="@DrawerVariant.Responsive" Style="top: calc(var(--mud-appbar-height) - var(--mud-appbar-height)/4 + 1px);">
         <MudDrawerHeader Class="d-flex justify-content-center" Style="height:40px; min-height:40px;">
             <MudText Typo="Typo.body1"><strong><u>Tools</u></strong></MudText>
-            <MudIconButton OnClick="ConfirmLcCategorySwitch" Icon="@Icons.Material.Filled.ArrowCircleUp" />
+            <MudIconButton OnClick="ConfirmLcCategorySwitch" Icon="@Icons.Material.Filled.ChangeCircle" Color="Color.Success" />
         </MudDrawerHeader>
         <MudNavMenu Class="d-flex justify-content-center">
             <MudStack Spacing="1">
-                <RadzenLabel Component="LcCategoryDropdown" class="mx-3 mt-3 p-1"><strong>LC Category</strong></RadzenLabel>
-                <RadzenDropDown Data="lcCategoryNameList" @bind-Value="selectedLcCategoryString" @bind-Value:after="lcCategoryChanged" TValue="string" Name="LcCategoryDropdown" class="mx-3 p-2" />
+                <RadzenLabel Component="LcCategoryDropdown" class="mx-3 mt-3 p-1"><strong>LC Category</strong></RadzenLabel> <!--Add a button here that opens a dialog that or changes the nav menu content to create new LC Categories-->
+                <RadzenDropDown Data="lcCategoryNameList" @bind-Value="selectedLcCategoryName" @bind-Value:after="lcCategoryChanged" TValue="string" Name="LcCategoryDropdown" class="mx-3 p-2" />
                 <MudCard Elevation="2" Class="m-3 p-2">
                     <RadzenStack Orientation="Radzen.Orientation.Vertical" Gap="2rem">
                         <RadzenColumn>
@@ -83,7 +86,7 @@
                         <!--placeholder-->
                     </CardHeaderAvatar>
                     <CardHeaderContent>
-                        <MudText Typo="Typo.overline">@selectedLcCategory.Name</MudText> <!--Change this so that it displays whatever game or media these records are from-->
+                        <MudText Typo="Typo.overline">@currentLcCategoryName</MudText>
                         <MudText Typo="Typo.body1">@lc.RecordIdString</MudText>
                     </CardHeaderContent>
                     <!--or maybe make it check a boolean from a button on page that triggers the edit mode?-->
@@ -132,7 +135,9 @@
 }
 else
 {
-    <!--Do the wait icon like in project triangle. -->
+    <RadzenProgressBarCircular ShowValue Mode="ProgressBarMode.Indeterminate" Size="ProgressBarCircularSize.Medium" class="center-loading">
+         <Template>Wait</Template>
+     </RadzenProgressBarCircular>
 }
 
 @code {
@@ -142,7 +147,8 @@ else
     private LoginDto loginUser = new();
     private bool IsInitialized = false;
     private bool OpenToolsDrawer = true;
-    private string selectedLcCategoryString = "";
+    private string selectedLcCategoryName = "";
+    private string currentLcCategoryName = "";
     private LcCategoryDto selectedLcCategory = new();
 
     protected override async Task OnInitializedAsync()
@@ -151,9 +157,9 @@ else
         lcCategoryNameList = lcCategoryList.Select(u => u.Name).ToList();
         if (lcCategoryNameList.Any())
         {
-            selectedLcCategoryString = lcCategoryNameList.First();
+            selectedLcCategoryName = lcCategoryNameList.First();
             lcCategoryChanged();
-            ConfirmLcCategorySwitch();
+            await ConfirmLcCategorySwitch();
         }
 
         IsInitialized = true;
@@ -209,7 +215,7 @@ else
     {
         try
         {
-            selectedLcCategory = lcCategoryList.Single(u => u.Name == selectedLcCategoryString);
+            selectedLcCategory = lcCategoryList.Single(u => u.Name == selectedLcCategoryName);
         }
         catch (Exception ex)
         {
@@ -228,6 +234,7 @@ else
                 lc.RecordIdString = "#" + lc.RecordId.ToString();
                 lc.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(lc.Image);
             }
+            currentLcCategoryName = selectedLcCategory.Name;
             StateHasChanged();
         }
         catch (Exception ex)
