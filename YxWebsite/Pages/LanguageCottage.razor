@@ -58,6 +58,9 @@
                 <MudCard Elevation="2" Class="m-3 p-2">
                     <RadzenStack Orientation="Radzen.Orientation.Vertical" Gap="2rem">
                         <RadzenColumn>
+                            <MudCardMedia Image="@selectedLcCategory.ImageUrl" Height="100" Class="ml-4 mr-4" Style="background-size:contain"/>
+                        </RadzenColumn>
+                        <RadzenColumn>
                             <MudText Typo="Typo.body2"><strong>Name:</strong></MudText>
                             <MudText Typo="Typo.body2">@selectedLcCategory.Name</MudText>
                         </RadzenColumn>
@@ -181,14 +184,14 @@ else
     private async Task lcUpload()
     {
         await DialogService.OpenAsync<LcDialog>("New LC Upload", new Dictionary<string, object> { { "IsEditForm", false }, { "PassedLcId", 0 } }, new Radzen.DialogOptions() { CssClass="dialog", Height="85%", Width="700px"});
-        await OnParametersSetAsync();
+        await ConfirmLcCategorySwitch();
         StateHasChanged();
     }
 
     private async Task lcEdit(LcDto lcEditDto)
     {
         await DialogService.OpenAsync<LcDialog>("Edit LC Record", new Dictionary<string, object> { { "IsEditForm", true }, { "PassedLcId", lcEditDto.Id } }, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width="700px" });
-        await OnParametersSetAsync();
+        await ConfirmLcCategorySwitch();
         StateHasChanged();
     }
 
@@ -200,7 +203,7 @@ else
             if (dialogResult == true)
             {
                 await LcService.DeleteLcRecord(lcDeleteDto);
-                await OnParametersSetAsync();
+                await ConfirmLcCategorySwitch();
                 StateHasChanged();
                 Snackbar.Add("Deleted LC record.", Severity.Success);
             }
@@ -235,6 +238,7 @@ else
                 lc.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(lc.Image);
             }
             currentLcCategoryName = selectedLcCategory.Name;
+            selectedLcCategory.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(selectedLcCategory.Image);
             StateHasChanged();
         }
         catch (Exception ex)

@@ -27,10 +27,8 @@ namespace YxWebsite.Dtos
             return (LcDto)this.MemberwiseClone();
         }
 
-        [NotMapped]
+        // Not mapped
         public string? ImageUrl { get; set; }
-
-        [NotMapped]
         public string RecordIdString { get; set; } = string.Empty;
     }
 }

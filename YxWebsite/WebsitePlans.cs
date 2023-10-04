@@ -1,8 +1,8 @@
 ﻿/*
 
 What I Did:
-- Fixed bugs and add QoL stuff to LC page.
-- 
+- Added migration for adding image to LC Category.
+- Styled LC Category nav menu for fitting its image. 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -27,9 +27,7 @@ Special Notes:
 - Blazor component lifecycle reference: https://blazor-university.com/components/component-lifecycles/ 
 
 Thoughts:
-> It's time to steal code from project triangle again # v#
-> I think the website has already become stable enough for me to insert all my records now.
-> 
+> I don't know whatelse to say seeing this image other than stunning..
 
 */
 
@@ -38,6 +36,11 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_10_03
+- Fixed bugs and add QoL stuff to LC page.
+> It's time to steal code from project triangle again # v#
+> I think the website has already become stable enough for me to insert all my records now.
 
 2023_10_02
 - Successfully coded out logic for switching LC category in LC page. 
