@@ -54,7 +54,7 @@
         <MudNavMenu Class="d-flex justify-content-center">
             <MudStack Spacing="1">
                 <RadzenLabel Component="LcCategoryDropdown" class="mx-3 mt-3 p-1"><strong>LC Category</strong></RadzenLabel> <!--Add a button here that opens a dialog that or changes the nav menu content to create new LC Categories-->
-                <RadzenDropDown Data="lcCategoryNameList" @bind-Value="selectedLcCategoryName" @bind-Value:after="lcCategoryChanged" TValue="string" Name="LcCategoryDropdown" class="mx-3 p-2" />
+                <RadzenDropDown Data="lcCategoryNameList" @bind-Value="selectedLcCategoryName" @bind-Value:after="lcCategoryChanged" TValue="string" Name="LcCategoryDropdown" class="mx-3 p-2" Style="user-select: none;" />
                 <MudCard Elevation="2" Class="m-3 p-2">
                     <RadzenStack Orientation="Radzen.Orientation.Vertical" Gap="2rem">
                         <RadzenColumn>
@@ -164,7 +164,6 @@ else
             lcCategoryChanged();
             await ConfirmLcCategorySwitch();
         }
-
         IsInitialized = true;
     }
 

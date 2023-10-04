@@ -25,6 +25,7 @@
         public required string Phrase { get; set; }
         public required string PronunciationKatakana { get; set; }
         public required string PronunciationHiragana { get; set; }
+        //public required string Phoenetic { get; set; }
         public required string Romaji { get; set; }
         public required string Meaning { get; set; }
         public required DateTime AddedDateTime { get; set; }

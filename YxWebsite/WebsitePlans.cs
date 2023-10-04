@@ -3,6 +3,7 @@
 What I Did:
 - Added migration for adding image to LC Category.
 - Styled LC Category nav menu for fitting its image. 
+- Made LC Category dropdown's text unhighlightable.
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -10,12 +11,10 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Make LC Category dropdown's text unhighlightable. (https://linuxhint.com/make-text-unselectable-css/)
-- Set up the new LC records records call now based on LcCategory selected.
-- Find a way to make the right-side LC Category Nav Menu not push the entire screen to the left.
-- In the Lc Category nav menu dropdown. Under the drop down itself. There will be a mudpaper column of sorts that displays the basic info of the category selected. 
-- When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
+- Why AfterRenderAsync cannot run if I put all OnInitializedAsync code in it?
 - Fix image aspect ratio in lc dialog. (aspect ratio)
+- Start designing and adding Conscioussness Void page. 
+- When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
 - Implement LC category selection. (Have another nav menu of sorts at right or left side to show what category the user is viewing, they can switch to other categories at any time)
 - Add search feature to search for the record based on record ID in top right side of the page.
 - Seems like it's only when the page goes to the splash screen that the nav menu collapses to its header nav item closed. (see if there is a workaround around this, tho it has quite a low priority)
@@ -28,6 +27,7 @@ Special Notes:
 
 Thoughts:
 > I don't know whatelse to say seeing this image other than stunning..
+> 
 
 */
 
