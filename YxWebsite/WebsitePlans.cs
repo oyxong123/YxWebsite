@@ -1,9 +1,7 @@
 ﻿/*
 
 What I Did:
-- Added migration for adding image to LC Category.
-- Styled LC Category nav menu for fitting its image. 
-- Made LC Category dropdown's text unhighlightable.
+- 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -11,8 +9,9 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Why AfterRenderAsync cannot run if I put all OnInitializedAsync code in it?
+- Create lC Category edit dialog. 
 - Fix image aspect ratio in lc dialog. (aspect ratio)
+- Why AfterRenderAsync cannot run if I put all OnInitializedAsync code in it?
 - Start designing and adding Conscioussness Void page. 
 - When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
 - Implement LC category selection. (Have another nav menu of sorts at right or left side to show what category the user is viewing, they can switch to other categories at any time)
@@ -26,16 +25,28 @@ Special Notes:
 - Blazor component lifecycle reference: https://blazor-university.com/components/component-lifecycles/ 
 
 Thoughts:
-> I don't know whatelse to say seeing this image other than stunning..
 > 
 
 */
 
-
+ 
 
 /*
 
 Development Log:
+
+2023_10_07
+- Cleaned code.
+- Fix some stuff I missed in previous file that I missed.
+- Added buttons to add and edit LC Category.
+- Halfway created LC Category edit dialog.
+- Fixed some previous Lc service mames.
+
+2023_10_04
+- Added migration for adding image to LC Category.
+- Styled LC Category nav menu for fitting its image. 
+- Made LC Category dropdown's text unhighlightable.
+> I don't know what else to say seeing this image other than stunning..
 
 2023_10_03
 - Fixed bugs and add QoL stuff to LC page.

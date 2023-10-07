@@ -21,7 +21,7 @@ namespace YxWebsite.Services
             _auditTrailsService = auditTrailsService;
         }
 
-        public async Task<LcDto> UploadLcRecord(LcDto newLcDto)
+        public async Task<LcDto> UploadLcRecord(LcDto newLc)
         {
             try
             {
@@ -33,41 +33,41 @@ namespace YxWebsite.Services
                     }
 
                     // Set latest LC's record ID as plus one of the previous record if no record ID is specified.
-                    if (newLcDto.RecordId == 0)
+                    if (newLc.RecordId == 0)
                     {
                         LcDto? previousRecordDto = _mapper.Map<LcDto>(await _context.DbLanguageCottage.OrderByDescending(lc => lc.RecordId).FirstOrDefaultAsync());
                         if (previousRecordDto == null)
                         {
-                            newLcDto.RecordId = 1;
+                            newLc.RecordId = 1;
                         }
                         else
                         {
-                            newLcDto.RecordId = ++previousRecordDto.RecordId;
+                            newLc.RecordId = ++previousRecordDto.RecordId;
                         }
                     }
                     else
                     {
                         // Insert the new record to a previous Record ID location and increment/decrement other records by 1 to fill in its previous location.
-                        if (await _context.DbLanguageCottage.AnyAsync(lc => lc.RecordId == newLcDto.RecordId))
+                        if (await _context.DbLanguageCottage.AnyAsync(lc => lc.RecordId == newLc.RecordId))
                         {
                             // Increment all record ID larger than the specified record ID by 1.
-                            await _context.DbLanguageCottage.Where(lc => lc.RecordId >= newLcDto.RecordId).ExecuteUpdateAsync(lc => lc.SetProperty(u => u.RecordId, u => u.RecordId + 1));
+                            await _context.DbLanguageCottage.Where(lc => lc.RecordId >= newLc.RecordId).ExecuteUpdateAsync(lc => lc.SetProperty(u => u.RecordId, u => u.RecordId + 1));
                         }
                     }
                     
-                    LcModel _lcModel = _mapper.Map<LcModel>(newLcDto);
+                    LcModel _lcModel = _mapper.Map<LcModel>(newLc);
                     await _context.DbLanguageCottage.AddAsync(_lcModel);
                     await _context.SaveChangesAsync();
 
                     AuditTrailsDto _auditTrailsDto = new()
                     {
-                        Description = "Inserted LC Record at Record ID #" + newLcDto.RecordId,
+                        Description = "Inserted LC Record at Record ID #" + newLc.RecordId,
                         AddedDateTime = DateTime.UtcNow
                     };
                     await _auditTrailsService.AddAuditTrail(_auditTrailsDto);
                 }
 
-                return newLcDto;
+                return newLc;
             }
             catch (Exception ex)
             {
@@ -75,7 +75,7 @@ namespace YxWebsite.Services
             }
         }
 
-        public async Task<bool> EditLcRecord(LcDto editLcDto, int lcId)
+        public async Task<bool> EditLcRecord(LcDto modifiedLc, int lcId)
         {
             try
             {
@@ -87,44 +87,44 @@ namespace YxWebsite.Services
                     }
 
                     // Set latest LC's record ID as plus one of the previous record if no record ID is specified.
-                    if (editLcDto.RecordId == 0)
+                    if (modifiedLc.RecordId == 0)
                     {
                         LcDto? previousRecordDto = _mapper.Map<LcDto>(await _context.DbLanguageCottage.OrderByDescending(lc => lc.RecordId).FirstOrDefaultAsync());
                         if (previousRecordDto == null)
                         {
-                            editLcDto.RecordId = 1;
+                            modifiedLc.RecordId = 1;
                         }
                         else
                         {
-                            editLcDto.RecordId = ++previousRecordDto.RecordId;
+                            modifiedLc.RecordId = ++previousRecordDto.RecordId;
                         }
                     }
                     else
                     {
                         // Insert the new record to a previous Record ID location and increment/decrement other records by 1 to fill in its previous location.
-                        if (await _context.DbLanguageCottage.AnyAsync(lc => lc.RecordId == editLcDto.RecordId))
+                        if (await _context.DbLanguageCottage.AnyAsync(lc => lc.RecordId == modifiedLc.RecordId))
                         {
                             int oldRecordId = await _context.DbLanguageCottage.Where(lc => lc.Id == lcId).Select(lc => lc.RecordId).SingleOrDefaultAsync();
-                            if (editLcDto.RecordId < oldRecordId)
+                            if (modifiedLc.RecordId < oldRecordId)
                             {
                                 // Increment all record ID equal or larger than the specified record ID and smaller than the old RecordID by 1.
-                                await _context.DbLanguageCottage.Where(lc => lc.RecordId >= editLcDto.RecordId && lc.RecordId < oldRecordId).ExecuteUpdateAsync(lc => lc.SetProperty(u => u.RecordId, u => u.RecordId + 1));
+                                await _context.DbLanguageCottage.Where(lc => lc.RecordId >= modifiedLc.RecordId && lc.RecordId < oldRecordId).ExecuteUpdateAsync(lc => lc.SetProperty(u => u.RecordId, u => u.RecordId + 1));
                             }
-                            else if (editLcDto.RecordId > oldRecordId)
+                            else if (modifiedLc.RecordId > oldRecordId)
                             {
                                 // Decrement all record ID equal or lesser than the specified record ID and larger than the old RecordID by 1.
-                                await _context.DbLanguageCottage.Where(lc => lc.RecordId <= editLcDto.RecordId && lc.RecordId > oldRecordId).ExecuteUpdateAsync(lc => lc.SetProperty(u => u.RecordId, u => u.RecordId - 1));
+                                await _context.DbLanguageCottage.Where(lc => lc.RecordId <= modifiedLc.RecordId && lc.RecordId > oldRecordId).ExecuteUpdateAsync(lc => lc.SetProperty(u => u.RecordId, u => u.RecordId - 1));
                             }
                         }
                     }
 
-                    LcModel _lcModel = _mapper.Map<LcModel>(editLcDto);
+                    LcModel _lcModel = _mapper.Map<LcModel>(modifiedLc);
                     _context.Entry(_lcModel).State = EntityState.Modified;
                     await _context.SaveChangesAsync();
 
                     AuditTrailsDto _auditTrailsDto = new()
                     {
-                        Description = "Inserted LC Record at Record ID #" + editLcDto.RecordId,
+                        Description = "Inserted LC Record at Record ID #" + modifiedLc.RecordId,
                         AddedDateTime = DateTime.UtcNow
                     };
                     await _auditTrailsService.AddAuditTrail(_auditTrailsDto);
@@ -138,7 +138,7 @@ namespace YxWebsite.Services
             }
         }
 
-        public async Task<bool> DeleteLcRecord(LcDto deleteLcDto)
+        public async Task<bool> DeleteLcRecord(LcDto deletingLc)
         {
             try
             {
@@ -150,15 +150,15 @@ namespace YxWebsite.Services
                     }
 
                     // Decrement all record ID larger than the deleting record's record ID.
-                    await _context.DbLanguageCottage.Where(lc => lc.RecordId > deleteLcDto.RecordId).ExecuteUpdateAsync(lc => lc.SetProperty(u => u.RecordId, u => u.RecordId - 1));
+                    await _context.DbLanguageCottage.Where(lc => lc.RecordId > deletingLc.RecordId).ExecuteUpdateAsync(lc => lc.SetProperty(u => u.RecordId, u => u.RecordId - 1));
 
-                    LcModel _lcModel = _mapper.Map<LcModel>(deleteLcDto);
+                    LcModel _lcModel = _mapper.Map<LcModel>(deletingLc);
                     _context.Remove(_lcModel);
                     await _context.SaveChangesAsync();
 
                     AuditTrailsDto _auditTrailsDto = new()
                     {
-                        Description = "Inserted LC Record at Record ID #" + deleteLcDto.RecordId,
+                        Description = "Inserted LC Record at Record ID #" + deletingLc.RecordId,
                         AddedDateTime = DateTime.UtcNow
                     };
                     await _auditTrailsService.AddAuditTrail(_auditTrailsDto);

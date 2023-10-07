@@ -1,28 +1,27 @@
-﻿
-@using Dtos;
+﻿@using Dtos;
 @using Interfaces;
 @inject Radzen.DialogService DialogService
-@inject ILcService ILcService
+@inject ILcCategoryService ILCategorycService
 @inject ISnackbar Snackbar
 
 <style>
-    .yx-center{
+    .yx-center {
         display: flex;
         text-align: center;
-        justify-content: center;   
-        margin:auto;
+        justify-content: center;
+        margin: auto;
     }
 
-    .yx-img{
+    .yx-img {
         height: 100%;
         width: 100%;
-        background-size: contain; 
+        background-size: contain;
         background-repeat: no-repeat;
         background-position: 50% 50%;
     }
 </style>
 
-<RadzenTemplateForm TItem="LcDto" Data="lcForm" Submit="ProcessLcRecord" class="modal-body">
+<RadzenTemplateForm TItem="LcCategoryDto" Data="lcCategoryForm" Submit="ProcessLcCategoryRecord" class="modal-body">
     <RadzenStack Gap="1.5rem">
         <RadzenStack>
             <RadzenColumn>
@@ -32,7 +31,7 @@
                         @if (imageUploaded)
                         {
                             <MudPaper Height="246px" Width="386px" Outlined="true" Class="@DragClass" Style="padding:8px !important">
-                                <MudImage Src="@lcForm.ImageUrl" Alt="Image for Upload" Elevation="25" Class="rounded-lg yx-img" />
+                                <MudImage Src="@lcCategoryForm.ImageUrl" Alt="Image for Upload" Elevation="25" Class="rounded-lg yx-img" />
                             </MudPaper>
                         }
                         else
@@ -50,7 +49,7 @@
                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Englsih Translation<span class="text-danger">*</span></RadzenText>
                 <RadzenFormField class="w-100">
                     <ChildContent>
-                        <RadzenTextArea Name="EnglishTranslation" @bind-Value="lcForm.EnglishTranslation" class="w-100" />
+                        <RadzenTextArea Name="EnglishTranslation" @bind-Value="lcCategoryForm.EnglishTranslation" class="w-100" />
                     </ChildContent>
                     <Helper>
                         <RadzenRequiredValidator Component="EnglishTranslation" Text="English Translation is required" Popup=true Style="position: absolute" />
@@ -61,19 +60,19 @@
         <RadzenStack>
             <RadzenColumn>
                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Original Text</RadzenText>
-                <RadzenTextArea @bind-Value="lcForm.OriginalText" class="w-100" />
+                <RadzenTextArea @bind-Value="lcCategoryForm.OriginalText" class="w-100" />
             </RadzenColumn>
         </RadzenStack>
         <RadzenStack>
             <RadzenColumn>
                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Romaji</RadzenText>
-                <RadzenTextArea @bind-Value="lcForm.Romaji" class="w-100" />
+                <RadzenTextArea @bind-Value="lcCategoryForm.Romaji" class="w-100" />
             </RadzenColumn>
         </RadzenStack>
         <RadzenStack>
             <RadzenColumn>
                 <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Commentary</RadzenText>
-                <RadzenTextArea @bind-Value="lcForm.Commentary" class="w-100" />
+                <RadzenTextArea @bind-Value="lcCategoryForm.Commentary" class="w-100" />
             </RadzenColumn>
         </RadzenStack>
         <RadzenStack>
@@ -87,28 +86,27 @@
                 </RadzenText>
                 <RadzenFormField>
                     <ChildContent>
-                        <RadzenTextBox Name="RecordIdString" @bind-Value="lcForm.RecordIdString" class="w-100" />
+                        <RadzenTextBox Name="RecordIdString" @bind-Value="lcCategoryForm.RecordIdString" class="w-100" />
                     </ChildContent>
                     <Helper>
-                        <RadzenCustomValidator Component="RecordIdString" Validator="@(() => ValidateRecordIdString(lcForm.RecordIdString))" Text="@validatorTextRecordIdString" Popup />
+                        <RadzenCustomValidator Component="RecordIdString" Validator="@(() => ValidateRecordIdString(lcCategoryForm.RecordIdString))" Text="@validatorTextRecordIdString" Popup />
                      </Helper>
                  </RadzenFormField>
-            </RadzenColumn>
-        </RadzenStack>
-        <RadzenStack Orientation="Radzen.Orientation.Horizontal" JustifyContent="JustifyContent.End">
-            <RadzenButton Text="Cancel" Click="closeDialog" ButtonStyle="ButtonStyle.Light" />
-            <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="Shine!!" Style="width: 80px;" />
-        </RadzenStack>
-    </RadzenStack>
+             </RadzenColumn>
+         </RadzenStack>
+         <RadzenStack Orientation="Radzen.Orientation.Horizontal" JustifyContent="JustifyContent.End">
+             <RadzenButton Text="Cancel" Click="closeDialog" ButtonStyle="ButtonStyle.Light" />
+             <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="Shine!!" Style="width: 80px;" />
+         </RadzenStack>
+     </RadzenStack>
  </RadzenTemplateForm>
 
  @code {
     [Parameter] public bool IsEditForm { get; set; }
-    [Parameter] public int PassedLcId { get; set; }
     [Parameter] public int PassedLcCategoryId { get; set; }
     private bool imageUploaded = false;
     private IBrowserFile? imageFile;
-    private LcDto lcForm = new()
+    private LcCategoryDto lcCategoryForm = new()
         {
             AddedDateTime = DateTime.UtcNow,
             LastModifiedDateTime = DateTime.UtcNow
@@ -118,36 +116,28 @@
     private static string DefaultDragClass = "relative rounded-lg border-2 border-dashed pa-4 mud-width-full mud-height-full z-10 yx-center";
     private string DragClass = DefaultDragClass;
 
-    // Validator text variables.
-    private string validatorTextRecordIdString = string.Empty;
-
     protected override async Task OnInitializedAsync()
     {
         if (IsEditForm)
         {
-            LcDto lcDto = await ILcService.GetLcRecordById(PassedLcId);
-            lcForm = lcDto.ShallowCopy();
-            lcForm.ImageUrl = string.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String(lcForm.Image));
-            lcForm.RecordIdString = lcForm.RecordId.ToString();
+            LcCategoryDto lcCategoryDto = await ILcCategoryService.GetLcCategoryRecordById(PassedLcCategoryId);
+            lcCategoryForm = lcCategoryDto.ShallowCopy();
+            lcCategoryForm.ImageUrl = string.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String(lcCategoryForm.Image));
             imageUploaded = true;
         }
     }
 
-    private async Task ProcessLcRecord()
+    private async Task ProcessLcCategoryRecord()
     {
         try
         {
-            lcForm.RecordIdString = lcForm.RecordIdString.Trim();
-            int.TryParse(lcForm.RecordIdString, out int parsedRecordId);
-            lcForm.RecordId = parsedRecordId;
-
             if (!IsEditForm)
             {
-                await UploadLcRecord();
+                await UploadLcCategoryRecord();
             }
             else
             {
-                await EditLcRecord();
+                await EditLcCategoryRecord();
             }
         }
         catch (Exception ex)
@@ -156,26 +146,22 @@
         }
     }
 
-    private async Task UploadLcRecord()
+    private async Task UploadLcCategoryRecord()
     {
         try
         {
-            LcDto lcUploadDto = new()
+            LcCategoryDto lcCategoryUploadDto = new()
                 {
-                    RecordId = lcForm.RecordId,
-                    Romaji = lcForm.Romaji.Trim(),
-                    OriginalText = lcForm.OriginalText.Trim(),
-                    EnglishTranslation = lcForm.EnglishTranslation.Trim(),
-                    Commentary = lcForm.Commentary?.Trim(),
-                    Image = lcForm.Image,
+                    Image = lcCategoryForm.Image,
+                    Description = lcCategoryForm.Description.Trim(),
+                    Type = lcCategoryForm.Type.Trim(),
                     AddedDateTime = DateTime.UtcNow,
                     LastModifiedDateTime = DateTime.UtcNow,
-                    LcCategoryId = PassedLcCategoryId
                 };
 
-            lcUploadDto = await ILcService.UploadLcRecord(lcUploadDto);
+            lcCategoryUploadDto = await ILcCategoryService.UploadLcCategoryRecord(lcCategoryUploadDto);
 
-            Snackbar.Add("Lc Record Uploaded Successfully!~~", Severity.Success);
+            Snackbar.Add("LcCategory Record Uploaded Successfully!~~", Severity.Success);
 
             closeDialog();
         }
@@ -185,26 +171,22 @@
         }
     }
 
-    private async Task EditLcRecord()
+    private async Task EditLcCategoryRecord()
     {
         try
         {
-            LcDto lcEditDto = new()
+            LcCategoryDto lcCategoryEditDto = new()
                 {
-                    Id = lcForm.Id,
-                    RecordId = lcForm.RecordId,
-                    Romaji = lcForm.Romaji.Trim(),
-                    OriginalText = lcForm.OriginalText.Trim(),
-                    EnglishTranslation = lcForm.EnglishTranslation.Trim(),
-                    Commentary = lcForm.Commentary?.Trim(),
-                    Image = lcForm.Image,
+                    Id = lcCategoryForm.Id,
+                    Image = lcCategoryForm.Image,
+                    Description = lcCategoryForm.Description.Trim(),
+                    Type = lcCategoryForm.Type.Trim(),
                     LastModifiedDateTime = DateTime.UtcNow,
-                    LcCategoryId = PassedLcCategoryId
                 };
 
-            await ILcService.EditLcRecord(lcEditDto, PassedLcId);
+            await ILcCategoryService.EditLcCategoryRecord(lcCategoryEditDto, PassedLcCategoryId);
 
-            Snackbar.Add("Lc Record Edited Successfully!~~", Severity.Success);
+            Snackbar.Add("LcCategory Record Edited Successfully!~~", Severity.Success);
 
             closeDialog();
         }
@@ -223,8 +205,8 @@
             Stream stream = imageFile.OpenReadStream(imageFile.Size);
             using MemoryStream memoryString = new MemoryStream();
             await stream.CopyToAsync(memoryString);
-            lcForm.Image = memoryString.GetBuffer();
-            lcForm.ImageUrl = string.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String(lcForm.Image));
+            lcCategoryForm.Image = memoryString.GetBuffer();
+            lcCategoryForm.ImageUrl = string.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String(lcCategoryForm.Image));
         }
 
         imageUploaded = true;
@@ -238,41 +220,6 @@
     private void ClearDragClass()
     {
         DragClass = DefaultDragClass;
-    }
-
-    private bool ValidateRecordIdString(string recordIdString)
-    {
-        int recordId = 0;
-        lcForm.RecordIdString = lcForm.RecordIdString.Trim();
-
-        if (!IsEditForm)
-        {
-            int.TryParse(lcForm.RecordIdString, out recordId);
-
-            if (recordIdString == "")
-            {
-                return true;
-            }
-        }
-        else
-        {
-            // Record ID is required in Edit Mode.
-            if (lcForm.RecordIdString == "")
-            {
-                validatorTextRecordIdString = "Record ID is required";
-                return false;
-            }
-
-            int.TryParse(lcForm.RecordIdString, out recordId);
-        }
-        
-        if (recordId <= 0)
-        {
-            validatorTextRecordIdString = "Record ID must be a number that's > 0";
-            return false;
-        }
-
-        return true;
     }
 
     private void snackbarFailed(Exception ex)

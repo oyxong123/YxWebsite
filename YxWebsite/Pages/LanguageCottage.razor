@@ -50,6 +50,8 @@
         <MudDrawerHeader Class="d-flex justify-content-center" Style="height:40px; min-height:40px;">
             <MudText Typo="Typo.body1"><strong><u>Tools</u></strong></MudText>
             <MudIconButton OnClick="ConfirmLcCategorySwitch" Icon="@Icons.Material.Filled.ChangeCircle" Color="Color.Success" />
+            <MudIconButton OnClick="AddLcCategory" Icon="@Icons.Material.Filled.Add" Color="Color.Success" />
+            <MudIconButton OnClick="EditLcCategory" Icon="@Icons.Material.Filled.Edit" Color="Color.Success" />
         </MudDrawerHeader>
         <MudNavMenu Class="d-flex justify-content-center">
             <MudStack Spacing="1">
@@ -152,6 +154,7 @@ else
     private bool OpenToolsDrawer = true;
     private string selectedLcCategoryName = "";
     private string currentLcCategoryName = "";
+    private int currentLcCategoryId => lcCategoryList.Where(u => u.Name == currentLcCategoryName).Single().Id;
     private LcCategoryDto selectedLcCategory = new();
 
     protected override async Task OnInitializedAsync()
@@ -182,14 +185,14 @@ else
 
     private async Task lcUpload()
     {
-        await DialogService.OpenAsync<LcDialog>("New LC Upload", new Dictionary<string, object> { { "IsEditForm", false }, { "PassedLcId", 0 } }, new Radzen.DialogOptions() { CssClass="dialog", Height="85%", Width="700px"});
+        await DialogService.OpenAsync<LcDialog>("New LC Upload", new Dictionary<string, object> { { "IsEditForm", false }, { "PassedLcId", 0 }, { "PassedLcCategoryId", currentLcCategoryId } }, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
         await ConfirmLcCategorySwitch();
         StateHasChanged();
     }
 
     private async Task lcEdit(LcDto lcEditDto)
     {
-        await DialogService.OpenAsync<LcDialog>("Edit LC Record", new Dictionary<string, object> { { "IsEditForm", true }, { "PassedLcId", lcEditDto.Id } }, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width="700px" });
+        await DialogService.OpenAsync<LcDialog>("Edit LC Record", new Dictionary<string, object> { { "IsEditForm", true }, { "PassedLcId", lcEditDto.Id }, { "PassedLcCategoryId", currentLcCategoryId } }, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
         await ConfirmLcCategorySwitch();
         StateHasChanged();
     }
@@ -244,6 +247,20 @@ else
         {
             Snackbar.Add(ex.ToString(), Severity.Error);
         }
+    }
+
+    private async Task AddLcCategory()
+    {
+        await DialogService.OpenAsync<LcCategoryDialog>("Add LC Category", new Dictionary<string, object> { { "IsEditForm", false }, { "PassedLcCategoryId", 0 } }, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
+        await ConfirmLcCategorySwitch();
+        StateHasChanged();
+    }
+
+    private async Task EditLcCategory()
+    {
+        await DialogService.OpenAsync<LcCategoryDialog>("Edit LC Category", new Dictionary<string, object> { { "IsEditForm", true }, { "PassedLcCategoryId", selectedLcCategory.Id } }, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
+        await ConfirmLcCategorySwitch();
+        StateHasChanged();
     }
 
     private void ToggleToolsDrawer()

@@ -14,6 +14,10 @@ namespace YxWebsite.Dtos
         public required byte[] Image { get; set; } = Array.Empty<byte>();
         public required DateTime AddedDateTime { get; set; } = DateTime.UtcNow;
         public required DateTime LastModifiedDateTime { get; set; }
+        public LcCategoryDto ShallowCopy()
+        {
+            return (LcCategoryDto)this.MemberwiseClone();
+        }
 
         // Not mapped
         public string? ImageUrl { get; set; }
