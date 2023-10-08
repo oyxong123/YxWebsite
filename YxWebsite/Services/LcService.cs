@@ -55,8 +55,8 @@ namespace YxWebsite.Services
                         }
                     }
                     
-                    LcModel _lcModel = _mapper.Map<LcModel>(newLc);
-                    await _context.DbLanguageCottage.AddAsync(_lcModel);
+                    LcModel _addingLcModel = _mapper.Map<LcModel>(newLc);
+                    _context.Entry(_addingLcModel).State = EntityState.Added;
                     await _context.SaveChangesAsync();
 
                     AuditTrailsDto _auditTrailsDto = new()
@@ -118,8 +118,8 @@ namespace YxWebsite.Services
                         }
                     }
 
-                    LcModel _lcModel = _mapper.Map<LcModel>(modifiedLc);
-                    _context.Entry(_lcModel).State = EntityState.Modified;
+                    LcModel _modifyingLcModel = _mapper.Map<LcModel>(modifiedLc);
+                    _context.Entry(_modifyingLcModel).State = EntityState.Modified;
                     await _context.SaveChangesAsync();
 
                     AuditTrailsDto _auditTrailsDto = new()
@@ -152,8 +152,8 @@ namespace YxWebsite.Services
                     // Decrement all record ID larger than the deleting record's record ID.
                     await _context.DbLanguageCottage.Where(lc => lc.RecordId > deletingLc.RecordId).ExecuteUpdateAsync(lc => lc.SetProperty(u => u.RecordId, u => u.RecordId - 1));
 
-                    LcModel _lcModel = _mapper.Map<LcModel>(deletingLc);
-                    _context.Remove(_lcModel);
+                    LcModel _deletingLcModel = _mapper.Map<LcModel>(deletingLc);
+                    _context.Entry(_deletingLcModel).State = EntityState.Deleted;
                     await _context.SaveChangesAsync();
 
                     AuditTrailsDto _auditTrailsDto = new()

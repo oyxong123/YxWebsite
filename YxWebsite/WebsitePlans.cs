@@ -10,8 +10,9 @@ Excited Achievements:
 
 Website Plans:
 - Create lC Category edit dialog. 
-- Fix image aspect ratio in lc dialog. (aspect ratio)
-- Why AfterRenderAsync cannot run if I put all OnInitializedAsync code in it?
+- Create a dialog specific to deleting lc category, maybe like after pressing a button a dialog with lists of LC Category will appear. Then from there, we can select whether to edit or delete any of the record.
+- If deleting LC Category, pop up a confirmation dialog with the mechanism where they need to type "DELETE".
+- Fix image aspect ratio in lc dialog. (aspect ratio) (make the size before and after image insertion consistent)
 - Start designing and adding Conscioussness Void page. 
 - When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
 - Implement LC category selection. (Have another nav menu of sorts at right or left side to show what category the user is viewing, they can switch to other categories at any time)
@@ -29,11 +30,17 @@ Thoughts:
 
 */
 
- 
+
 
 /*
 
 Development Log:
+
+2023_10_08
+- Updated service methods of LcService.
+- Written code of service methods of LcCategoryService.
+- Implemented Entry().State to accommadate for database disconnected state.
+> 噢噢，原来用state.modified over update是为了要accomadate the possibility of disconnected state with database. 原来是如此。
 
 2023_10_07
 - Cleaned code.
