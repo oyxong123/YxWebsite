@@ -1,7 +1,6 @@
 ﻿/*
 
 What I Did:
-- 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -9,7 +8,8 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Create lC Category edit dialog. 
+- Make it so that when LC Category edited/added, selected LC category becomes it and gets updated.
+- Implement blazorize image cropper at image file input like project triangle. 
 - Create a dialog specific to deleting lc category, maybe like after pressing a button a dialog with lists of LC Category will appear. Then from there, we can select whether to edit or delete any of the record.
 - If deleting LC Category, pop up a confirmation dialog with the mechanism where they need to type "DELETE".
 - Fix image aspect ratio in lc dialog. (aspect ratio) (make the size before and after image insertion consistent)
@@ -35,6 +35,9 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_10_09
+- Created LC Category edit dialog.
 
 2023_10_08
 - Updated service methods of LcService.

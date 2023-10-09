@@ -52,7 +52,7 @@ namespace YxWebsite.Services
             }
         }
 
-        public async Task<bool> EditLcCategoryRecord(LcCategoryDto modifiedLcCategory, int lcCategoryId)
+        public async Task<bool> EditLcCategoryRecord(LcCategoryDto modifiedLcCategory)
         {
             try
             {
@@ -64,11 +64,6 @@ namespace YxWebsite.Services
                     }
 
                     LcCategoryModel _modifyingLcCategoryModel = _mapper.Map<LcCategoryModel>(modifiedLcCategory);
-                    
-                    // Set non-modifiable properties.
-                    LcCategoryModel _originallcCategoryModel = await _context.DbLanguageCottageCategory.Where(u => u.Id == modifiedLcCategory.Id).SingleAsync();
-                    _modifyingLcCategoryModel.AddedDateTime = _originallcCategoryModel.AddedDateTime;
-
                     _context.Entry(_modifyingLcCategoryModel).State = EntityState.Modified;
                     await _context.SaveChangesAsync();
 
@@ -143,5 +138,28 @@ namespace YxWebsite.Services
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<LcCategoryDto> GetLcCategoryRecordById(int lcCategoryId)
+        {
+            try
+            {
+                using (ApplicationDbContext _context = await _contextFactory.CreateDbContextAsync())
+                {
+                    if (_context.DbLanguageCottageCategory == null)
+                    {
+                        throw new Exception("LC Category" + __tableNotInitialized);
+                    }
+
+                    LcCategoryModel lcCategoryModel = await _context.DbLanguageCottageCategory.Where(u => u.Id == lcCategoryId).SingleAsync();
+                    LcCategoryDto lcCategoryDto = _mapper.Map<LcCategoryDto>(lcCategoryModel);
+                    return lcCategoryDto;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

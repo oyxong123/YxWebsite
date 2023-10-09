@@ -31,13 +31,13 @@
                     <ButtonTemplate Context="Image">
                         @if (imageUploaded)
                         {
-                            <MudPaper Height="246px" Width="386px" Outlined="true" Class="@DragClass" Style="padding:8px !important">
+                            <MudPaper Height="246px" Width="386px" Outlined Class="@DragClass" Style="padding:8px !important">
                                 <MudImage Src="@lcForm.ImageUrl" Alt="Image for Upload" Elevation="25" Class="rounded-lg yx-img" />
                             </MudPaper>
                         }
                         else
                         {
-                            <MudPaper Height="230px" Width="386px" Outlined="true" Class="@DragClass">
+                            <MudPaper Height="230px" Width="386px" Outlined Class="@DragClass">
                                 <MudText Class="yx-center">Drop picture</MudText>
                             </MudPaper>
                         }
