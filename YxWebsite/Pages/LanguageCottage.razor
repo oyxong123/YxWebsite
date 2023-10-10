@@ -251,7 +251,15 @@ else
 
     private async Task AddLcCategory()
     {
-        await DialogService.OpenAsync<LcCategoryDialog>("Add LC Category", new Dictionary<string, object> { { "IsEditForm", false }, { "PassedLcCategoryId", 0 } }, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
+        LcCategoryDto addedLcCategory = await DialogService.OpenAsync<LcCategoryDialog>("Add LC Category", new Dictionary<string, object> { { "IsEditForm", false }, { "PassedLcCategoryId", 0 } }, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
+        lcCategoryList = await LcCategoryService.GetAllLcCategories();
+        lcCategoryNameList = lcCategoryList.Select(u => u.Name).ToList();
+        if (lcCategoryNameList.Any())
+        {
+            selectedLcCategoryName = lcCategoryList.Single(u => u.Id == addedLcCategory.Id).Name;
+            lcCategoryChanged();
+            await ConfirmLcCategorySwitch();
+        }
         await ConfirmLcCategorySwitch();
         StateHasChanged();
     }
@@ -259,6 +267,14 @@ else
     private async Task EditLcCategory()
     {
         await DialogService.OpenAsync<LcCategoryDialog>("Edit LC Category", new Dictionary<string, object> { { "IsEditForm", true }, { "PassedLcCategoryId", selectedLcCategory.Id } }, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
+        lcCategoryList = await LcCategoryService.GetAllLcCategories();
+        lcCategoryNameList = lcCategoryList.Select(u => u.Name).ToList();
+        if (lcCategoryNameList.Any())
+        {
+            selectedLcCategoryName = lcCategoryList.Single(u => u.Id == selectedLcCategory.Id).Name;
+            lcCategoryChanged();
+            await ConfirmLcCategorySwitch();
+        }
         await ConfirmLcCategorySwitch();
         StateHasChanged();
     }

@@ -1,6 +1,8 @@
 ﻿/*
 
 What I Did:
+- Coded out the refresh code for adding and editing LC Category.
+- 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -8,9 +10,8 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Make it so that when LC Category edited/added, selected LC category becomes it and gets updated.
 - Implement blazorize image cropper at image file input like project triangle. 
-- Create a dialog specific to deleting lc category, maybe like after pressing a button a dialog with lists of LC Category will appear. Then from there, we can select whether to edit or delete any of the record.
+- Create a dialog specific to deleting lc category, maybe like after pressing a button a dialog with lists of LC Category will appear. Then from there, we can select whether to edit or delete any of the record. (use MudSimpleTable)
 - If deleting LC Category, pop up a confirmation dialog with the mechanism where they need to type "DELETE".
 - Fix image aspect ratio in lc dialog. (aspect ratio) (make the size before and after image insertion consistent)
 - Start designing and adding Conscioussness Void page. 
@@ -26,7 +27,10 @@ Special Notes:
 - Blazor component lifecycle reference: https://blazor-university.com/components/component-lifecycles/ 
 
 Thoughts:
+> I don't know why, but seeing how the web app did exactly how I expected it to do makes me slightly 微微一笑.
+> That's just a metaphor, I do know the reason why. But the blurry of that reason is the reason why it makes me so happy.
 > 
+
 
 */
 

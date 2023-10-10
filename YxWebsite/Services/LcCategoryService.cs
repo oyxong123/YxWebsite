@@ -25,6 +25,7 @@ namespace YxWebsite.Services
         {
             try
             {
+                LcCategoryDto addedLcCategory = new();
                 using (ApplicationDbContext _context = await _contextFactory.CreateDbContextAsync())
                 {
                     if (_context.DbLanguageCottageCategory == null)
@@ -42,9 +43,11 @@ namespace YxWebsite.Services
                         AddedDateTime = DateTime.UtcNow
                     };
                     await _auditTrailsService.AddAuditTrail(_auditTrailsDto);
+
+                    addedLcCategory = _mapper.Map<LcCategoryDto>(_addingLcCategoryModel);
                 }
 
-                return newLcCategory;
+                return addedLcCategory;
             }
             catch (Exception ex)
             {
