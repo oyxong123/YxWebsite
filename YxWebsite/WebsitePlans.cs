@@ -1,7 +1,6 @@
 ﻿/*
 
 What I Did:
-- Coded out the refresh code for adding and editing LC Category.
 - 
 
 Excited Achievements:
@@ -27,8 +26,8 @@ Special Notes:
 - Blazor component lifecycle reference: https://blazor-university.com/components/component-lifecycles/ 
 
 Thoughts:
-> I don't know why, but seeing how the web app did exactly how I expected it to do makes me slightly 微微一笑.
-> That's just a metaphor, I do know the reason why. But the blurry of that reason is the reason why it makes me so happy.
+> Wooo, tuple is back in use baby!
+> Wait, probably not, I can't.
 > 
 
 
@@ -40,12 +39,17 @@ Thoughts:
 
 Development Log:
 
+2023_10_10
+- Coded out the refresh code for adding and editing LC Category.
+> I don't know why, but seeing how the web app did exactly how I expected it to do makes me slightly 微微一笑.
+> That's just a metaphor, I do know the reason why. But the blurry of that reason is the reason why it makes me so happy.
+
 2023_10_09
 - Created LC Category edit dialog.
 
 2023_10_08
 - Updated service methods of LcService.
-- Written code of service methods of LcCategoryService.
+- Written code of service methods of ILcCategoryService.
 - Implemented Entry().State to accommadate for database disconnected state.
 > 噢噢，原来用state.modified over update是为了要accomadate the possibility of disconnected state with database. 原来是如此。
 

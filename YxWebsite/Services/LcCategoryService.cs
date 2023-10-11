@@ -7,14 +7,14 @@ using YxWebsite.Models;
 
 namespace YxWebsite.Services
 {
-    public class LcCategoryService : ILcCategoryService
+    public class ILcCategoryService : ILcCategoryService
     {
         private readonly IDbContextFactory<ApplicationDbContext> _contextFactory;
         private readonly IMapper _mapper;
         private readonly IAuditTrailsService _auditTrailsService;
         private readonly string __tableNotInitialized = " Table is not initialized.";
 
-        public LcCategoryService(IDbContextFactory<ApplicationDbContext> contextFactory, IMapper mapper, IAuditTrailsService auditTrailsService)
+        public ILcCategoryService(IDbContextFactory<ApplicationDbContext> contextFactory, IMapper mapper, IAuditTrailsService auditTrailsService)
         {
             _contextFactory = contextFactory;
             _mapper = mapper;

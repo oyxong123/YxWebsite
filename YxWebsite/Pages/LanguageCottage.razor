@@ -8,7 +8,7 @@
 @inject ISnackbar Snackbar
 @inject ILcService LcService
 @inject ILoginService LoginService
-@inject ILcCategoryService LcCategoryService
+@inject ILcCategoryService ILcCategoryService
 
 <style>
     .dialog{
@@ -159,7 +159,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        lcCategoryList = await LcCategoryService.GetAllLcCategories();
+        lcCategoryList = await ILcCategoryService.GetAllLcCategories();
         lcCategoryNameList = lcCategoryList.Select(u => u.Name).ToList();
         if (lcCategoryNameList.Any())
         {
@@ -252,7 +252,7 @@ else
     private async Task AddLcCategory()
     {
         LcCategoryDto addedLcCategory = await DialogService.OpenAsync<LcCategoryDialog>("Add LC Category", new Dictionary<string, object> { { "IsEditForm", false }, { "PassedLcCategoryId", 0 } }, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
-        lcCategoryList = await LcCategoryService.GetAllLcCategories();
+        lcCategoryList = await ILcCategoryService.GetAllLcCategories();
         lcCategoryNameList = lcCategoryList.Select(u => u.Name).ToList();
         if (lcCategoryNameList.Any())
         {
@@ -264,10 +264,17 @@ else
         StateHasChanged();
     }
 
+    private async Task ModifyLcCategory()
+    {
+        dynamic value = await DialogService.OpenAsync<LcCategoryListDialog>("LC Categories", null, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
+        (string returnValue, int lcCategoryId) = value;
+
+    }
+
     private async Task EditLcCategory()
     {
         await DialogService.OpenAsync<LcCategoryDialog>("Edit LC Category", new Dictionary<string, object> { { "IsEditForm", true }, { "PassedLcCategoryId", selectedLcCategory.Id } }, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
-        lcCategoryList = await LcCategoryService.GetAllLcCategories();
+        lcCategoryList = await ILcCategoryService.GetAllLcCategories();
         lcCategoryNameList = lcCategoryList.Select(u => u.Name).ToList();
         if (lcCategoryNameList.Any())
         {

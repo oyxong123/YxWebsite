@@ -1,8 +1,51 @@
-﻿@using Dtos
+﻿@using Dtos;
+@using Interfaces;
+@inject ILcCategoryService ILcCategoryService
+@inject Radzen.DialogService DialogService
 
-<h3>LcCategoryListDialog</h3>
+<MudSimpleTable Hover>
+    <thead>
+        <tr>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (LcCategoryDto lcCategory in lcCategoryList)
+        {
+            <tr>
+                <MudStack Row Justify="Justify.SpaceAround">
+                     <MudCardMedia Image="@lcCategory.ImageUrl" Height="100" Class="ml-4 mr-4" Style="background-size:contain" />
+                     <MudText>@lcCategory.Name</MudText>
+                     <MudIconButton OnClick="(() => EditLcCategory(lcCategory))" Icon="@Icons.Material.Filled.Edit" Color="Color.Success" />
+                     <MudIconButton OnClick="(() => DeleteLcCategory(lcCategory))" Icon="@Icons.Material.Filled.Add" Color="Color.Success" />
+                </MudStack>
+            </tr>
+        }
+    </tbody>
+</MudSimpleTable>
 
 @code {
     private List<LcCategoryDto> lcCategoryList = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        lcCategoryList = await ILcCategoryService.GetAllLcCategories();
+        foreach (LcCategoryDto lcCategory in lcCategoryList)
+        {
+            lcCategory.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(lcCategory.Image);
+        }
+    }
+
+    private void EditLcCategory(LcCategoryDto modifyinglcCategory)
+    {
+        (string, int) returnValue = ("EDIT", modifyinglcCategory.Id);
+        DialogService.Close(returnValue);
+    }
+
+    private void DeleteLcCategory(LcCategoryDto deletingLcCategory)
+    {
+        (string, int) returnValue = ("DELETE", deletingLcCategory.Id);
+        DialogService.Close(returnValue);
+    }
 
 }
