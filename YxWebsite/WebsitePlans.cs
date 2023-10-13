@@ -1,6 +1,7 @@
 ﻿/*
 
 What I Did:
+- Finish setting up LcCategoryListDialog.
 - 
 
 Excited Achievements:
@@ -26,8 +27,6 @@ Special Notes:
 - Blazor component lifecycle reference: https://blazor-university.com/components/component-lifecycles/ 
 
 Thoughts:
-> Wooo, tuple is back in use baby!
-> Wait, probably not, I can't.
 > 
 
 
@@ -38,6 +37,11 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_10_11
+- Continued progress in LcCategoryListDialog.
+> Wooo, tuple is back in use baby!
+> Wait, probably not, I can't.
 
 2023_10_10
 - Coded out the refresh code for adding and editing LC Category.

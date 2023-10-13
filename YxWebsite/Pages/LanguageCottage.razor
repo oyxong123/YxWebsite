@@ -51,7 +51,7 @@
             <MudText Typo="Typo.body1"><strong><u>Tools</u></strong></MudText>
             <MudIconButton OnClick="ConfirmLcCategorySwitch" Icon="@Icons.Material.Filled.ChangeCircle" Color="Color.Success" />
             <MudIconButton OnClick="AddLcCategory" Icon="@Icons.Material.Filled.Add" Color="Color.Success" />
-            <MudIconButton OnClick="EditLcCategory" Icon="@Icons.Material.Filled.Edit" Color="Color.Success" />
+            <MudIconButton OnClick="ModifyLcCategory" Icon="@Icons.Material.Filled.Edit" Color="Color.Success" />
         </MudDrawerHeader>
         <MudNavMenu Class="d-flex justify-content-center">
             <MudStack Spacing="1">
@@ -228,6 +228,19 @@ else
         }
     }
 
+    private async Task UpdateLcCategory(int newlySelectedLcCategoryId)
+    {
+        lcCategoryList = await ILcCategoryService.GetAllLcCategories();
+        lcCategoryNameList = lcCategoryList.Select(u => u.Name).ToList();
+        if (lcCategoryNameList.Any())
+        {
+            selectedLcCategoryName = lcCategoryList.Single(u => u.Id == newlySelectedLcCategoryId).Name;
+            lcCategoryChanged();
+            await ConfirmLcCategorySwitch();
+        }
+        await ConfirmLcCategorySwitch();
+    }
+
     private async Task ConfirmLcCategorySwitch()
     {
         try
@@ -252,38 +265,24 @@ else
     private async Task AddLcCategory()
     {
         LcCategoryDto addedLcCategory = await DialogService.OpenAsync<LcCategoryDialog>("Add LC Category", new Dictionary<string, object> { { "IsEditForm", false }, { "PassedLcCategoryId", 0 } }, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
-        lcCategoryList = await ILcCategoryService.GetAllLcCategories();
-        lcCategoryNameList = lcCategoryList.Select(u => u.Name).ToList();
-        if (lcCategoryNameList.Any())
-        {
-            selectedLcCategoryName = lcCategoryList.Single(u => u.Id == addedLcCategory.Id).Name;
-            lcCategoryChanged();
-            await ConfirmLcCategorySwitch();
-        }
-        await ConfirmLcCategorySwitch();
-        StateHasChanged();
+        await UpdateLcCategory(addedLcCategory.Id);
     }
 
     private async Task ModifyLcCategory()
     {
         dynamic value = await DialogService.OpenAsync<LcCategoryListDialog>("LC Categories", null, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
-        (string returnValue, int lcCategoryId) = value;
+        if (value.Operation == "EDIT")
+        {
+            await Task.Delay(200);
+            await EditLcCategory();
+        }
 
+        await UpdateLcCategory(selectedLcCategory.Id);
     }
 
     private async Task EditLcCategory()
     {
         await DialogService.OpenAsync<LcCategoryDialog>("Edit LC Category", new Dictionary<string, object> { { "IsEditForm", true }, { "PassedLcCategoryId", selectedLcCategory.Id } }, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
-        lcCategoryList = await ILcCategoryService.GetAllLcCategories();
-        lcCategoryNameList = lcCategoryList.Select(u => u.Name).ToList();
-        if (lcCategoryNameList.Any())
-        {
-            selectedLcCategoryName = lcCategoryList.Single(u => u.Id == selectedLcCategory.Id).Name;
-            lcCategoryChanged();
-            await ConfirmLcCategorySwitch();
-        }
-        await ConfirmLcCategorySwitch();
-        StateHasChanged();
     }
 
     private void ToggleToolsDrawer()

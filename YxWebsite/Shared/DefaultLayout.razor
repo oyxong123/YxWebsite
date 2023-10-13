@@ -90,7 +90,7 @@
         dynamic dialogResult = await DialogService.OpenAsync<LoginDialog>("Login", new Dictionary<string, object>() { { "IsSignUpMode", false } }, new Radzen.DialogOptions() { Height = "420px", Width = "500px" });
         if (dialogResult == "SignUp")
         {
-            await Task.Delay(400);  // Buffer time for DialogService to close and reopen.
+            await Task.Delay(200);  // Buffer time for DialogService to close and reopen.
             await DialogService.OpenAsync<LoginDialog>("Sign Up", new Dictionary<string, object>() { { "IsSignUpMode", true } }, new Radzen.DialogOptions() { Height = "550px", Width = "500px" });
         }
 

@@ -38,14 +38,15 @@
 
     private void EditLcCategory(LcCategoryDto modifyinglcCategory)
     {
-        (string, int) returnValue = ("EDIT", modifyinglcCategory.Id);
-        DialogService.Close(returnValue);
+        modifyinglcCategory.Operation = "EDIT"; 
+        DialogService.Close(modifyinglcCategory);
     }
 
-    private void DeleteLcCategory(LcCategoryDto deletingLcCategory)
+    private async Task DeleteLcCategory(LcCategoryDto deletingLcCategory)
     {
-        (string, int) returnValue = ("DELETE", deletingLcCategory.Id);
-        DialogService.Close(returnValue);
+        await ILcCategoryService.DeleteLcCategoryRecord(deletingLcCategory);
+        deletingLcCategory.Operation = "DELETE";
+        DialogService.Close(deletingLcCategory);
     }
 
 }
