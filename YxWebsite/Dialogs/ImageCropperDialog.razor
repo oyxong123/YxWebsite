@@ -1,0 +1,43 @@
+﻿@inject Radzen.DialogService DialogService
+
+<Cropper @ref="cropper" Source=@ImageUri SelectionChanged="@OnSelectionChanged" SelectionOptions="cropperSelectionOptions" Style="aspect-ratio: 1 / 1; height: 60%; padding-3" />
+<RadzenStack Orientation="Radzen.Orientation.Horizontal" class="p-3">
+    <RadzenButton Click="GetCroppedImage" Text="Crop" Disabled="cropButtonDisabled" />
+    <RadzenButton Click="ResetSelection" Text="Reset" Disabled="cropButtonDisabled" />
+</RadzenStack>
+
+@code {
+    [Parameter] public string ImageUri { get; set; }
+    private byte[] imageBytes { get; set; } = Array.Empty<byte>();
+    private bool cropButtonDisabled = false;
+    private Cropper cropper = new();
+    private CropperSelectionOptions cropperSelectionOptions = new()
+        {
+            InitialCoverage = 1,
+            InitialAspectRatio = CropperAspectRatio.Is1x1
+        };
+
+    private Task OnSelectionChanged(CropperSelectionChangedEventArgs eventArgs)
+    {
+        if (eventArgs.Width != 0)
+        {
+            cropButtonDisabled = false;
+            return InvokeAsync(StateHasChanged);
+        }
+        return Task.CompletedTask;
+    }
+
+    private async Task GetCroppedImage()
+    {
+        string imageResultBase64 = await cropper.CropAsBase64ImageAsync(new() { Width = 250, Height = 250 });
+        imageResultBase64 = imageResultBase64.Substring(imageResultBase64.LastIndexOf(',') + 1);
+        imageBytes = System.Convert.FromBase64String(imageResultBase64);
+        DialogService.Close(imageBytes);
+    }
+
+    private async Task ResetSelection()
+    {
+        cropButtonDisabled = true;
+        await cropper.ResetSelection();
+    }
+}

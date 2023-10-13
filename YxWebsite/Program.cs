@@ -31,7 +31,7 @@ builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<TooltipService>();
 builder.Services.AddScoped<ContextMenuService>();
 builder.Services.AddScoped<ILcService, LcService>();
-builder.Services.AddScoped<ILcCategoryService, ILcCategoryService>();
+builder.Services.AddScoped<ILcCategoryService, LcCategoryService>();
 builder.Services.AddScoped<IAuditTrailsService, AuditTrailsService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
 

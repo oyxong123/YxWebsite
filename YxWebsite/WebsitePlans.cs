@@ -2,7 +2,8 @@
 
 What I Did:
 - Finish setting up LcCategoryListDialog.
-- 
+- Added image cropper dialog draft. 
+- Added blazorize cropper package. 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -10,7 +11,8 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Implement blazorize image cropper at image file input like project triangle. 
+- Finish implement blazorize image cropper at image file input like project triangle. 
+- Fix when close LcCategory edit dialog through X button, it will throw exception.
 - Create a dialog specific to deleting lc category, maybe like after pressing a button a dialog with lists of LC Category will appear. Then from there, we can select whether to edit or delete any of the record. (use MudSimpleTable)
 - If deleting LC Category, pop up a confirmation dialog with the mechanism where they need to type "DELETE".
 - Fix image aspect ratio in lc dialog. (aspect ratio) (make the size before and after image insertion consistent)
@@ -27,6 +29,7 @@ Special Notes:
 - Blazor component lifecycle reference: https://blazor-university.com/components/component-lifecycles/ 
 
 Thoughts:
+> Some bugs and weird errors can only be found and fixed through running debugging mode.
 > 
 
 
