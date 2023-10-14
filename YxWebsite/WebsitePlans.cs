@@ -2,6 +2,7 @@
 
 What I Did:
 - Fixed pressing X button in LC Category List dialog exception. 
+- Fixed image not changed when another LC Category selected.
 - 
 
 Excited Achievements:

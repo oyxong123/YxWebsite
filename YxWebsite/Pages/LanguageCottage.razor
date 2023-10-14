@@ -221,6 +221,7 @@ else
         try
         {
             selectedLcCategory = lcCategoryList.Single(u => u.Name == selectedLcCategoryName);
+            selectedLcCategory.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(selectedLcCategory.Image);
         }
         catch (Exception ex)
         {
@@ -253,7 +254,6 @@ else
                 lc.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(lc.Image);
             }
             currentLcCategoryName = selectedLcCategory.Name;
-            selectedLcCategory.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(selectedLcCategory.Image);
             StateHasChanged();
         }
         catch (Exception ex)
