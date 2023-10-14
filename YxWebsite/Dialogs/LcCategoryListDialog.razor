@@ -13,11 +13,15 @@
         @foreach (LcCategoryDto lcCategory in lcCategoryList)
         {
             <tr>
-                <MudStack Row Justify="Justify.SpaceAround">
-                     <MudCardMedia Image="@lcCategory.ImageUrl" Height="100" Class="ml-4 mr-4" Style="background-size:contain" />
-                     <MudText>@lcCategory.Name</MudText>
-                     <MudIconButton OnClick="(() => EditLcCategory(lcCategory))" Icon="@Icons.Material.Filled.Edit" Color="Color.Success" />
-                     <MudIconButton OnClick="(() => DeleteLcCategory(lcCategory))" Icon="@Icons.Material.Filled.Add" Color="Color.Success" />
+                <MudStack Row Justify="Justify.SpaceBetween" AlignItems="MudBlazor.AlignItems.Center">
+                    <div class="d-flex justify-content-start flex-md-row">
+                        <MudCardMedia Image="@lcCategory.ImageUrl" Height="100" Class="ml-4 mr-4" Style="background-size:contain; width: 100px" />
+                        <MudText Align="Align.Center">@lcCategory.Name</MudText>
+                    </div>
+                     <div class="d-flex justify-content-end flex-md-row">
+                        <MudIconButton OnClick="(() => EditLcCategory(lcCategory))" Icon="@Icons.Material.Filled.Edit" Color="Color.Success" />
+                        <MudIconButton OnClick="(() => DeleteLcCategory(lcCategory))" Icon="@Icons.Material.Filled.Add" Color="Color.Success" />
+                    </div>
                 </MudStack>
             </tr>
         }

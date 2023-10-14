@@ -4,6 +4,7 @@ What I Did:
 - Fixed pressing X button in LC Category List dialog exception. 
 - Fixed image not changed when another LC Category selected.
 - Fixed more pressing X button exceptions. 
+- 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -13,7 +14,6 @@ Excited Achievements:
 Website Plans:
 - Style LC Cateogory List dialog. 
 - Finish implement blazorize image cropper at image file input like project triangle. 
-- Fix when close LcCategory edit dialog through X button, it will throw exception.
 - Create a dialog specific to deleting lc category, maybe like after pressing a button a dialog with lists of LC Category will appear. Then from there, we can select whether to edit or delete any of the record. (use MudSimpleTable)
 - If deleting LC Category, pop up a confirmation dialog with the mechanism where they need to type "DELETE".
 - Fix image aspect ratio in lc dialog. (aspect ratio) (make the size before and after image insertion consistent)
