@@ -31,7 +31,7 @@
                         @if (imageUploaded)
                         {
                             <MudPaper Height="246px" Width="386px" Outlined Class="@DragClass" Style="padding:8px !important">
-                                <MudImage Src="@lcCategoryForm.ImageUrl" Alt="Image for Upload" Elevation="25" Class="rounded-lg yx-img" />
+                                <MudImage Src="@lcCategoryForm.ImageUri" Alt="Image for Upload" Elevation="25" Class="rounded-lg yx-img" />
                             </MudPaper>
                         }
                         else
@@ -94,7 +94,7 @@
         {
             originalLcCategory = await ILcCategoryService.GetLcCategoryRecordById(PassedLcCategoryId);
             lcCategoryForm = originalLcCategory.ShallowCopy();
-            lcCategoryForm.ImageUrl = string.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String(lcCategoryForm.Image));
+            lcCategoryForm.ImageUri = string.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String(lcCategoryForm.Image));
             imageUploaded = true;
         }
     }
@@ -186,7 +186,7 @@
                 Stream _stream = imageFile.OpenReadStream(imageFile.Size);
                 await _stream.CopyToAsync(_memoryString);
                 lcCategoryForm.Image = _memoryString.GetBuffer();
-                lcCategoryForm.ImageUrl = string.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String(lcCategoryForm.Image));
+                lcCategoryForm.ImageUri = string.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String(lcCategoryForm.Image));
             };
         }
 

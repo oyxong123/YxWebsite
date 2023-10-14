@@ -60,7 +60,7 @@
                 <MudCard Elevation="2" Class="m-3 p-2">
                     <RadzenStack Orientation="Radzen.Orientation.Vertical" Gap="2rem">
                         <RadzenColumn>
-                            <MudCardMedia Image="@selectedLcCategory.ImageUrl" Height="100" Class="ml-4 mr-4" Style="background-size:contain"/>
+                            <MudCardMedia Image="@selectedLcCategory.ImageUri" Height="100" Class="ml-4 mr-4" Style="background-size:contain"/>
                         </RadzenColumn>
                         <RadzenColumn>
                             <MudText Typo="Typo.body2"><strong>Name:</strong></MudText>
@@ -103,7 +103,7 @@
                         }
                     </CardHeaderActions>
                 </MudCardHeader>
-                <MudCardMedia Image="@lc.ImageUrl" Height="250" Class="ml-4 mr-4" Style="background-size:contain"/>
+                <MudCardMedia Image="@lc.ImageUri" Height="250" Class="ml-4 mr-4" Style="background-size:contain"/>
                 <MudCardContent>
                     <div>
                         <MudText Typo="Typo.body2" Class="font-italic font-weight-bold">Original Text:</MudText>
@@ -221,7 +221,7 @@ else
         try
         {
             selectedLcCategory = lcCategoryList.Single(u => u.Name == selectedLcCategoryName);
-            selectedLcCategory.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(selectedLcCategory.Image);
+            selectedLcCategory.ImageUri = "data:image/jpeg;base64," + Convert.ToBase64String(selectedLcCategory.Image);
         }
         catch (Exception ex)
         {
@@ -251,7 +251,7 @@ else
             foreach (LcDto lc in lcDtoDisplayList)
             {
                 lc.RecordIdString = "#" + lc.RecordId.ToString();
-                lc.ImageUrl = "data:image/jpeg;base64," + Convert.ToBase64String(lc.Image);
+                lc.ImageUri = "data:image/jpeg;base64," + Convert.ToBase64String(lc.Image);
             }
             currentLcCategoryName = selectedLcCategory.Name;
             StateHasChanged();

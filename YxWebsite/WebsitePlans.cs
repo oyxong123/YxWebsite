@@ -1,9 +1,7 @@
 ﻿/*
 
 What I Did:
-- Fixed pressing X button in LC Category List dialog exception. 
-- Fixed image not changed when another LC Category selected.
-- Fixed more pressing X button exceptions. 
+- Relace all names of ImageUrl to ImageUri.
 - 
 
 Excited Achievements:
@@ -12,7 +10,6 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Style LC Cateogory List dialog. 
 - Finish implement blazorize image cropper at image file input like project triangle. 
 - Create a dialog specific to deleting lc category, maybe like after pressing a button a dialog with lists of LC Category will appear. Then from there, we can select whether to edit or delete any of the record. (use MudSimpleTable)
 - If deleting LC Category, pop up a confirmation dialog with the mechanism where they need to type "DELETE".
@@ -40,6 +37,12 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_10_14
+- Fixed pressing X button in LC Category List dialog exception. 
+- Fixed image not changed when another LC Category selected.
+- Fixed more pressing X button exceptions. 
+- Styled LC Category List dialog.
 
 2023_10_13
 - Finish setting up LcCategoryListDialog.
