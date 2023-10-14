@@ -264,14 +264,17 @@ else
 
     private async Task AddLcCategory()
     {
-        LcCategoryDto addedLcCategory = await DialogService.OpenAsync<LcCategoryDialog>("Add LC Category", new Dictionary<string, object> { { "IsEditForm", false }, { "PassedLcCategoryId", 0 } }, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
-        await UpdateLcCategory(addedLcCategory.Id);
+        LcCategoryDto? addedLcCategory = await DialogService.OpenAsync<LcCategoryDialog>("Add LC Category", new Dictionary<string, object> { { "IsEditForm", false }, { "PassedLcCategoryId", 0 } }, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
+        if (addedLcCategory != null)
+        {
+            await UpdateLcCategory(addedLcCategory.Id);
+        }
     }
 
     private async Task ModifyLcCategory()
     {
-        dynamic value = await DialogService.OpenAsync<LcCategoryListDialog>("LC Categories", null, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
-        if (value != null && value.Operation == "EDIT")
+        LcCategoryDto? returnValue = await DialogService.OpenAsync<LcCategoryListDialog>("LC Categories", null, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
+        if (returnValue != null && returnValue.Operation == "EDIT")
         {
             await Task.Delay(200);
             await EditLcCategory();

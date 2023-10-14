@@ -3,7 +3,7 @@
 What I Did:
 - Fixed pressing X button in LC Category List dialog exception. 
 - Fixed image not changed when another LC Category selected.
-- 
+- Fixed more pressing X button exceptions. 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
