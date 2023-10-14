@@ -271,7 +271,7 @@ else
     private async Task ModifyLcCategory()
     {
         dynamic value = await DialogService.OpenAsync<LcCategoryListDialog>("LC Categories", null, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
-        if (value.Operation == "EDIT")
+        if (value != null && value.Operation == "EDIT")
         {
             await Task.Delay(200);
             await EditLcCategory();
