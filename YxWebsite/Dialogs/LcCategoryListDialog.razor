@@ -1,6 +1,7 @@
 ﻿@using Dtos;
 @using Interfaces;
 @inject ILcCategoryService ILcCategoryService
+@inject ISnackbar Snackbar
 @inject Radzen.DialogService DialogService
 
 <MudSimpleTable Hover>
@@ -20,7 +21,7 @@
                     </div>
                      <div class="d-flex justify-content-end flex-md-row">
                         <MudIconButton OnClick="(() => EditLcCategory(lcCategory))" Icon="@Icons.Material.Filled.Edit" Color="Color.Success" />
-                        <MudIconButton OnClick="(() => DeleteLcCategory(lcCategory))" Icon="@Icons.Material.Filled.Add" Color="Color.Success" />
+                        <MudIconButton OnClick="(() => DeleteLcCategory(lcCategory))" Icon="@Icons.Material.Filled.DeleteForever" Color="Color.Success" />
                     </div>
                 </MudStack>
             </tr>
@@ -48,7 +49,13 @@
 
     private async Task DeleteLcCategory(LcCategoryDto deletingLcCategory)
     {
-        await ILcCategoryService.DeleteLcCategoryRecord(deletingLcCategory);
+        bool? dialogResult = await DialogService.Confirm("Delete LC Category [" + deletingLcCategory.Name + "]?", "Language Cottage Category", new ConfirmOptions() { OkButtonText = "Yes", CancelButtonText = "No" });
+        if (dialogResult == true)
+        {
+            await ILcCategoryService.DeleteLcCategoryRecord(deletingLcCategory);
+
+            Snackbar.Add("Deleted LC record.", Severity.Success);
+        }
         deletingLcCategory.Operation = "DELETE";
         DialogService.Close(deletingLcCategory);
     }

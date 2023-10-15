@@ -101,7 +101,7 @@ namespace YxWebsite.Services
                     _context.DbLanguageCottageCategory.Entry(_deletingLcCategoryModel).State = EntityState.Deleted;
                     // Delete all LC records under this deleting LC Category.
                     List<LcModel> _deletingLcModels = await _context.DbLanguageCottage.Where(u => u.LcCategoryId == deletingLcCategory.Id).ToListAsync();
-                    _context.Entry(_deletingLcModels).State = EntityState.Deleted;
+                    _context.RemoveRange(_deletingLcModels);
                     await _context.SaveChangesAsync();
 
                     AuditTrailsDto _auditTrailsDto = new()

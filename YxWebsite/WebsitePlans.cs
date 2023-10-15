@@ -1,7 +1,9 @@
 ﻿/*
 
 What I Did:
-- 
+- Gave up implementing Blazorise image cropper.
+- Debugged and fixed LC Category Record delete error.
+- Created flow of deleting LC Category.
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -9,9 +11,9 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Do check to ensure image size not more than 50Mb. 
-- Create a dialog specific to deleting lc category, maybe like after pressing a button a dialog with lists of LC Category will appear. Then from there, we can select whether to edit or delete any of the record. (use MudSimpleTable)
 - If deleting LC Category, pop up a confirmation dialog with the mechanism where they need to type "DELETE".
+- Debug and fix Audit Trails not added into DB bug.
+- Handle the case where if there is no LC Category left. How would the LC page react.
 - Fix image aspect ratio in lc dialog. (aspect ratio) (make the size before and after image insertion consistent)
 - Start designing and adding Conscioussness Void page. 
 - When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
@@ -19,6 +21,7 @@ Website Plans:
 - Add search feature to search for the record based on record ID in top right side of the page.
 - Seems like it's only when the page goes to the splash screen that the nav menu collapses to its header nav item closed. (see if there is a workaround around this, tho it has quite a low priority)
 - Finish implement blazorize image cropper at image file input like project triangle. 
+- Do check to ensure image size not more than 50Mb. 
 
 Special Notes:
 - The dialogs of Radzen look better. Use Radzen for dialogs. 
@@ -27,7 +30,8 @@ Special Notes:
 - Blazor component lifecycle reference: https://blazor-university.com/components/component-lifecycles/ 
 
 Thoughts:
->
+> Ahh. 原来要一次过删除A List of records的话是不建议用用State.Deleted，而是Remove Range的啊。
+> 
 
 
 */

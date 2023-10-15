@@ -229,13 +229,20 @@ else
         }
     }
 
-    private async Task UpdateLcCategory(int newlySelectedLcCategoryId)
+    private async Task UpdateLcCategory(int? newlySelectedLcCategoryId)
     {
         lcCategoryList = await ILcCategoryService.GetAllLcCategories();
         lcCategoryNameList = lcCategoryList.Select(u => u.Name).ToList();
         if (lcCategoryNameList.Any())
         {
-            selectedLcCategoryName = lcCategoryList.Single(u => u.Id == newlySelectedLcCategoryId).Name;
+            if (newlySelectedLcCategoryId != null)
+            {
+                selectedLcCategoryName = lcCategoryList.Single(u => u.Id == newlySelectedLcCategoryId).Name;
+            }
+            else
+            {
+                selectedLcCategoryName = lcCategoryList.Take(1).SingleOrDefault().Name;
+            }
             lcCategoryChanged();
             await ConfirmLcCategorySwitch();
         }
@@ -273,14 +280,35 @@ else
 
     private async Task ModifyLcCategory()
     {
-        LcCategoryDto? returnValue = await DialogService.OpenAsync<LcCategoryListDialog>("LC Categories", null, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
-        if (returnValue != null && returnValue.Operation == "EDIT")
+        try
         {
-            await Task.Delay(200);
-            await EditLcCategory();
+            LcCategoryDto? returnValue = await DialogService.OpenAsync<LcCategoryListDialog>("LC Categories", null, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
+
+            if (returnValue == null)
+            {
+                return;
+            }
+
+            if (returnValue.Operation == "EDIT")
+            {
+                await Task.Delay(200);
+                await EditLcCategory();
+                await UpdateLcCategory(selectedLcCategory.Id);
+            }
+            else if (returnValue.Operation == "DELETE")
+            {
+                await UpdateLcCategory(null);
+            }
+            else
+            {
+                throw new Exception("No correct value found.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Snackbar.Add(ex.ToString(), Severity.Error);
         }
 
-        await UpdateLcCategory(selectedLcCategory.Id);
     }
 
     private async Task EditLcCategory()
