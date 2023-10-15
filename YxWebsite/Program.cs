@@ -8,6 +8,7 @@ using YxWebsite.Services;
 using YxWebsite.Interfaces;
 using AutoMapper;
 using YxWebsite.Dtos;
+using Blazorise;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,21 +20,37 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddDbContextFactory<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Add MudBlazor component services to website.
+// Add MudBlazor component services to web app.
 builder.Services.AddMudServices();
 
-// Add AutoMapper service to website.
+// Add AutoMapper service to web app.
 builder.Services.AddAutoMapper(typeof(Program).Assembly);
 
-// Add Radzen component services to website.
+// Add Radzen component services to web app.
 builder.Services.AddScoped<DialogService>();
 builder.Services.AddScoped<NotificationService>();
 builder.Services.AddScoped<TooltipService>();
 builder.Services.AddScoped<ContextMenuService>();
+
+// Add interface services to web app.
 builder.Services.AddScoped<ILcService, LcService>();
 builder.Services.AddScoped<ILcCategoryService, LcCategoryService>();
 builder.Services.AddScoped<IAuditTrailsService, AuditTrailsService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
+
+// Set the limit of image size to 50Mb
+builder.Services.AddServerSideBlazor()
+    .AddHubOptions(options =>
+    {
+        options.MaximumReceiveMessageSize = 1024 * 1024 * 50;
+    });
+
+// Add Blazorize service to web app.
+builder.Services
+    .AddBlazorise(options =>
+    {
+        options.Immediate = true;
+    });
 
 var app = builder.Build();
 

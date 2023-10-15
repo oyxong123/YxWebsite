@@ -103,9 +103,9 @@
  </RadzenTemplateForm>
 
  @code {
-        [Parameter] public bool IsEditForm { get; set; }
-        [Parameter] public int PassedLcId { get; set; }
-        [Parameter] public int PassedLcCategoryId { get; set; }
+    [Parameter] public bool IsEditForm { get; set; }
+    [Parameter] public int PassedLcId { get; set; }
+    [Parameter] public int PassedLcCategoryId { get; set; }
     private bool imageUploaded = false;
     private IBrowserFile? imageFile;
     private LcDto lcForm = new()
@@ -220,13 +220,20 @@
 
         if (imageFile != null)
         {
+            byte[] imageBytes;
             Stream stream = imageFile.OpenReadStream(imageFile.Size);
             using (MemoryStream memoryString = new MemoryStream())
             {
                 await stream.CopyToAsync(memoryString);
-                lcForm.Image = memoryString.GetBuffer();
+                imageBytes = memoryString.GetBuffer();
             }
-            lcForm.ImageUri = string.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String(lcForm.Image));
+
+            // imageBytes = await DialogService.OpenAsync<ImageCropperDialog>("Crop Image", new Dictionary<string, object>() { { "ImageBytes", imageBytes } });
+            // if (imageBytes != null) // do the check to check file size not more than 50mb
+            // {
+                lcForm.Image = imageBytes;
+                lcForm.ImageUri = string.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String(lcForm.Image));
+            // }
         }
 
         imageUploaded = true;

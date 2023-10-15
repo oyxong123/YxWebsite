@@ -1,7 +1,6 @@
 ﻿/*
 
 What I Did:
-- Relace all names of ImageUrl to ImageUri.
 - 
 
 Excited Achievements:
@@ -10,7 +9,7 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Finish implement blazorize image cropper at image file input like project triangle. 
+- Do check to ensure image size not more than 50Mb. 
 - Create a dialog specific to deleting lc category, maybe like after pressing a button a dialog with lists of LC Category will appear. Then from there, we can select whether to edit or delete any of the record. (use MudSimpleTable)
 - If deleting LC Category, pop up a confirmation dialog with the mechanism where they need to type "DELETE".
 - Fix image aspect ratio in lc dialog. (aspect ratio) (make the size before and after image insertion consistent)
@@ -19,6 +18,7 @@ Website Plans:
 - Implement LC category selection. (Have another nav menu of sorts at right or left side to show what category the user is viewing, they can switch to other categories at any time)
 - Add search feature to search for the record based on record ID in top right side of the page.
 - Seems like it's only when the page goes to the splash screen that the nav menu collapses to its header nav item closed. (see if there is a workaround around this, tho it has quite a low priority)
+- Finish implement blazorize image cropper at image file input like project triangle. 
 
 Special Notes:
 - The dialogs of Radzen look better. Use Radzen for dialogs. 
@@ -27,7 +27,7 @@ Special Notes:
 - Blazor component lifecycle reference: https://blazor-university.com/components/component-lifecycles/ 
 
 Thoughts:
-> 
+>
 
 
 */
@@ -37,6 +37,13 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_10_15
+- Relace all names of ImageUrl to ImageUri.
+- Halfway setup blazorise cropper
+> Lol 原来是我没有写完整css吧了。
+> Embedded system knowledge be helping me get through file size calculation at the moment.
+> Don't know why is blazorise cropper having problem with my project right now and have missing service reference.
 
 2023_10_14
 - Fixed pressing X button in LC Category List dialog exception. 
