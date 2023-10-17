@@ -12,9 +12,7 @@ Excited Achievements:
 - 
 
 Website Plans:
-- Center loading icon.
 - If deleting LC Category, pop up a confirmation dialog with the mechanism where they need to type "DELETE".
-- Fix image aspect ratio in lc dialog. (aspect ratio) (make the size before and after image insertion consistent)
 - Start designing and adding Conscioussness Void page. 
 - When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
 - Implement LC category selection. (Have another nav menu of sorts at right or left side to show what category the user is viewing, they can switch to other categories at any time)
