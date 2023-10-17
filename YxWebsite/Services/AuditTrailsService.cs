@@ -31,6 +31,7 @@ namespace YxWebsite.Services
 
                     AuditTrailsModel auditTrailsModel = _mapper.Map<AuditTrailsModel>(auditTrailDto);
                     await _context.DbAuditTrails.AddAsync(auditTrailsModel);
+                    await _context.SaveChangesAsync();
                 }
             }
             catch (Exception ex)

@@ -10,9 +10,9 @@ namespace YxWebsite.Services
 {
     public class LcService : ILcService
     {
+        private readonly IAuditTrailsService _auditTrailsService;
         private readonly IDbContextFactory<ApplicationDbContext> _contextFactory;
         private readonly IMapper _mapper;
-        private readonly IAuditTrailsService _auditTrailsService;
 
         public LcService(IDbContextFactory<ApplicationDbContext> contextFactory, IMapper mapper, IAuditTrailsService auditTrailsService)
         {

@@ -9,9 +9,9 @@ namespace YxWebsite.Services
 {
     public class LcCategoryService : ILcCategoryService
     {
+        private readonly IAuditTrailsService _auditTrailsService;
         private readonly IDbContextFactory<ApplicationDbContext> _contextFactory;
         private readonly IMapper _mapper;
-        private readonly IAuditTrailsService _auditTrailsService;
         private readonly string __tableNotInitialized = " Table is not initialized.";
 
         public LcCategoryService(IDbContextFactory<ApplicationDbContext> contextFactory, IMapper mapper, IAuditTrailsService auditTrailsService)

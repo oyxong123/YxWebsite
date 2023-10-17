@@ -1,9 +1,8 @@
 ﻿/*
 
 What I Did:
-- Gave up implementing Blazorise image cropper.
-- Debugged and fixed LC Category Record delete error.
-- Created flow of deleting LC Category.
+- Debugged and fixed Audit Trails not added into DB bug.
+- 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -11,8 +10,8 @@ Excited Achievements:
 - 
 
 Website Plans:
+- Center loading icon.
 - If deleting LC Category, pop up a confirmation dialog with the mechanism where they need to type "DELETE".
-- Debug and fix Audit Trails not added into DB bug.
 - Handle the case where if there is no LC Category left. How would the LC page react.
 - Fix image aspect ratio in lc dialog. (aspect ratio) (make the size before and after image insertion consistent)
 - Start designing and adding Conscioussness Void page. 
@@ -30,7 +29,6 @@ Special Notes:
 - Blazor component lifecycle reference: https://blazor-university.com/components/component-lifecycles/ 
 
 Thoughts:
-> Ahh. 原来要一次过删除A List of records的话是不建议用用State.Deleted，而是Remove Range的啊。
 > 
 
 
@@ -41,6 +39,12 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_10_16
+- Gave up implementing Blazorise image cropper.
+- Debugged and fixed LC Category Record delete error.
+- Created flow of deleting LC Category.
+> Ahh. 原来要一次过删除A List of records的话是不建议用用State.Deleted，而是Remove Range的啊。
 
 2023_10_15
 - Relace all names of ImageUrl to ImageUri.
