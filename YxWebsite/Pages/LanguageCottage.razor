@@ -241,7 +241,7 @@ else
             }
             else
             {
-                selectedLcCategoryName = lcCategoryList.Take(1).SingleOrDefault().Name;
+                selectedLcCategoryName = lcCategoryList.Take(1).Single().Name;
             }
             lcCategoryChanged();
             await ConfirmLcCategorySwitch();
@@ -292,8 +292,8 @@ else
             if (returnValue.Operation == "EDIT")
             {
                 await Task.Delay(200);
-                await EditLcCategory();
-                await UpdateLcCategory(selectedLcCategory.Id);
+                await EditLcCategory(returnValue);
+                await UpdateLcCategory(returnValue.Id);
             }
             else if (returnValue.Operation == "DELETE")
             {
@@ -311,9 +311,9 @@ else
 
     }
 
-    private async Task EditLcCategory()
+    private async Task EditLcCategory(LcCategoryDto modifyingLcCategory)
     {
-        await DialogService.OpenAsync<LcCategoryDialog>("Edit LC Category", new Dictionary<string, object> { { "IsEditForm", true }, { "PassedLcCategoryId", selectedLcCategory.Id } }, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
+        await DialogService.OpenAsync<LcCategoryDialog>("Edit LC Category", new Dictionary<string, object> { { "IsEditForm", true }, { "PassedLcCategoryId", modifyingLcCategory.Id } }, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
     }
 
     private void ToggleToolsDrawer()

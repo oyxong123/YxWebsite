@@ -2,7 +2,7 @@
 
 What I Did:
 - Debugged and fixed Audit Trails not added into DB bug.
-- 
+- Debugged and fixed edit LC Category dialog opening the wrong LC Category.
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
