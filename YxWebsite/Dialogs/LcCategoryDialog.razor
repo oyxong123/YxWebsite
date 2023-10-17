@@ -21,64 +21,74 @@
     }
 </style>
 
-<RadzenTemplateForm TItem="LcCategoryDto" Data="lcCategoryForm" Submit="ProcessLcCategoryRecord" class="modal-body">
-    <RadzenStack Gap="1.5rem">
-        <RadzenStack>
-            <RadzenColumn>
-                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Image (16:9)<span class="text-danger">*</span></RadzenText>
-                <MudFileUpload T="IBrowserFile" @bind-Files="imageFile" OnFilesChanged="OnImageFileChanged" Hidden="false" Class="flex-1 py-3" InputClass="absolute mud-width-full mud-height-full overflow-hidden z-20" InputStyle="opacity:0" @ondragenter="@SetDragClass" @ondragleave="@ClearDragClass" @ondragend="@ClearDragClass">
-                    <ButtonTemplate Context="Image">
-                        @if (imageUploaded)
-                        {
-                            <MudPaper Height="246px" Width="386px" Outlined Class="@DragClass" Style="padding:8px !important">
-                                <MudImage Src="@lcCategoryForm.ImageUri" Alt="Image for Upload" Elevation="25" Class="rounded-lg yx-img" />
-                            </MudPaper>
-                        }
-                        else
-                        {
-                            <MudPaper Height="230px" Width="386px" Outlined Class="@DragClass">
-                                <MudText Class="yx-center">Drop picture</MudText>
-                            </MudPaper>
-                        }
-                    </ButtonTemplate>
-                </MudFileUpload>
-            </RadzenColumn>
-        </RadzenStack>
-        <RadzenStack>
-            <RadzenColumn>
-                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Name<span class="text-danger">*</span></RadzenText>
-                <RadzenFormField class="w-100">
-                    <ChildContent>
-                        <RadzenTextArea Name="Name" @bind-Value="lcCategoryForm.Name" class="w-100" />
-                    </ChildContent>
-                    <Helper>
-                        <RadzenRequiredValidator Component="Name" Text="LC Category Name is required" Popup=true Style="position: absolute" />
-                    </Helper>
-                </RadzenFormField>
-            </RadzenColumn>
-        </RadzenStack>
-        <RadzenStack>
-            <RadzenColumn>
-                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Type</RadzenText>
-                <RadzenTextArea @bind-Value="lcCategoryForm.Type" class="w-100" />
-            </RadzenColumn>
-        </RadzenStack>
-        <RadzenStack>
-            <RadzenColumn>
-                <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Description</RadzenText>
-                <RadzenTextArea @bind-Value="lcCategoryForm.Description" class="w-100" />
-            </RadzenColumn>
-        </RadzenStack>
-         <RadzenStack Orientation="Radzen.Orientation.Horizontal" JustifyContent="JustifyContent.End">
-             <RadzenButton Text="Cancel" Click="closeDialog" ButtonStyle="ButtonStyle.Light" />
-             <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="Shine!!" Style="width: 80px;" />
+@if (IsInitialized)
+{
+    <RadzenTemplateForm TItem="LcCategoryDto" Data="lcCategoryForm" Submit="ProcessLcCategoryRecord" class="modal-body">
+        <RadzenStack Gap="1.5rem">
+            <RadzenStack>
+                <RadzenColumn>
+                    <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Image (16:9)<span class="text-danger">*</span></RadzenText>
+                    <MudFileUpload T="IBrowserFile" @bind-Files="imageFile" OnFilesChanged="OnImageFileChanged" Hidden="false" Class="flex-1 py-3" InputClass="absolute mud-width-full mud-height-full overflow-hidden z-20" InputStyle="opacity:0" @ondragenter="@SetDragClass" @ondragleave="@ClearDragClass" @ondragend="@ClearDragClass">
+                        <ButtonTemplate Context="Image">
+                            @if (imageUploaded)
+                            {
+                                <MudPaper Height="246px" Width="386px" Outlined Class="@DragClass" Style="padding:8px !important">
+                                    <MudImage Src="@lcCategoryForm.ImageUri" Alt="Image for Upload" Elevation="25" Class="rounded-lg yx-img" />
+                                </MudPaper>
+                            }
+                            else
+                            {
+                                <MudPaper Height="230px" Width="386px" Outlined Class="@DragClass">
+                                    <MudText Class="yx-center">Drop picture</MudText>
+                                </MudPaper>
+                            }
+                        </ButtonTemplate>
+                    </MudFileUpload>
+                </RadzenColumn>
+            </RadzenStack>
+            <RadzenStack>
+                <RadzenColumn>
+                    <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Name<span class="text-danger">*</span></RadzenText>
+                    <RadzenFormField class="w-100">
+                        <ChildContent>
+                            <RadzenTextArea Name="Name" @bind-Value="lcCategoryForm.Name" class="w-100" />
+                        </ChildContent>
+                        <Helper>
+                            <RadzenRequiredValidator Component="Name" Text="LC Category Name is required" Popup=true Style="position: absolute" />
+                        </Helper>
+                    </RadzenFormField>
+                </RadzenColumn>
+            </RadzenStack>
+            <RadzenStack>
+                <RadzenColumn>
+                    <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Type</RadzenText>
+                    <RadzenTextArea @bind-Value="lcCategoryForm.Type" class="w-100" />
+                </RadzenColumn>
+            </RadzenStack>
+            <RadzenStack>
+                <RadzenColumn>
+                    <RadzenText TextStyle="TextStyle.Subtitle2" TagName="TagName.H3">Description</RadzenText>
+                    <RadzenTextArea @bind-Value="lcCategoryForm.Description" class="w-100" />
+                </RadzenColumn>
+            </RadzenStack>
+             <RadzenStack Orientation="Radzen.Orientation.Horizontal" JustifyContent="JustifyContent.End">
+                 <RadzenButton Text="Cancel" Click="closeDialog" ButtonStyle="ButtonStyle.Light" />
+                 <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="Shine!!" Style="width: 80px;" />
+             </RadzenStack>
          </RadzenStack>
-     </RadzenStack>
- </RadzenTemplateForm>
+    </RadzenTemplateForm>
+}
+ else
+{
+    <RadzenProgressBarCircular ShowValue Mode="ProgressBarMode.Indeterminate" Size="ProgressBarCircularSize.Medium" class="center-loading">
+        <Template>Wait</Template>
+    </RadzenProgressBarCircular>
+}
 
-@code {
+ @code {
     [Parameter] public bool IsEditForm { get; set; }
     [Parameter] public int PassedLcCategoryId { get; set; }
+    private bool IsInitialized = false;
     private bool imageUploaded = false;
     private IBrowserFile? imageFile;
     private LcCategoryDto lcCategoryForm = new();
@@ -97,6 +107,7 @@
             lcCategoryForm.ImageUri = string.Format("data:image/jpeg;base64,{0}", Convert.ToBase64String(lcCategoryForm.Image));
             imageUploaded = true;
         }
+        IsInitialized = true;
     }
 
     private async Task ProcessLcCategoryRecord()

@@ -4,33 +4,43 @@
 @inject ISnackbar Snackbar
 @inject Radzen.DialogService DialogService
 
-<MudSimpleTable Hover>
-    <thead>
-        <tr>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (LcCategoryDto lcCategory in lcCategoryList)
-        {
+@if (IsInitialized)
+{
+    <MudSimpleTable Hover>
+        <thead>
             <tr>
-                <MudStack Row Justify="Justify.SpaceBetween" AlignItems="MudBlazor.AlignItems.Center">
-                    <div class="d-flex justify-content-start flex-md-row">
-                        <MudCardMedia Image="@lcCategory.ImageUri" Height="100" Class="ml-4 mr-4" Style="background-size:contain; width: 100px" />
-                        <MudText Align="Align.Center">@lcCategory.Name</MudText>
-                    </div>
-                     <div class="d-flex justify-content-end flex-md-row">
-                        <MudIconButton OnClick="(() => EditLcCategory(lcCategory))" Icon="@Icons.Material.Filled.Edit" Color="Color.Success" />
-                        <MudIconButton OnClick="(() => DeleteLcCategory(lcCategory))" Icon="@Icons.Material.Filled.DeleteForever" Color="Color.Success" />
-                    </div>
-                </MudStack>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</MudSimpleTable>
+        </thead>
+        <tbody>
+            @foreach (LcCategoryDto lcCategory in lcCategoryList)
+            {
+                <tr>
+                    <MudStack Row Justify="Justify.SpaceBetween" AlignItems="MudBlazor.AlignItems.Center">
+                        <div class="d-flex justify-content-start flex-md-row">
+                            <MudCardMedia Image="@lcCategory.ImageUri" Height="100" Class="ml-4 mr-4" Style="background-size:contain; width: 100px" />
+                            <MudText Align="Align.Center">@lcCategory.Name</MudText>
+                        </div>
+                         <div class="d-flex justify-content-end flex-md-row">
+                            <MudIconButton OnClick="(() => EditLcCategory(lcCategory))" Icon="@Icons.Material.Filled.Edit" Color="Color.Success" />
+                            <MudIconButton OnClick="(() => DeleteLcCategory(lcCategory))" Icon="@Icons.Material.Filled.DeleteForever" Color="Color.Success" />
+                        </div>
+                    </MudStack>
+                </tr>
+            }
+        </tbody>
+    </MudSimpleTable>
+}
+else
+{
+    <RadzenProgressBarCircular ShowValue Mode="ProgressBarMode.Indeterminate" Size="ProgressBarCircularSize.Medium" class="center-loading">
+        <Template>Wait</Template>
+    </RadzenProgressBarCircular>
+}
 
-@code {
+ @code {
     private List<LcCategoryDto> lcCategoryList = new();
+    private bool IsInitialized = false;
 
     protected override async Task OnInitializedAsync()
     {
@@ -39,6 +49,7 @@
         {
             lcCategory.ImageUri = "data:image/jpeg;base64," + Convert.ToBase64String(lcCategory.Image);
         }
+        IsInitialized = true;
     }
 
     private void EditLcCategory(LcCategoryDto modifyinglcCategory)

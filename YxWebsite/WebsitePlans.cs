@@ -3,6 +3,8 @@
 What I Did:
 - Debugged and fixed Audit Trails not added into DB bug.
 - Debugged and fixed edit LC Category dialog opening the wrong LC Category.
+- Centered loading icon.
+- Added loading icon to dialogs. 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -12,7 +14,6 @@ Excited Achievements:
 Website Plans:
 - Center loading icon.
 - If deleting LC Category, pop up a confirmation dialog with the mechanism where they need to type "DELETE".
-- Handle the case where if there is no LC Category left. How would the LC page react.
 - Fix image aspect ratio in lc dialog. (aspect ratio) (make the size before and after image insertion consistent)
 - Start designing and adding Conscioussness Void page. 
 - When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
@@ -21,6 +22,7 @@ Website Plans:
 - Seems like it's only when the page goes to the splash screen that the nav menu collapses to its header nav item closed. (see if there is a workaround around this, tho it has quite a low priority)
 - Finish implement blazorize image cropper at image file input like project triangle. 
 - Do check to ensure image size not more than 50Mb. 
+- Handle the case where if there is no LC Category left. How would the LC page react.
 
 Special Notes:
 - The dialogs of Radzen look better. Use Radzen for dialogs. 
