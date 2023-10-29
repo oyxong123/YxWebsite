@@ -26,6 +26,7 @@ Special Notes:
 - Resizing image reference: https://www.editorx.com/shaping-design/article/resize-image-css
 - Blazor component lifecycle reference: https://blazor-university.com/components/component-lifecycles/ 
 - Most likely this will become my method of inserting data into database. Then during the next project, I will use a simpler way to host my website (purely as display) and retieve the displaying data from my hosted db. Meaning this web app won't be the primary display, and more like a backend app for my website.
+- Videos from youtube will be embedded into the website. instead of website hosting it. (Unless it's easy and not low cost in terms of resource and money)
 
 Thoughts:
 > 
