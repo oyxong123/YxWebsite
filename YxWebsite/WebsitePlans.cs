@@ -1,10 +1,7 @@
 ﻿/*
 
 What I Did:
-- Debugged and fixed Audit Trails not added into DB bug.
-- Debugged and fixed edit LC Category dialog opening the wrong LC Category.
-- Centered loading icon.
-- Added loading icon to dialogs. 
+- 
 
 Excited Achievements:
 - Successfully work out the image storing & displaying algorithm. (and the supporting css for framing too)
@@ -12,6 +9,7 @@ Excited Achievements:
 - 
 
 Website Plans:
+- Add hover become pointer when on LC Category nav menu header buttons. 
 - If deleting LC Category, pop up a confirmation dialog with the mechanism where they need to type "DELETE".
 - Start designing and adding Conscioussness Void page. 
 - When small screen, display lc in one line like how it's usually documented. If desktop big screen, make picture at left side, and all other details at the right side like instagram desktop.
@@ -27,6 +25,7 @@ Special Notes:
 - New and edit pages/dialog should reuse the same component/code to reduce duplicated code.
 - Resizing image reference: https://www.editorx.com/shaping-design/article/resize-image-css
 - Blazor component lifecycle reference: https://blazor-university.com/components/component-lifecycles/ 
+- Most likely this will become my method of inserting data into database. Then during the next project, I will use a simpler way to host my website (purely as display) and retieve the displaying data from my hosted db. Meaning this web app won't be the primary display, and more like a backend app for my website.
 
 Thoughts:
 > 
@@ -39,6 +38,17 @@ Thoughts:
 /*
 
 Development Log:
+
+2023_10_29
+- Debugged and fixed Icon buttons not working in LC tools nav menu.
+- Started inserting first batch of Sora no Kiseki 3rd Images.
+
+2023_10_17
+- Debugged and fixed Audit Trails not added into DB bug.
+- Debugged and fixed edit LC Category dialog opening the wrong LC Category.
+- Centered loading icon.
+- Added loading icon to dialogs. 
+- Styled LC Category nav menu.
 
 2023_10_16
 - Gave up implementing Blazorise image cropper.
