@@ -98,7 +98,7 @@
                 </RadzenColumn>
             </RadzenStack>
             <RadzenStack Orientation="Radzen.Orientation.Horizontal" JustifyContent="JustifyContent.End">
-                <RadzenButton Text="Cancel" Click="closeDialog" ButtonStyle="ButtonStyle.Light" />
+                 <RadzenButton Text="Cancel" Click="(() => DialogService.Close())" ButtonStyle="ButtonStyle.Light" />
                 <RadzenButton ButtonType="Radzen.ButtonType.Submit" Text="Shine!!" Style="width: 80px;" />
             </RadzenStack>
         </RadzenStack>
@@ -188,7 +188,7 @@ else
 
             Snackbar.Add("Lc Record Uploaded Successfully!~~", Severity.Success);
 
-            closeDialog();
+            DialogService.Close(true);
         }
         catch (Exception ex)
         {
@@ -217,7 +217,7 @@ else
 
             Snackbar.Add("Lc Record Edited Successfully!~~", Severity.Success);
 
-            closeDialog();
+            DialogService.Close(true);
         }
         catch (Exception ex)
         {
@@ -299,10 +299,5 @@ else
     {
         Snackbar.Add("Something went wrong.", Severity.Error);
         Snackbar.Add(ex.ToString(), Severity.Error);
-    }
-
-    private void closeDialog()
-    {
-        DialogService.Close();
     }
 }

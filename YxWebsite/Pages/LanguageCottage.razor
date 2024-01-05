@@ -195,8 +195,16 @@ else
 
     private async Task lcUpload()
     {
-        await DialogService.OpenAsync<LcDialog>("New LC Upload", new Dictionary<string, object> { { "IsEditForm", false }, { "PassedLcId", 0 }, { "PassedLcCategoryId", currentLcCategoryId } }, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
-        await ConfirmLcCategorySwitch();
+        var result = await DialogService.OpenAsync<LcDialog>("New LC Upload", new Dictionary<string, object> { { "IsEditForm", false }, { "PassedLcId", 0 }, { "PassedLcCategoryId", currentLcCategoryId } }, new Radzen.DialogOptions() { CssClass = "dialog", Height = "85%", Width = "700px" });
+        if (result == true)
+        {
+            await Task.Delay(1000);
+            await lcUpload();
+        }
+        else
+        {
+            await ConfirmLcCategorySwitch();
+        }        
         StateHasChanged();
     }
 

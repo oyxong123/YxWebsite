@@ -40,6 +40,17 @@ Thoughts:
 
 Development Log:
 
+2024_01_05
+- Research on how to automatically backup mssql database by schedule.
+- Executed the backup script provided by microsoft.
+- Finished setting up the .bat scripts for backing up the mssql databases.
+- Successfully made it so that a new upload lc record dialog pops up after I submit each new record.
+> Errr mann, I can't use the automatic backup via maintenance plan folder because I'm only using the free version of sql server management tool?
+> The SQL Server Agent is not present for Express Edition.
+> I can use .\SQLSERVER instead of writing my computer hardware ID in front while writing server name.
+> Found out that my previous website code ahas already automatically delete the empty new lines of my entered texts while inseting lc records.
+> AHHHHHHH, I MISSED THISSSSSS. TASK.DELAY() {LITERAL CRYING FACE RIGHT NOW MANNNN D':}
+
 2023_10_29
 - Debugged and fixed Icon buttons not working in LC tools nav menu.
 - Started inserting first batch of Sora no Kiseki 3rd Images.
