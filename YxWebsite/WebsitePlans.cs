@@ -40,6 +40,9 @@ Thoughts:
 
 Development Log:
 
+2024_01_06
+- Corrected some minor stuff for easy adding data access.
+
 2024_01_05
 - Research on how to automatically backup mssql database by schedule.
 - Executed the backup script provided by microsoft.

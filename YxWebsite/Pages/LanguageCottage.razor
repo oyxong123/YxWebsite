@@ -184,12 +184,13 @@ else
     {
         if (firstRender)
         {
-            var sessionData = await SessionStorage.GetAsync<int>("UserSessionId");
-            if (sessionData.Success)
-            {
-                int loginId = sessionData.Value;
-                loginUser = await LoginService.GetLogin(loginId);
-            }
+            // var sessionData = await SessionStorage.GetAsync<int>("UserSessionId");
+            // if (sessionData.Success)
+            // {
+            //     int loginId = sessionData.Value;
+            //     loginUser = await LoginService.GetLogin(loginId);
+            // }
+            loginUser.IsAdmin = true; //temp value for easy access
         }
     }
 
