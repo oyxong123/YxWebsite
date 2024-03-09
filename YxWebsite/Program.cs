@@ -14,7 +14,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor();
+builder.Services.AddServerSideBlazor()
+.AddHubOptions(options =>
+ {
+     options.ClientTimeoutInterval = TimeSpan.FromSeconds(200);  // Increase time before blazor starts to say connection lost.
+     options.KeepAliveInterval = TimeSpan.FromSeconds(100);
+ });
 
 // Add service to the container for connection to the database.
 builder.Services.AddDbContextFactory<ApplicationDbContext>(options =>
