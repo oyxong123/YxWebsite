@@ -17,8 +17,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor()
 .AddHubOptions(options =>
  {
-     options.ClientTimeoutInterval = TimeSpan.FromSeconds(400);  // Increase time before blazor starts to say connection lost.
-     options.KeepAliveInterval = TimeSpan.FromSeconds(200);
+     options.ClientTimeoutInterval = TimeSpan.FromSeconds(800);  // Increase time before blazor starts to say connection lost.
+     options.KeepAliveInterval = TimeSpan.FromSeconds(400);
  });
 
 // Add service to the container for connection to the database.
