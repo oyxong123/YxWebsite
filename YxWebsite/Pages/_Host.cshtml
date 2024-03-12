@@ -43,7 +43,16 @@
     </div>
 
     <!--Adds javascript files of blazor-->
-    <script src="_framework/blazor.server.js"></script>
+    <script src="_framework/blazor.server.js" autostart="false"></script>
+    <script>
+        Blazor.start({
+          configureSignalR: function (builder)
+          {
+            let c = builder.build();
+            c.serverTimeoutInMilliseconds = 9999999;
+            builder.build = () => c;
+          }});
+    </script>
     <!--Adds javascript files of MudBlazor-->
     <script src="_content/MudBlazor/MudBlazor.min.js"></script>
     <!--Adds javascript files of Radzen-->
